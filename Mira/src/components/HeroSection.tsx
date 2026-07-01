@@ -71,11 +71,11 @@ const TransactionCounter = () => {
       className="absolute scale-80 bottom-[85%] right-0 bg-none rounded-2xl shadow-xl px-3 py-2 flex flex-col items-start gap-1 z-10 min-w-[100px] border border-gray-100"
       style={{ backdropFilter: "blur(8px)" }}
     >
-      {/* Pulsing green dot */}
+      {/* Pulsing black dot */}
       <div className="flex items-center gap-2 mb-1">
         <span className="relative flex h-3 w-3">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-black opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-black"></span>
         </span>
         <span className="text-xs text-gray-500 font-medium">Total Transacted</span>
       </div>
@@ -89,14 +89,14 @@ const TransactionCounter = () => {
       </span>
 
       {/* Subtitle */}
-      <span className="text-[11px] text-primary font-semibold flex items-center gap-1">
+      <span className="text-[11px] text-black font-semibold flex items-center gap-1">
         ▲ 1.4% this month
       </span>
     </div>
   );
 };
 
-
+ 
 const PartnerCarousel = () => {
   // Duplicate for seamless loop
   const logos = [...PARTNERS, ...PARTNERS];
@@ -148,7 +148,7 @@ const PartnerCarousel = () => {
   );
 };
 
-
+ 
 const HeroSection = () => {
   return (
     <>
@@ -172,8 +172,8 @@ const HeroSection = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Button
-                className="px-8 py-5 text-lg rounded-full hover:bg-black"
-                style={{ backgroundColor: "rgb(24, 11, 40)" }}
+                className="px-8 py-5 text-lg rounded-full text-white hover:bg-gray-900"
+                style={{ backgroundColor: "rgb(0, 0, 0)" }}
               >
                 <a href="/splash" className="flex items-center gap-2">
                   Pay with Mira
