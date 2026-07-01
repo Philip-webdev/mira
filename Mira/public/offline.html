@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mira - Offline</title>
+    <link rel="icon" type="image/png" href="/MiraLogo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { height: 100%; }
+      body {
+        background: #07110a;
+        color: #effaf0;
+        font-family: 'Sora', system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 24px;
+        text-align: center;
+      }
+      .logo-wrap {
+        width: 88px; height: 88px;
+        display: flex; align-items: center; justify-content: center;
+        margin-bottom: 28px;
+      }
+      .logo-wrap img { width: 52px; height: 52px; object-fit: contain; }
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        margin-bottom: 8px;
+      }
+      h1 .accent { color: #5cad1a; }
+      .tagline {
+        font-size: 0.95rem;
+        color: rgba(239,250,240,0.75);
+        letter-spacing: 0.04em;
+        margin-bottom: 32px;
+      }
+      .status {
+        font-size: 0.95rem;
+        color: rgba(239,250,240,0.85);
+        margin-bottom: 20px;
+      }
+      .bar {
+        width: 180px; height: 4px;
+        background: rgba(255,255,255,0.08);
+        border-radius: 999px;
+        overflow: hidden;
+        margin-bottom: 24px;
+      }
+      .bar > span {
+        display: block; height: 100%;
+        background: linear-gradient(to right, #5cad1a, #22c55e);
+        width: 50%;
+        animation: slide 1.6s ease-in-out infinite;
+      }
+      @keyframes slide {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(350%); }
+      }
+      button {
+        background: linear-gradient(to right, #5cad1a, #22c55e);
+        color: #07110a;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 999px;
+        font-family: inherit;
+        font-weight: 700;
+        font-size: 0.95rem;
+        cursor: pointer;
+      }
+      button:hover { opacity: 0.96; }
+      button:active { transform: scale(0.98); }
+      .link-button {
+        margin-top: 12px;
+        background: transparent;
+        border: 1px solid rgba(92, 173, 26, 0.45);
+        color: #effaf0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo-wrap">
+      <img src="/MiraLogo.png" alt="Mira" />
+    </div>
+    <h1>Mira<span class="accent">Pay</span></h1>
+    <p class="tagline">Your campus payments, even when connectivity drops.</p>
+    <p class="status" id="status">Network appears offline.</p>
+    <div class="bar"><span></span></div>
+    <button id="retry">Retry connection</button>
+    <button class="link-button" id="continue">Continue to app</button>
+    <script>
+      const status = document.getElementById('status');
+      const retryButton = document.getElementById('retry');
+      const continueButton = document.getElementById('continue');
+
+      function updateStatus() {
+        if (navigator.onLine) {
+          status.textContent = 'Internet connection restored. Reloading to continue...';
+          setTimeout(() => {
+            window.location.href = '/';
+          }, 400);
+        } else {
+          status.textContent = 'You are offline. Try again when your network returns.';
+        }
+      }
+
+      retryButton.addEventListener('click', () => {
+        if (navigator.onLine) {
+          window.location.href = '/';
+        } else {
+          updateStatus();
+        }
+      });
+
+      continueButton.addEventListener('click', () => {
+        window.location.href = '/';
+      });
+
+      window.addEventListener('online', updateStatus);
+      window.addEventListener('offline', updateStatus);
+      updateStatus();
+    </script>
+  </body>
+</html>
