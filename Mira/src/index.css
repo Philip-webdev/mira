@@ -4,6 +4,7 @@
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
+Rebrand: Black & White professional palette
 */
 @keyframes color-changing {
   0% {
@@ -11,7 +12,7 @@ All colors MUST be HSL.
   }
 
   100% {
-    color: hsl(142 76% 36%);
+    color: hsl(240 100% 5%);
   }
 }
 @theme {
@@ -34,35 +35,36 @@ All colors MUST be HSL.
     --popover: 217 32.6% 17.5%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 142 76% 36%;
-    --primary-foreground: 210 40% 98%;
-    --primary-glow: 134 81% 56%;
+    /* Brand rebrand: Black & White */
+    --primary: 240 100% 5%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 0 0% 20%;
 
-    --secondary: 217 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 0% 100%;
+    --secondary-foreground: 240 100% 5%;
 
     --muted: 217 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217 32.6% 17.5%;
     --input: 217 32.6% 17.5%;
-    --ring: 142 76% 36%;
+    --ring: 0 0% 10%;
 
     --success: 142 76% 36%;
     --warning: 38 92% 50%;
-    --info: 142 76% 36%;
+    --info: 240 100% 5%;
 
-    /* Gradients */
+    /* Gradients - Black & White */
     --gradient-primary: linear-gradient(
       135deg,
-      hsl(142 76% 36%),
-      hsl(134 81% 56%)
+      hsl(240 100% 5%),
+      hsl(0 0% 15%)
     );
     --gradient-secondary: linear-gradient(
       135deg,
@@ -71,16 +73,16 @@ All colors MUST be HSL.
     );
     --gradient-hero: linear-gradient(
       135deg,
-      hsl(220 39% 11%) 0%,
-      hsl(222 84% 4.9%) 30%,
-      hsl(142 76% 36%) 70%,
-      hsl(220 39% 11%) 100%
+      hsl(240 100% 5%) 0%,
+      hsl(0 0% 10%) 30%,
+      hsl(0 0% 20%) 70%,
+      hsl(240 100% 5%) 100%
     );
 
-    /* Shadows */
-    --shadow-elegant: 0 10px 30px -10px hsl(142 76% 36% / 0.3);
-    --shadow-glow: 0 0 40px hsl(134 81% 56% / 0.2);
-    --shadow-card: 0 4px 20px -4px hsl(222 84% 4.9% / 0.4);
+    /* Shadows - Black with opacity for elegant depth */
+    --shadow-elegant: 0 10px 30px -10px hsl(240 100% 5% / 0.4);
+    --shadow-glow: 0 0 40px hsl(0 0% 0% / 0.15);
+    --shadow-card: 0 4px 20px -4px hsl(240 100% 5% / 0.5);
 
     --radius: 0.75rem;
 
@@ -88,13 +90,13 @@ All colors MUST be HSL.
 
     --sidebar-foreground: 240 5.3% 26.1%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary: 240 100% 5%;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-primary-foreground: 0 0% 100%;
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent: 0 0% 95%;
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-accent-foreground: 240 100% 5%;
 
     --sidebar-border: 220 13% 91%;
 
@@ -111,8 +113,9 @@ All colors MUST be HSL.
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Brand rebrand: Black & White for dark mode */
+    --primary: 0 0% 100%;
+    --primary-foreground: 240 100% 5%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -120,21 +123,21 @@ All colors MUST be HSL.
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 0 0% 95%;
+    --accent-foreground: 240 100% 5%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
+    --ring: 0 0% 85%;
+    --sidebar-background: 240 100% 5%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 240 100% 5%;
     --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
