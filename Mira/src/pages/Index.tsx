@@ -221,7 +221,7 @@ const Index = () => {
         @media (max-width: 768px) { .db-features-grid { grid-template-columns: 1fr; } }
         .db-feature { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem; border-radius: 14px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); transition: all .25s; cursor: default; }
         .db-feature:hover { background: rgba(95,103,172,.07); border-color: rgba(95,103,172,.2); }
-        .db-feat-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(95,103,172,.12); display: flex; align-items: center; justify-content: center; color: var(--lime); flex-shrink: 0; }
+        .db-feat-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(95,103,172,.16); display: flex; align-items: center; justify-content: center; color: rgb(95, 103, 172); flex-shrink: 0; }
         .db-feat-text strong { display: block; font-weight: 700; font-size: .95rem; color: #fff; margin-bottom: .3rem; }
         .db-feat-text span { font-size: .85rem; color: rgba(255,255,255,.5); line-height: 1.6; }
 
@@ -323,20 +323,20 @@ const Index = () => {
         .trial-text strong { display: block; font-family: 'Sora', sans-serif; font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: .35rem; }
         .trial-text span { font-size: .95rem; color: rgba(255,255,255,.65); }
         .trial-actions { display: flex; gap: .75rem; flex-shrink: 0; }
-        .btn-trial-free { padding: .85rem 2rem; border-radius: 99px; background: var(--lime); color: var(--ink); font-family: 'Sora', sans-serif; font-weight: 800; font-size: .95rem; border: none; cursor: pointer; transition: all .2s; }
+        .btn-trial-free { padding: .85rem 2rem; border-radius: 99px; background: rgb(95, 103, 172); color: var(--ink); font-family: 'Sora', sans-serif; font-weight: 800; font-size: .95rem; border: none; cursor: pointer; transition: all .2s; }
         .btn-trial-free:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
         .btn-trial-demo { padding: .85rem 2rem; border-radius: 99px; background: rgba(255,255,255,.12); border: 1.5px solid rgba(255,255,255,.25); color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; font-size: .95rem; cursor: pointer; transition: all .2s; display: flex; align-items: center; gap: .5rem; }
         .btn-trial-demo:hover { background: rgba(255,255,255,.2); transform: translateY(-2px); }
 
         /* ── HOW IT WORKS ── */
-        .how-section { padding: 8rem 8%; background: white; }
+        .how-section { padding: 8rem 8%; background: #f5f5f5; }
         .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
-        .how-card { background: rgba(255,255,255,.7); backdrop-filter: blur(8px); border-radius: 20px; padding: 2.5rem 2rem; border: 1px solid rgba(255,255,255,.9); transition: all .3s; }
-        .how-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,.1); background: #fff; }
-        .how-num { font-family: 'Sora', sans-serif; font-size: 3.5rem; font-weight: 800; color: rgba(95,103,172,.15); line-height: 1; margin-bottom: 1rem; }
-        .how-icon { width: 48px; height: 48px; border-radius: 14px; background: rgb(24, 11, 40); display: flex; align-items: center; justify-content: center; color: #fff; margin-bottom: 1.25rem; }
-        .how-card h3 { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--ink); margin-bottom: .6rem; }
-        .how-card p { font-size: .9rem; color: #4a5a4c; line-height: 1.7; }
+        .how-card { background: #fff; backdrop-filter: blur(8px); border-radius: 20px; padding: 2.5rem 2rem; border: 1px solid rgba(0,0,0,.06); box-shadow: 0 10px 30px rgba(0,0,0,.04); transition: all .3s; }
+        .how-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,.1); background: #fcfcfc; }
+        .how-num { font-family: 'Sora', sans-serif; font-size: 3.5rem; font-weight: 800; color: rgba(95,103,172,.16); line-height: 1; margin-bottom: 1rem; }
+        .how-icon { width: 48px; height: 48px; border-radius: 14px; background: rgb(95, 103, 172); display: flex; align-items: center; justify-content: center; color: #fff; margin-bottom: 1.25rem; }
+        .how-card h3 { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.1rem; color: rgb(24, 11, 40); margin-bottom: .6rem; }
+        .how-card p { font-size: .9rem; color: #5f6368; line-height: 1.7; }
 
         /* ── TESTIMONIALS ── */
         .testimonials-section { padding: 8rem 8%; background: #fff; }
@@ -351,25 +351,25 @@ const Index = () => {
         .testi-info span { font-size: .78rem; color: #9ca3af; }
 
         /* ── CTA ── */
-        .cta-section { padding: 8rem 8%; background: var(--ink); text-align: center; position: relative; overflow: hidden; }
+        .cta-section { padding: 8rem 8%; background: rgb(24, 11, 40); text-align: center; position: relative; overflow: hidden; }
         .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(95,103,172,.12) 0%, transparent 70%); }
         .cta-section .section-h2 { color: #fff; position: relative; }
         .cta-section p { font-size: 1.1rem; color: rgba(255,255,255,.6); max-width: 520px; margin: 1.25rem auto 2.5rem; position: relative; }
         .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
-        .btn-cta-main { padding: 1rem 2.5rem; border-radius: 99px; background: var(--lime); color: var(--ink); font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.05rem; border: none; cursor: pointer; display: flex; align-items: center; gap: .5rem; transition: all .25s; }
+        .btn-cta-main { padding: 1rem 2.5rem; border-radius: 99px; background: rgb(95, 103, 172); color: var(--ink); font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.05rem; border: none; cursor: pointer; display: flex; align-items: center; gap: .5rem; transition: all .25s; }
         .btn-cta-main:hover { background: #fff; transform: translateY(-3px); box-shadow: 0 12px 32px rgba(95,103,172,.3); }
         .btn-cta-demo { padding: 1rem 2.5rem; border-radius: 99px; border: 1.5px solid rgba(255,255,255,.25); background: transparent; color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.05rem; cursor: pointer; display: flex; align-items: center; gap: .5rem; transition: all .25s; }
         .btn-cta-demo:hover { background: rgba(255,255,255,.1); transform: translateY(-3px); }
 
         /* ── FOOTER ── */
-        .footer { background: #060d08; padding: 4rem 8% 2.5rem; }
+        .footer { background: #f5f5f5; padding: 4rem 8% 2.5rem; }
         .footer-top { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
-        .footer-brand p { font-size: .88rem; color: rgba(255,255,255,.45); line-height: 1.7; margin-top: .75rem; max-width: 240px; }
-        .footer-col h4 { font-family: 'Sora', sans-serif; font-size: .85rem; font-weight: 700; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
-        .footer-col a { display: block; font-size: .88rem; color: rgba(255,255,255,.4); text-decoration: none; margin-bottom: .6rem; transition: color .2s; }
-        .footer-col a:hover { color: var(--lime); }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,.07); padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
-        .footer-bottom p { font-size: .8rem; color: rgba(255,255,255,.3); }
+        .footer-brand p { font-size: .88rem; color: #6b7280; line-height: 1.7; margin-top: .75rem; max-width: 240px; }
+        .footer-col h4 { font-family: 'Sora', sans-serif; font-size: .85rem; font-weight: 700; color: rgb(24, 11, 40); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
+        .footer-col a { display: block; font-size: .88rem; color: #6b7280; text-decoration: none; margin-bottom: .6rem; transition: color .2s; }
+        .footer-col a:hover { color: rgb(95, 103, 172); }
+        .footer-bottom { border-top: 1px solid rgba(0,0,0,.08); padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
+        .footer-bottom p { font-size: .8rem; color: #6b7280; }
 
         /* ── ANIMATIONS ── */
         @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
@@ -731,51 +731,13 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ── PRICING ── */}
-      <section className="pricing-section" id="pricing">
-        <div className="pricing-header">
-          <div className="free-badge">Start Free · No Credit Card Required</div>
-          <div className="section-eyebrow" style={{ textAlign: "center" }}>Pricing</div>
-          <h2 className="section-h2" style={{ textAlign: "center" }}>One price.<br />Every institution.</h2>
-          <p style={{ fontSize: ".95rem", color: "#6b7280", lineHeight: 1.7, marginTop: "1rem" }}>
-            Whether you run a 200-pupil primary school or a 15,000-student university, advanced features are available to every institution for a single flat fee.
-          </p>
-        </div>
+    
+    
 
-        <div className="pricing-grid">
-          {TIERS.map(tier => (
-            <div key={tier.name} className={`pricing-card ${tier.highlight ? "featured" : ""}`}>
-              {tier.highlight && <div className="featured-tag">Most Popular</div>}
-              <div className="tier-icon">{tier.icon}</div>
-              <div className="tier-name">{tier.name}</div>
-              <p className="tier-desc">{tier.desc}</p>
-              {/* <div className="price-row">
-                <span className="price-currency">₦</span>
-                <span className="price-amount">{tier.price}</span>
-                <span className="price-period">/month</span>
-              </div> */}
-              <div className="price-note">✦ 30-day free trial included</div>
-              <ul className="tier-features">
-                {tier.features.map(f => (
-                  <li key={f}>
-                    <CheckCircle size={15} />
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <button className={`btn-tier ${tier.highlight ? "btn-tier-featured" : "btn-tier-default"}`}> 
-                <a href="/admission" className="flex items-center gap-2">
-                {tier.highlight ? "Get Started Free →" : "Try for Free →"}
-                </a>
-              </button>
-            </div>
-          ))}
-        </div>
-      </section>
 
          {/* ── CTA ── */}
       <section className="cta-section">
-        <div className="section-eyebrow" style={{ color: "var(--lime)", position: "relative" }}>Ready to transform your school?</div>
+        <div className="section-eyebrow" style={{ color: "rgb(95, 107, 172)", position: "relative" }}>Ready to transform your school?</div>
         <h2 className="section-h2">Join 10+ department & Institution <em>already collecting smarter.</em></h2>
         <p>Start your free 30-day trial today. No card. No contracts. Just clarity.</p>
         <div className="cta-actions">

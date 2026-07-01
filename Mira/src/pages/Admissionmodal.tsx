@@ -818,11 +818,11 @@ const CSS = `
   }
 
   .btn-cta-main {
-    padding: 1rem 2.5rem; border-radius: 99px; background: var(--lime); color: var(--ink);
+    padding: 1rem 2.5rem; border-radius: 99px; background: rgb(95, 103, 172); color: #fff;
     font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.05rem; border: none;
     cursor: pointer; display: flex; align-items: center; gap: .5rem; transition: all .25s;
   }
-  .btn-cta-main:hover { background: #fff; transform: translateY(-3px); }
+  .btn-cta-main:hover { background: rgb(24, 11, 40); transform: translateY(-3px); }
   .btn-cta-demo {
     padding: 1rem 2.5rem; border-radius: 99px; border: 1.5px solid rgba(255,255,255,.25);
     background: transparent; color: #fff; font-family: 'Sora', sans-serif; font-weight: 700;

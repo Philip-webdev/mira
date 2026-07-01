@@ -37,7 +37,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[rgb(201,221,176)] py-16 px-6 text-black">
+    <footer className="bg-[#f5f5f5] py-16 px-6 text-black">
       <div className="max-w-6xl mx-auto">
 
         {/* Main grid */}
@@ -45,8 +45,8 @@ const Footer = () => {
 
           {/* Brand column — full width on mobile */}
           <div className="col-span-2 sm:col-span-2 md:col-span-1">
-            <h3 className="text-3xl font-bold mb-3 text-green-800">
-              Mira<span className="text-green-600">Pay</span>
+            <h3 className="text-3xl font-bold mb-3" style={{ color: "rgb(24, 11, 40)" }}>
+              Mira<span style={{ color: "rgb(95, 103, 172)" }}>Pay</span>
             </h3>
             <p className="text-sm text-gray-600 mb-6 max-w-xs leading-relaxed">
               Empowering institutions with secure, fast, and reliable payment solutions.
@@ -57,7 +57,8 @@ const Footer = () => {
                   key={social.label}
                   variant="outline"
                   size="icon"
-                  className="hover:bg-green-100 hover:border-green-400 transition-all hover:scale-110 border-black/20"
+                  className="transition-all hover:scale-110 border-black/20"
+                  style={{ backgroundColor: "#fff", borderColor: "rgba(95, 103, 172, 0.25)" }}
                   asChild
                 >
                   <a href={social.href} aria-label={social.label}>
@@ -77,7 +78,8 @@ const Footer = () => {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-gray-600 hover:text-green-700 transition-colors"
+                      className="text-sm text-gray-600 transition-colors"
+                      style={{ color: "#6b7280" }}
                     >
                       {link.label}
                     </a>
