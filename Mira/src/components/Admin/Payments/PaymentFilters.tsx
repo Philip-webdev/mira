@@ -39,7 +39,7 @@ export default function PaymentFilters({
       className="
       rounded-3xl
       border
-      border-[#18311D]/10
+      border-[#180b28]/10
       bg-white/70
       p-5
       backdrop-blur-xl
@@ -57,3 +57,4 @@ export default function PaymentFilters({
     </motion.div>
   );
 }
+

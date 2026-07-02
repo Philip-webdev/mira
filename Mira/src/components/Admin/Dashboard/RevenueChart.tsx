@@ -17,7 +17,7 @@ export default function RevenueChart({ data }: Props) {
       className="rounded-3xl
 bg-white/70
 border
-border-[#18311D]/10
+border-[#180b28]/10
 p-6
 backdrop-blur-xl
 shadow-xl"
@@ -34,8 +34,8 @@ shadow-xl"
             <Area
               type="monotone"
               dataKey="revenue"
-              stroke="#18311D"
-              fill="#B7F36B"
+              stroke="#180b28"
+              fill="#b8bcef"
             />
           </AreaChart>
         </ResponsiveContainer>
@@ -43,3 +43,4 @@ shadow-xl"
     </motion.div>
   );
 }
+

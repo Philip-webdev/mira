@@ -4,7 +4,7 @@
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
-Rebrand: Black & White professional palette
+Mira brand: purple, black, and white
 */
 @keyframes color-changing {
   0% {
@@ -26,63 +26,61 @@ Rebrand: Black & White professional palette
 }
 @layer base {
   :root {
-    --background: 222 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 0 0% 100%;
+    --foreground: 270 57% 10%;
 
-    --card: 217 32.6% 17.5%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 270 57% 10%;
 
-    --popover: 217 32.6% 17.5%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 270 57% 10%;
 
-    /* Brand rebrand: Black & White */
-    --primary: 240 100% 5%;
+    /* Mira brand */
+    --primary: 233 32% 52%;
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 0 0% 20%;
+    --primary-glow: 233 45% 72%;
 
-    --secondary: 0 0% 100%;
-    --secondary-foreground: 240 100% 5%;
+    --secondary: 252 100% 97%;
+    --secondary-foreground: 270 57% 10%;
 
-    --muted: 217 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 252 100% 97%;
+    --muted-foreground: 247 12% 43%;
 
-    --accent: 0 0% 15%;
+    --accent: 270 57% 10%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 32.6% 17.5%;
-    --input: 217 32.6% 17.5%;
-    --ring: 0 0% 10%;
+    --border: 246 40% 90%;
+    --input: 246 40% 90%;
+    --ring: 233 32% 52%;
 
     --success: 142 76% 36%;
     --warning: 38 92% 50%;
     --info: 240 100% 5%;
 
-    /* Gradients - Black & White */
+    /* Gradients - Mira brand */
     --gradient-primary: linear-gradient(
       135deg,
-      hsl(240 100% 5%),
-      hsl(0 0% 15%)
+      hsl(270 57% 10%),
+      hsl(233 32% 52%)
     );
     --gradient-secondary: linear-gradient(
       135deg,
-      hsl(217 32.6% 17.5%),
-      hsl(222 84% 4.9%)
+      hsl(252 100% 97%),
+      hsl(0 0% 100%)
     );
     --gradient-hero: linear-gradient(
       135deg,
-      hsl(240 100% 5%) 0%,
-      hsl(0 0% 10%) 30%,
-      hsl(0 0% 20%) 70%,
-      hsl(240 100% 5%) 100%
+      hsl(270 57% 10%) 0%,
+      hsl(266 54% 16%) 35%,
+      hsl(233 32% 52%) 100%
     );
 
-    /* Shadows - Black with opacity for elegant depth */
-    --shadow-elegant: 0 10px 30px -10px hsl(240 100% 5% / 0.4);
-    --shadow-glow: 0 0 40px hsl(0 0% 0% / 0.15);
-    --shadow-card: 0 4px 20px -4px hsl(240 100% 5% / 0.5);
+    --shadow-elegant: 0 10px 30px -10px hsl(233 32% 52% / 0.42);
+    --shadow-glow: 0 0 40px hsl(233 32% 52% / 0.24);
+    --shadow-card: 0 4px 20px -4px hsl(270 57% 10% / 0.18);
 
     --radius: 0.75rem;
 
@@ -90,13 +88,13 @@ Rebrand: Black & White professional palette
 
     --sidebar-foreground: 240 5.3% 26.1%;
 
-    --sidebar-primary: 240 100% 5%;
+    --sidebar-primary: 233 32% 52%;
 
     --sidebar-primary-foreground: 0 0% 100%;
 
-    --sidebar-accent: 0 0% 95%;
+    --sidebar-accent: 252 100% 97%;
 
-    --sidebar-accent-foreground: 240 100% 5%;
+    --sidebar-accent-foreground: 270 57% 10%;
 
     --sidebar-border: 220 13% 91%;
 
@@ -113,9 +111,8 @@ Rebrand: Black & White professional palette
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    /* Brand rebrand: Black & White for dark mode */
-    --primary: 0 0% 100%;
-    --primary-foreground: 240 100% 5%;
+    --primary: 233 45% 64%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
@@ -123,19 +120,19 @@ Rebrand: Black & White professional palette
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 0 0% 95%;
-    --accent-foreground: 240 100% 5%;
+    --accent: 233 32% 52%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 0 0% 85%;
-    --sidebar-background: 240 100% 5%;
+    --ring: 233 45% 64%;
+    --sidebar-background: 270 57% 10%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 0 0% 100%;
-    --sidebar-primary-foreground: 240 100% 5%;
+    --sidebar-primary: 233 45% 64%;
+    --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 0 0% 100%;
     --sidebar-border: 240 3.7% 15.9%;

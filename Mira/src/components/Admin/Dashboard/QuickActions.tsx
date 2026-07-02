@@ -35,10 +35,10 @@ export default function QuickActions() {
             scale: 0.98,
           }}
           key={index}
-          className="flex items-center gap-4 rounded-3xl shadow-lg rounded-3xl border border-[#18311D]/10 bg-white/70 p-6 backdrop-blur-xl"
+          className="flex items-center gap-4 rounded-3xl shadow-lg rounded-3xl border border-[#180b28]/10 bg-white/70 p-6 backdrop-blur-xl"
           onClick={() => navigate(item.route)}
         >
-          <div className="rounded-2xl bg-[#18311D] p-4 text-white">
+          <div className="rounded-2xl bg-[#180b28] p-4 text-white">
             <item.icon />
           </div>
 
@@ -52,3 +52,4 @@ export default function QuickActions() {
     </div>
   );
 }
+

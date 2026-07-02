@@ -32,7 +32,7 @@ export default function PaymentsStats({ payments }: Props) {
         icon={DollarSign}
         trend="+18%"
         positive
-        iconBg="linear-gradient(135deg,#18311D,#5F8F3C)"
+        iconBg="linear-gradient(135deg,#180b28,#5f67ac)"
       />
 
       <PaymentStatCard
@@ -41,7 +41,7 @@ export default function PaymentsStats({ payments }: Props) {
         icon={CreditCard}
         trend="+8%"
         positive
-        iconBg="linear-gradient(135deg,#5F8F3C,#B7F36B)"
+        iconBg="linear-gradient(135deg,#5f67ac,#b8bcef)"
       />
 
       <PaymentStatCard
@@ -51,7 +51,7 @@ export default function PaymentsStats({ payments }: Props) {
         icon={Wallet}
         trend="+4%"
         positive
-        iconBg="linear-gradient(135deg,#18311D,#23432D)"
+        iconBg="linear-gradient(135deg,#180b28,#241436)"
       />
 
       <PaymentStatCard
@@ -61,8 +61,9 @@ export default function PaymentsStats({ payments }: Props) {
         icon={TrendingUp}
         trend="+11%"
         positive
-        iconBg="linear-gradient(135deg,#5F8F3C,#18311D)"
+        iconBg="linear-gradient(135deg,#5f67ac,#180b28)"
       />
     </div>
   );
 }
+

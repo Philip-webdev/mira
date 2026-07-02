@@ -22,7 +22,7 @@ export default function TransactionItem({ transaction, index }) {
         group
         rounded-2xl
         border
-        border-[#18311D]/10
+        border-[#180b28]/10
         bg-white/70
         p-4
         backdrop-blur-xl
@@ -45,8 +45,8 @@ export default function TransactionItem({ transaction, index }) {
               justify-center
               rounded-2xl
               bg-gradient-to-br
-              from-[#18311D]
-              to-[#5F8F3C]
+              from-[#180b28]
+              to-[#5f67ac]
               font-bold
               text-white
             "
@@ -55,11 +55,11 @@ export default function TransactionItem({ transaction, index }) {
           </div>
 
           <div className="min-w-0 flex-1">
-            <h3 className="truncate font-semibold text-[#18311D]">
+            <h3 className="truncate font-semibold text-[#180b28]">
               {transaction.fullname}
             </h3>
 
-            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs sm:text-sm text-[#18311D]/60">
+            <div className="mt-1 flex flex-wrap items-center gap-2 text-xs sm:text-sm text-[#180b28]/60">
               <span>{transaction.matricNumber}</span>
 
               <span className="hidden sm:inline">•</span>
@@ -76,7 +76,7 @@ export default function TransactionItem({ transaction, index }) {
         {/* Right */}
         <div className="flex items-center justify-between sm:block sm:text-right">
           <div>
-            <h2 className="text-lg font-bold text-[#18311D] sm:text-xl">
+            <h2 className="text-lg font-bold text-[#180b28] sm:text-xl">
               ₦{Number(transaction.amount).toLocaleString()}
             </h2>
 
@@ -90,3 +90,4 @@ export default function TransactionItem({ transaction, index }) {
     </motion.div>
   );
 }
+

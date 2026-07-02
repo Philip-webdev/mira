@@ -19,20 +19,20 @@ export default function NavItem({ title, icon: Icon, href, onClick }: Props) {
         transition={{ type: "spring", stiffness: 320, damping: 24 }}
         className={`relative flex items-center gap-3 overflow-hidden rounded-2xl border px-4 py-3.5 transition ${
           active
-            ? " bg-[#0d1a0f] text-white  "
-            : "border-transparent bg-white/70 text-[#18311D]/80 hover:border-[#18311D]/10 hover:bg-[#0d1a0f]/15"
+            ? " bg-[#180b28] text-white  "
+            : "border-transparent bg-white/70 text-[#180b28]/80 hover:border-[#5f67ac]/20 hover:bg-[#5f67ac]/15"
         }`}
       >
         {active && (
           <motion.div
             layoutId="active-sidebar"
-            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#18311D] via-[#23432d] to-[#5F8F3C]"
+            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#180b28] via-[#241436] to-[#5f67ac]"
             transition={{ type: "spring", stiffness: 250, damping: 28 }}
           />
         )}
 
         <div className="relative z-10 flex items-center gap-3">
-          <div className={`flex h-9 w-9 items-center justify-center rounded-xl ${active ? "bg-white/15" : "bg-[#18311D]/5"}`}>
+          <div className={`flex h-9 w-9 items-center justify-center rounded-xl ${active ? "bg-white/15" : "bg-[#5f67ac]/10"}`}>
             <Icon size={14} />
           </div>
           <span className="font-medium">{title}</span>

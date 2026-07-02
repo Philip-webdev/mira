@@ -28,19 +28,19 @@ const NewsComponent = () => {
 
   const isActive = (path: string) => pathname === path;
   const getIconClass = (path: string) =>
-    isActive(path) ? "text-[#5cad1a]" : "text-emerald-600/60";
+    isActive(path) ? "text-white" : "text-[#c9cbed]/70";
 
   return (
-    <div className="min-h-screen bg-[#0d1a0f] dark:bg-[#0d1a0f] text-white dark:text-white px-5 pb-28" style={{ fontFamily: "Sora, sans-serif" }}>
+    <div className="min-h-screen bg-[#180b28] text-white px-5 pb-28" style={{ fontFamily: "Sora, sans-serif" }}>
       <div className="max-w-md mx-auto pt-5">
         <header className="flex items-center justify-between pb-4">
           <button
             type="button"
             onClick={() => navigate("/home")}
             aria-label="Go home"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 transition"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#5f67ac]/15 hover:bg-[#5f67ac]/25 transition"
           >
-            <PanelRight className="w-5 h-5 text-emerald-600" />
+            <PanelRight className="w-5 h-5 text-[#d8daf7]" />
           </button>
           <div className="text-center">
           <h1 className="text-xl font-semibold">Notifications</h1>
@@ -49,13 +49,13 @@ const NewsComponent = () => {
           type="button"
           onClick={() => setItems([])}
           aria-label="Clear notifications"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 transition"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#5f67ac]/15 hover:bg-[#5f67ac]/25 transition"
         >
-          <RecycleIcon className="w-6 h-6 text-emerald-600" />
+          <RecycleIcon className="w-6 h-6 text-[#d8daf7]" />
         </button>
       </header>
 
-      <div className="rounded-2xl bg-[#102014] p-4 text-sm text-slate-300 shadow-sm dark:border-emerald-900">
+      <div className="rounded-2xl bg-[#241436] p-4 text-sm text-slate-300 shadow-sm ring-1 ring-[#5f67ac]/20">
         {loading ? (
           <div>Loading notifications...</div>
         ) : error ? (
@@ -69,7 +69,7 @@ const NewsComponent = () => {
             {items.map((item, index) => (
               <article
                 key={index}
-                className="rounded-2xl border border-none bg-emerald-600 p-4 shadow-sm dark:border-emerald-900 dark:bg-[#122613]"
+                className="rounded-2xl border border-[#5f67ac]/20 bg-[#5f67ac]/30 p-4 shadow-sm"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
@@ -80,7 +80,7 @@ const NewsComponent = () => {
                       {item.pubDate ? new Date(item.pubDate).toLocaleDateString() : item.source_id || "Mira"}
                     </p>
                   </div>
-                  <span className="rounded-full bg-emerald-100 px-2 py-1 text-[10px] font-semibold text-emerald-700">Alert</span>
+                  <span className="rounded-full bg-white/90 px-2 py-1 text-[10px] font-semibold text-[#180b28]">Alert</span>
                 </div>
                 <p className="mt-3 text-xs leading-6 text-slate-100 dark:text-slate-300">
                   {item.description || item.link || "Review this alert and take action if needed."}
@@ -93,7 +93,7 @@ const NewsComponent = () => {
     </div>
 
       <nav
-        className="fixed bottom-4 left-1/2 z-50 flex items-center gap-10 rounded-full bg-white/90 px-6 py-3 shadow-xl backdrop-blur-xl dark:bg-[#081207]/95"
+        className="fixed bottom-4 left-1/2 z-50 flex items-center gap-10 rounded-full bg-[#5f67ac]/25 px-6 py-3 shadow-xl backdrop-blur-xl"
         style={{
           transform: "translateX(-50%)",
           boxShadow: "0 4px 12px rgba(0,0,0,.15)",

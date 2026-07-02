@@ -82,14 +82,14 @@ const TransactionCounter = () => {
 
       {/* Animated amount */}
       <span
-        className="text-2xl font-extrabold text-white tracking-tight tabular-nums"
+        className="text-2xl font-extrabold text-black tracking-tight tabular-nums"
         style={{ fontFamily: "monospace" }}
       >
         {formatNaira(count)}
       </span>
 
       {/* Subtitle */}
-      <span className="text-[11px] text-gray-500 font-semibold flex items-center gap-1">
+      <span className="text-[11px] text-black-500 font-semibold flex items-center gap-1">
         ▲ 1.4% this month
       </span>
     </div>
@@ -154,19 +154,19 @@ const HeroSection = () => {
     <>
       <section
         className="min-h-screen flex items-center"
-        style={{ backgroundColor: "rgb(24, 11, 40)" }}
+        style={{ backgroundColor: "white" }}
       >
         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
           {/* LEFT — COPY */}
           <div className="space-y-6 text-center md:text-left">
 
-            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold text-black leading-tight">
               Accept Campus Payments <br className="hidden md:block" />
               Without Stress
             </h1>
 
-            <p className="text-base md:text-lg text-gray-600 max-w-xl mx-auto md:mx-0">
+            <p className="text-base md:text-lg text-black-600 max-w-xl mx-auto md:mx-0">
               A Simple and Secure Infrastructure Designed for Students and Institutions.
             </p>
 
@@ -195,7 +195,7 @@ const HeroSection = () => {
                 src='/d21983fc-5db5-424d-ba17-a2824b82aceb-removebg-preview.png'
                 alt="Mira for growth"
                 className="max-w-md w-full animate-float"
-                style={{ filter: "brightness(100) saturate(0%)" }}
+                style={{ filter: "brightness(0) saturate(0%)" }}
               />
 
               {/* Animated transaction counter */}

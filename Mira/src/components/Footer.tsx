@@ -45,9 +45,8 @@ const Footer = () => {
 
           {/* Brand column — full width on mobile */}
           <div className="col-span-2 sm:col-span-2 md:col-span-1">
-            <h3 className="text-3xl font-bold mb-3" style={{ color: "rgb(24, 11, 40)" }}>
-              Mira<span style={{ color: "rgb(95, 103, 172)" }}>Pay</span>
-            </h3>
+           <div className="flex  ml-0 text-[black] p-0 font-bolder" style={{fontWeight:'100px'}}>
+           <a href='/splash' style={{textDecoration: 'none'}}><b><div className="flex gap-0" ><img className='w-12 h-12' src="/mira-removebg-preview.png" /><div className="mt-6">ira</div></div></b></a> </div>
             <p className="text-sm text-gray-600 mb-6 max-w-xs leading-relaxed">
               Empowering institutions with secure, fast, and reliable payment solutions.
             </p>

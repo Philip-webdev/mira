@@ -10,7 +10,7 @@ const [darkMode, setDarkMode] = useState(false);
     setDarkMode(prev => !prev);
   }
   return (
-    <Card className="bg-gray-50 backdrop-blur-sm border-gray-200">
+    <Card className="bg-white dark: bg-[rgb(24, 11,40)] backdrop-blur-sm border-gray-200">
       <CardHeader 
         className="cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
@@ -19,7 +19,7 @@ const [darkMode, setDarkMode] = useState(false);
         <CardTitle className="flex items-center justify-center dark:text-white" >
           
           <div style={{display: 'flex', alignItems: 'center', fontSize:'smaller' }}>
-            <div><Wallet2Icon style={{marginRight: '0.5rem'}}/></div><div>Pay with  Mira<span className="dark:text-gray-300">Pay</span></div>
+            <div><Wallet2Icon style={{marginRight: '0.5rem'}}/></div><div>Pay with  Mira<span className="dark:text-[rgb(95,103, 174)]">Pay</span></div>
           </div>
           {isOpen ? (
             <ChevronUp className="ml-10 w-5 h-5 dark:text-white" />

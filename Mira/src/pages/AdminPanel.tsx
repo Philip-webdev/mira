@@ -30,14 +30,14 @@ const variantStyles: Record<string, string> = {
   colerm: "bg-sky-500/10 border-sky-500/20 hover:bg-sky-500/20",
   sslm: "bg-orange-500/10 border-orange-500/20 hover:bg-orange-500/20",
   wma: "bg-cyan-500/10 border-cyan-500/20 hover:bg-cyan-500/20",
-  geo: "bg-emerald-500/10 border-emerald-500/20 hover:bg-emerald-500/20",
+  geo: "bg-[#5f67ac]/10 border-[#5f67ac]/20 hover:bg-[#5f67ac]/20",
   aqua: "bg-blue-500/10 border-blue-500/20 hover:bg-blue-500/20",
   pbst: "bg-fuchsia-500/10 border-fuchsia-500/20 hover:bg-fuchsia-500/20",
   emt: "bg-amber-500/10 border-amber-500/20 hover:bg-amber-500/20",
   ppcp: "bg-violet-500/10 border-violet-500/20 hover:bg-violet-500/20",
   colphys: "bg-rose-500/10 border-rose-500/20 hover:bg-rose-500/20",
-  naps: "bg-emerald-500/10 border-emerald-500/20 hover:bg-emerald-500/20",
-  cpt: "bg-lime-500/10 border-lime-500/20 hover:bg-lime-500/20",
+  naps: "bg-[#5f67ac]/10 border-[#5f67ac]/20 hover:bg-[#5f67ac]/20",
+  cpt: "bg-[#5f67ac]/10 border-[#5f67ac]/20 hover:bg-[#5f67ac]/20",
   fossu: "bg-slate-500/10 border-slate-500/20 hover:bg-slate-500/20",
 };
 

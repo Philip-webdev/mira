@@ -15,7 +15,7 @@ export default function PaymentsHeader({ title, count }: Props) {
       className="
         relative overflow-hidden
         rounded-[32px]
-        border border-[#18311D]/10
+        border border-[#180b28]/10
         bg-white/70
         p-5
         shadow-xl
@@ -25,21 +25,21 @@ export default function PaymentsHeader({ title, count }: Props) {
       "
     >
       {/* Decorative Gradient */}
-      <div className="absolute -right-24 -top-24 h-52 w-52 rounded-full bg-[#B7F36B]/20 blur-3xl" />
-      <div className="absolute -bottom-24 left-0 h-44 w-44 rounded-full bg-[#18311D]/10 blur-3xl" />
+      <div className="absolute -right-24 -top-24 h-52 w-52 rounded-full bg-[#b8bcef]/20 blur-3xl" />
+      <div className="absolute -bottom-24 left-0 h-44 w-44 rounded-full bg-[#180b28]/10 blur-3xl" />
 
       <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
         {/* Left */}
         <div className="max-w-2xl">
-          <span className="inline-flex items-center rounded-full bg-[#B7F36B]/20 px-3 py-1 text-xs font-semibold text-[#18311D]">
+          <span className="inline-flex items-center rounded-full bg-[#b8bcef]/20 px-3 py-1 text-xs font-semibold text-[#180b28]">
             Payment Management
           </span>
 
-          <h1 className="mt-4 text-3xl font-bold leading-tight text-[#18311D] sm:text-4xl lg:text-5xl">
+          <h1 className="mt-4 text-3xl font-bold leading-tight text-[#180b28] sm:text-4xl lg:text-5xl">
             {title} Payments
           </h1>
 
-          <p className="mt-3 max-w-xl text-sm leading-7 text-[#18311D]/65 sm:text-base">
+          <p className="mt-3 max-w-xl text-sm leading-7 text-[#180b28]/65 sm:text-base">
             Manage, monitor and export every successful student payment from a
             single dashboard.
           </p>
@@ -59,9 +59,9 @@ export default function PaymentsHeader({ title, count }: Props) {
             w-full
             rounded-3xl
             bg-gradient-to-br
-            from-[#18311D]
-            via-[#23432D]
-            to-[#5F8F3C]
+            from-[#180b28]
+            via-[#241436]
+            to-[#5f67ac]
             p-5
             text-white
             shadow-2xl
@@ -90,3 +90,4 @@ export default function PaymentsHeader({ title, count }: Props) {
     </motion.div>
   );
 }
+

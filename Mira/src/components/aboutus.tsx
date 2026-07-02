@@ -4,9 +4,9 @@ function aboutUs() {
 
 
   return (
-    <div className="min-h-screen bg-[#0d1a0f] pb-28 text-slate-100" style={{ fontFamily: "Sora, sans-serif" }}>
+    <div className="min-h-screen bg-[#180b28] pb-28 text-slate-100" style={{ fontFamily: "Sora, sans-serif" }}>
       <div className="mx-auto max-w-2xl px-4 py-6 sm:px-6">
-        <div className="rounded-[2rem] bg-[#0d1a0f] px-2 py-4">
+        <div className="rounded-[2rem] bg-[#180b28] px-2 py-4">
           <div className="flex items-center justify-between">
             
             <div className="flex-1 text-center">

@@ -116,7 +116,7 @@ const Index = () => {
         .hero-eyebrow {
           display: inline-flex; align-items: center; gap: .5rem;
           padding: .35rem 1rem; border-radius: 99px;
-          background: rgba(45,106,79,.12); border: 1px solid rgba(45,106,79,.2);
+          background: rgba(95,103,172,.12); border: 1px solid rgba(95,103,172,.22);
           font-size: .8rem; font-weight: 600; color: var(--leaf); letter-spacing: .05em;
           text-transform: uppercase; margin-bottom: 1.5rem;
           animation: fadeUp .8s ease both;
@@ -152,7 +152,7 @@ const Index = () => {
         .btn-hero-primary:hover { color: var(--ink); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
         .btn-hero-demo {
           padding: .9rem 1.8rem; border-radius: 99px;
-          border: 2px solid rgba(45,106,79,.4); background: rgba(255,255,255,.5);
+          border: 2px solid rgba(95,103,172,.4); background: rgba(255,255,255,.5);
           backdrop-filter: blur(8px); color: var(--ink);
           font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1rem;
           cursor: pointer; display: flex; align-items: center; gap: .5rem; transition: all .25s;
@@ -390,7 +390,7 @@ const Index = () => {
           display: flex; flex-direction: column; gap: .85rem;
           min-height: 190px; cursor: default; overflow: hidden;
           transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease, background .35s ease;
-          box-shadow: 0 4px 18px rgba(13,26,15,.05);
+          box-shadow: 0 4px 18px rgba(24,11,40,.06);
         }
         .problem-card-glow {
           position: absolute; inset: -40% -40% auto auto;
@@ -433,7 +433,7 @@ const Index = () => {
         }
         .problem-card-arrow {
           position: absolute; top: 1.4rem; right: 1.4rem; z-index: 1;
-          color: rgba(13,26,15,.25);
+          color: rgba(24,11,40,.25);
           transition: color .35s ease, transform .35s ease;
         }
         .problem-card:hover .problem-card-arrow {
@@ -548,13 +548,13 @@ const Index = () => {
       `}</style>
       
       {/* this is the header section containing quick actions on KIT services */}
-      <div className="" style={{background:'rgb(24, 11, 40)'}}>
-       <div className="absolute  ml-0 text-[white] p-4 font-bolder" style={{fontWeight:'100px'}}>
-           <a href='/splash' style={{textDecoration: 'none'}}><b>Mira</b></a> </div>
+      <div className="" style={{background:'white'}}>
+       <div className="absolute  ml-0 text-[black] p-4 font-bolder" style={{fontWeight:'100px'}}>
+           <a href='/splash' style={{textDecoration: 'none'}}><b><div className="flex gap-0" ><img className='w-8 h-6' src="/mira-removebg-preview.png" /><div className="mt-1">ira</div></div></b></a> </div>
       
-      <div className="flex  text-white p-4 m-0 rounded-lg  w-full justify-end  text-auto">
+      <div className="flex  text-black p-4 m-0 rounded-lg  w-full justify-end  text-auto">
        
-        <div className="mr-10 ml-auto"> <a href="/about">About</a></div> <div className="mr-10"><a href="/blogs">Blog</a></div><div className="bg-black text-white rounded-full px-4 py-0 "> 
+        <div className="mr-10 ml-auto"> <a href="/about">About</a></div> <div className="mr-10"><a href="/blogs">Blog</a></div><div style={{background:'rgb(24, 11, 40)'}} className="bg-[rgb(24, 11, 40)] text-white rounded-full px-4 py-0 "> 
          <a href='/splash' style={{textDecoration: ''}}> Pay</a>
                       </div> 
            </div>

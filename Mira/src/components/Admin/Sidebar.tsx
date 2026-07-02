@@ -44,7 +44,7 @@ const Sidebar = memo(({ isOpen, closeSidebar }: SidebarProps) => {
         initial={{ y: 8, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.05 }}
-        className="rounded-3xl border border-[#18311D]/10 bg-white/70 p-4 shadow-sm"
+        className="rounded-3xl border border-[#180b28]/10 bg-white/70 p-4 shadow-sm"
       >
         <div className="mb-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -58,7 +58,7 @@ const Sidebar = memo(({ isOpen, closeSidebar }: SidebarProps) => {
 
             <div>
              
-              <h2 className="text-lg font-semibold text-[#18311D]">
+              <h2 className="text-lg font-semibold text-[#180b28]">
                 Admin
               </h2>
             </div>
@@ -73,8 +73,8 @@ const Sidebar = memo(({ isOpen, closeSidebar }: SidebarProps) => {
           </button>
         </div>
 
-        <div className="flex items-center gap-2 rounded-2xl bg-[#18311D]/5 px-3 py-2 text-sm text-[#18311D]/70">
-          <Sparkles size={14} className="text-[#5F8F3C]" />
+        <div className="flex items-center gap-2 rounded-2xl bg-[#180b28]/5 px-3 py-2 text-sm text-[#180b28]/70">
+          <Sparkles size={14} className="text-[#5f67ac]" />
           <span>{config?.title}</span>
         </div>
       </motion.div>
@@ -125,7 +125,7 @@ const Sidebar = memo(({ isOpen, closeSidebar }: SidebarProps) => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="rounded-3xl border border-[#18311D]/10 bg-[#18311D] p-4 text-white"
+        className="rounded-3xl border border-[#180b28]/10 bg-[#180b28] p-4 text-white"
       >
         <p className="text-sm font-semibold">{config?.title}</p>
 
@@ -148,7 +148,7 @@ const Sidebar = memo(({ isOpen, closeSidebar }: SidebarProps) => {
     <>
       {/* ---------------- Desktop Sidebar ---------------- */}
 
-      <aside className="fixed left-0 top-0 z-30 hidden h-screen w-[288px] flex-col border-r border-[#18311D]/10 bg-[radial-gradient(circle_at_top_left,_rgba(183,243,107,0.35),_transparent_45%),linear-gradient(135deg,_rgba(255,255,255,0.92),_rgba(240,248,232,0.86))] px-5 py-6 shadow-[20px_0_60px_rgba(24,49,29,0.12)] backdrop-blur-2xl lg:flex">
+      <aside className="fixed left-0 top-0 z-30 hidden h-screen w-[288px] flex-col border-r border-[#180b28]/10 bg-[radial-gradient(circle_at_top_left,_rgba(95,103,172,0.24),_transparent_45%),linear-gradient(135deg,_rgba(255,255,255,0.92),_rgba(248,247,255,0.9))] px-5 py-6 shadow-[20px_0_60px_rgba(24,11,40,0.12)] backdrop-blur-2xl lg:flex">
         {menu}
       </aside>
 
@@ -178,7 +178,7 @@ const Sidebar = memo(({ isOpen, closeSidebar }: SidebarProps) => {
                 stiffness: 280,
                 damping: 30,
               }}
-              className="fixed left-0 top-0 z-50 flex h-screen w-[288px] flex-col border-r border-[#18311D]/10 bg-[radial-gradient(circle_at_top_left,_rgba(183,243,107,0.35),_transparent_45%),linear-gradient(135deg,_rgba(255,255,255,0.92),_rgba(240,248,232,0.86))] px-5 py-6 shadow-2xl backdrop-blur-2xl lg:hidden"
+              className="fixed left-0 top-0 z-50 flex h-screen w-[288px] flex-col border-r border-[#180b28]/10 bg-[radial-gradient(circle_at_top_left,_rgba(95,103,172,0.24),_transparent_45%),linear-gradient(135deg,_rgba(255,255,255,0.92),_rgba(248,247,255,0.9))] px-5 py-6 shadow-2xl backdrop-blur-2xl lg:hidden"
             >
               {menu}
             </motion.aside>
@@ -192,3 +192,4 @@ const Sidebar = memo(({ isOpen, closeSidebar }: SidebarProps) => {
 Sidebar.displayName = "Sidebar";
 
 export default Sidebar;
+

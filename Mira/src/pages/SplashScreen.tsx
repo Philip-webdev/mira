@@ -20,7 +20,7 @@ function SplashScreen() {
 
   return (
     <div
-      className={`min-h-screen bg-[#0d1a0f] flex flex-col items-center justify-center transition-opacity duration-700 ${fadeOut ? "opacity-0" : "opacity-100"}`}
+      className={`min-h-screen bg-[#180b28] flex flex-col items-center justify-center transition-opacity duration-700 ${fadeOut ? "opacity-0" : "opacity-100"}`}
       style={{ fontFamily: "Sora, sans-serif" }}
       onClick={() => navigate("/home", { replace: true })}
     >
@@ -37,7 +37,7 @@ function SplashScreen() {
 
       {/* Brand name */}
       <h1 className="text-3xl font-bold text-white tracking-tight mb-2">
-        Mira<span className="text-green-500">Pay</span>
+        Mira<span className="text-[#b8bcef]">Pay</span>
       </h1>
 
       {/* Tagline */}
@@ -48,7 +48,7 @@ function SplashScreen() {
       {/* Progress bar */}
       <div className="w-48 h-1 bg-white/10 rounded-full mt-10 overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-[#5cad1a] to-green-500 rounded-full"
+          className="h-full bg-gradient-to-r from-white via-[#b8bcef] to-[#5f67ac] rounded-full"
           style={{
             animation: "splash-progress 2.5s ease-out forwards",
           }}

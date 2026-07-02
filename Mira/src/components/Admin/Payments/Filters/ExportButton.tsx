@@ -14,7 +14,7 @@ export default function ExportButton({ onExport }: Props) {
       items-center
       gap-2
       rounded-2xl
-      bg-[#18311D]
+      bg-[#180b28]
       px-5
       text-white
       transition-all
@@ -26,3 +26,4 @@ export default function ExportButton({ onExport }: Props) {
     </button>
   );
 }
+

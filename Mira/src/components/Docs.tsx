@@ -71,17 +71,17 @@ function Docus() {
   const selectedPost = posts.find((post) => post.id === selectedPostId) ?? null;
 
   const getIconClass = (path: string) =>
-    pathname === path ? "text-[#5cad1a]" : "text-emerald-600/60";
+    pathname === path ? "text-white" : "text-[#c9cbed]/70";
 
   return (
-    <div className="min-h-screen bg-white pb-28 text-slate-100" style={{ fontFamily: "Sora, sans-serif" }}>
+    <div className="min-h-screen bg-[#fbfaff] pb-28 text-slate-100" style={{ fontFamily: "Sora, sans-serif" }}>
       <div className="mx-0 max-w-7xl px-0 py-0 sm:px-0">
-        <div className="w-full bg-[#0d1a0f] px-2 py-4">
+        <div className="w-full bg-[#180b28] px-2 py-4">
           <div className="flex items-center justify-between">
             
             <div className="flex-1 text-center">
               <h1 className="text-2xl font-bold tracking-tight text-white">Mira  Stories</h1>
-              <p className="mt-0.5 text-xs text-[#5cad1a]/90">Become Mira-informed</p>
+              <p className="mt-0.5 text-xs text-[#b8bcef]">Become Mira-informed</p>
             </div>
             <div className="h-11 w-11" />
           </div>
@@ -90,13 +90,13 @@ function Docus() {
         </div>
  <div className="mt-0 space-y-6">
           <BlogSlider />
-          <div className="rounded-[1.5rem] bg-emerald-500/[0.04] p-4 sm:p-5 ring-1 ring-emerald-500/10">
+          <div className="rounded-[1.5rem] bg-[#5f67ac]/[0.05] p-4 sm:p-5 ring-1 ring-[#5f67ac]/15">
             <div className="flex items-end justify-between">
               <div>
                 <h2 className="text-xl sm:text-2xl font-bold text-black tracking-tight">Featured articles</h2>
                 <p className="mt-1 text-sm text-black">Hand-picked reads from the Mira team.</p>
               </div>
-              <span className="text-xs font-medium text-emerald-400">{posts.length} posts</span>
+              <span className="text-xs font-medium text-[#5f67ac]">{posts.length} posts</span>
             </div>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
      
@@ -105,10 +105,10 @@ function Docus() {
                   key={post.id}
                   type="button"
                   onClick={() => setSelectedPostId(post.id)}
-                 className={`group w-full overflow-hidden rounded-2xl border text-left transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-900/30 ${
+                 className={`group w-full overflow-hidden rounded-2xl border text-left transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#180b28]/25 ${
                     selectedPost?.id === post.id
-                      ? "border-emerald-500 bg-[#0d1a0f]"
-                      : "border-emerald-500/10 bg-[#0d1a0f]"
+                      ? "border-[#5f67ac] bg-[#180b28]"
+                      : "border-[#5f67ac]/20 bg-[#180b28]"
                   }`}
                 >
                    <div className="overflow-hidden rounded-[0.9rem]">
@@ -131,13 +131,13 @@ function Docus() {
           </div>
 
           {selectedPost ? (
-            <div className="fixed inset-x-0 bottom-0 z-50 mx-auto max-w-2xl rounded-t-[1.5rem] border border-emerald-500/20 bg-[#081207] p-5 sm:p-6 shadow-2xl">
+            <div className="fixed inset-x-0 bottom-0 z-50 mx-auto max-w-2xl rounded-t-[1.5rem] border border-[#5f67ac]/25 bg-[#180b28] p-5 sm:p-6 shadow-2xl">
               <div className="mx-auto mb-3 h-1.5 w-16 rounded-full bg-slate-700" />
               <div className="flex items-start justify-between gap-3">
                 <div>
                   
                   <h3 className="mt-1 text-lg font-semibold text-white">{selectedPost.title}</h3>
-                   <span className="inline-flex items-center rounded-full bg-[#5cad1a]/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-300">
+                   <span className="inline-flex items-center rounded-full bg-[#5f67ac]/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d8daf7]">
                     {selectedPost.category}
                   </span>
                   <h3 className="mt-2 text-xl sm:text-2xl font-bold tracking-tight text-white">{selectedPost.title}</h3>
@@ -175,7 +175,7 @@ function Docus() {
       </div>
 
       <nav
-        className="fixed bottom-4 left-1/2 z-50 flex items-center gap-10 rounded-full bg-white/90 px-6 py-3 shadow-xl backdrop-blur-xl dark:bg-[#081207]/95"
+        className="fixed bottom-4 left-1/2 z-50 flex items-center gap-10 rounded-full bg-[#5f67ac]/25 px-6 py-3 shadow-xl backdrop-blur-xl"
         style={{
           transform: "translateX(-50%)",
           boxShadow: "0 4px 12px rgba(0,0,0,.15)",

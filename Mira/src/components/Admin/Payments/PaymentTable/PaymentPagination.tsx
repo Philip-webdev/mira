@@ -16,7 +16,7 @@ export default function PaymentPagination({
   onPrevious,
 }: Props) {
   return (
-    <div className="flex items-center justify-between border-t border-[#18311D]/10 text-[#18311D]/80 p-5">
+    <div className="flex items-center justify-between border-t border-[#180b28]/10 text-[#180b28]/80 p-5">
       <button
         disabled={page === 1}
         onClick={onPrevious}
@@ -41,3 +41,4 @@ export default function PaymentPagination({
     </div>
   );
 }
+

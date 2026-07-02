@@ -12,10 +12,8 @@ const [darkMode, setDarkMode] = useState(true);
   function toggleTheme() {
     setDarkMode(prev => !prev);
   }
-  // Active color: green-500 (Hex: #22c55e)
-  // Inactive color: gray (Lucide default/custom)
   const getIconClass = (path) => 
-    isActive(path) ? "text-green-500" : "text-gray-400 dark:text-white";
+    isActive(path) ? "text-white" : "text-[#c9cbed]/70";
 
   return (
     <div 
@@ -24,7 +22,7 @@ const [darkMode, setDarkMode] = useState(true);
         borderRadius: '1rem',
         backdropFilter: 'blur(15px)',
         color:'white',
-        backgroundColor: darkMode ? "#1f1f1f99" : "white", 
+        backgroundColor: darkMode ? "rgba(95,103,172,.28)" : "white", 
       
       }}
     >

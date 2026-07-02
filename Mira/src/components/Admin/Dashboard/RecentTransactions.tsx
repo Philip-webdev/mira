@@ -24,7 +24,7 @@ export default function RecentTransactions({ loading, transactions }: Props) {
       className="
       rounded-3xl
       border
-      border-[#18311D]/10
+      border-[#180b28]/10
       bg-white/70
       p-6
       shadow-xl
@@ -32,11 +32,11 @@ export default function RecentTransactions({ loading, transactions }: Props) {
     >
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-[#18311D]">
+          <h2 className="text-xl font-bold text-[#180b28]">
             Recent Transactions
           </h2>
 
-          <p className="text-sm text-[#18311D]/60">
+          <p className="text-sm text-[#180b28]/60">
             Latest successful payments.
           </p>
         </div>
@@ -49,7 +49,7 @@ export default function RecentTransactions({ loading, transactions }: Props) {
           items-center
           justify-center
           rounded-2xl
-          bg-[#18311D]/5"
+          bg-[#180b28]/5"
         >
           <Clock />
         </div>
@@ -79,3 +79,4 @@ export default function RecentTransactions({ loading, transactions }: Props) {
     </motion.div>
   );
 }
+

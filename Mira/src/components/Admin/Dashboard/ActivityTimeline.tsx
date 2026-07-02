@@ -24,7 +24,7 @@ export default function ActivityTimeline({ activities, loading }: Props) {
       className="
       rounded-3xl
       border
-      border-[#18311D]/10
+      border-[#180b28]/10
       bg-white/70
       p-6
       backdrop-blur-xl
@@ -32,7 +32,7 @@ export default function ActivityTimeline({ activities, loading }: Props) {
     >
       <div className="mb-8 flex items-center justify-between">
         <div>
-          <h2 className="text-xl font-bold text-[#18311D]">Activity Timeline</h2>
+          <h2 className="text-xl font-bold text-[#180b28]">Activity Timeline</h2>
 
           <p className="text-sm text-gray-500">Live payment activity</p>
         </div>
@@ -61,3 +61,4 @@ export default function ActivityTimeline({ activities, loading }: Props) {
     </motion.div>
   );
 }
+

@@ -398,7 +398,7 @@ useEffect(() => {
       
       {/* Header */}
       <div className="flex justify-between items-start mb-4">
-        <div className="text-receipt-green font-bold text-lg text-primary">  
+        <div className="font-bold text-lg text-primary">  
          </div>
         
         <div><img src={getLogo(payeData.department, payeData.collegeName)} alt="Logo" className="mx-auto w-16 py-1 -mt-auto -mb-auto object-contain" />

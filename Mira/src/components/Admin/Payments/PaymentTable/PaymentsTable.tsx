@@ -42,13 +42,13 @@ export default function PaymentsTable({
       overflow-hidden
       rounded-3xl
       border
-      border-[#18311D]/10
+      border-[#180b28]/10
       bg-white/70
       backdrop-blur-xl
       shadow-xl"
     >
       <div className="overflow-auto">
-        <table className="min-w-full text-[#18311D]/80">
+        <table className="min-w-full text-[#180b28]/80">
           <thead className="sticky top-0 bg-white/90 backdrop-blur-xl z-10">
             <tr className="text-left">
               <th className="px-6 py-5">Matric No</th>
@@ -84,3 +84,4 @@ export default function PaymentsTable({
     </motion.div>
   );
 }
+

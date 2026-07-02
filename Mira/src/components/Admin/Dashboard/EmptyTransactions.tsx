@@ -12,14 +12,14 @@ export default function EmptyTransactions() {
       rounded-3xl
       border
       border-dashed
-      border-[#18311D]/15"
+      border-[#180b28]/15"
     >
       <FileText
-        className="text-[#18311D]/30"
+        className="text-[#180b28]/30"
         size={50}
       />
 
-      <p className="mt-4 text-[#18311D]/60">
+      <p className="mt-4 text-[#180b28]/60">
         No recent transactions.
       </p>
     </div>

@@ -24,7 +24,7 @@ export default function DashboardHero({ title, image }: Props) {
         className="absolute inset-0 h-full w-full object-cover"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-r from-[#18311D]/90 via-[#18311D]/60 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#180b28]/90 via-[#180b28]/60 to-transparent" />
 
       <div className="absolute inset-0 backdrop-blur-[2px]" />
 
@@ -44,3 +44,4 @@ export default function DashboardHero({ title, image }: Props) {
     </motion.div>
   );
 }
+

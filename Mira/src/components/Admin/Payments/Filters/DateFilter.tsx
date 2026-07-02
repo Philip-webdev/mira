@@ -13,12 +13,13 @@ export default function DateFilter({ value, onChange }: Props) {
       h-12
       rounded-2xl
       border
-      border-[#18311D]/10
+      border-[#180b28]/10
       bg-white/70
-      text-[#18311D]
+      text-[#180b28]
       px-4
       backdrop-blur-xl
       outline-none"
     />
   );
 }
+

@@ -19,7 +19,7 @@ export default function PaymentStatCard({
   prefix,
   trend,
   positive = true,
-  iconBg = "#18311D",
+  iconBg = "#180b28",
 }: Props) {
   return (
     <motion.div
@@ -37,7 +37,7 @@ export default function PaymentStatCard({
       overflow-hidden
       rounded-3xl
       border
-      border-[#18311D]/10
+      border-[#180b28]/10
       bg-white/70
       p-6
       backdrop-blur-xl
@@ -45,13 +45,13 @@ export default function PaymentStatCard({
     >
       {/* Background Glow */}
 
-      <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#B7F36B]/20 blur-3xl transition-all duration-500 group-hover:scale-125" />
+      <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-[#b8bcef]/20 blur-3xl transition-all duration-500 group-hover:scale-125" />
 
       <div className="relative flex items-start justify-between">
         <div>
-          <p className="text-sm text-[#18311D]/60">{title}</p>
+          <p className="text-sm text-[#180b28]/60">{title}</p>
 
-          <h2 className="mt-2 text-3xl font-bold text-[#18311D]">
+          <h2 className="mt-2 text-3xl font-bold text-[#180b28]">
             <AnimatedCounter value={value} prefix={prefix} />
           </h2>
 
@@ -74,3 +74,4 @@ export default function PaymentStatCard({
     </motion.div>
   );
 }
+

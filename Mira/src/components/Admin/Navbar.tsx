@@ -38,7 +38,7 @@ const Navbar = memo(({ toggleSidebar }: Props) => {
 
         rounded-2xl
         bg-white/80
-        text-[#18311D]
+        text-[#180b28]
         border
 
         shadow-sm
@@ -48,11 +48,11 @@ const Navbar = memo(({ toggleSidebar }: Props) => {
           </motion.button>
 
           <div>
-            <div className="flex items-center gap-2 text-sm font-medium text-[#18311D]/60">
-              <Sparkles size={14} className="text-[#5F8F3C]" />
+            <div className="flex items-center gap-2 text-sm font-medium text-[#180b28]/60">
+              <Sparkles size={14} className="text-[#5f67ac]" />
               Admin portal
             </div>
-            <h1 className="text-2xl font-semibold text-[#18311D] sm:text-3xl">
+            <h1 className="text-2xl font-semibold text-[#180b28] sm:text-3xl">
               Dashboard
             </h1>
           </div>
@@ -61,32 +61,32 @@ const Navbar = memo(({ toggleSidebar }: Props) => {
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <div className="relative">
             <Search
-              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#18311D]/40"
+              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-[#180b28]/40"
               size={16}
             />
             <input
               placeholder="Search payments..."
-              className="h-11 w-full rounded-2xl border border-[#18311D]/10 bg-white/80 pl-10 pr-4 text-sm text-[#18311D] outline-none transition focus:border-[#B7F36B] focus:ring-2 focus:ring-[#B7F36B]/30 sm:w-[260px]"
+              className="h-11 w-full rounded-2xl border border-[#180b28]/10 bg-white/80 pl-10 pr-4 text-sm text-[#180b28] outline-none transition focus:border-[#b8bcef] focus:ring-2 focus:ring-[#b8bcef]/30 sm:w-[260px]"
             />
           </div>
 
           <motion.button
             whileHover={{ scale: 1.04, rotate: 4 }}
             whileTap={{ scale: 0.97 }}
-            className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#18311D]/10 bg-white/80 text-[#18311D] shadow-sm"
+            className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#180b28]/10 bg-white/80 text-[#180b28] shadow-sm"
           >
             <Bell size={18} />
           </motion.button>
 
-          <div className="flex items-center gap-3 rounded-2xl border border-[#18311D]/10 bg-white/80 px-3 py-2 shadow-sm">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[#18311D] to-[#5F8F3C] text-sm font-semibold text-white">
+          <div className="flex items-center gap-3 rounded-2xl border border-[#180b28]/10 bg-white/80 px-3 py-2 shadow-sm">
+            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[#180b28] to-[#5f67ac] text-sm font-semibold text-white">
               {config?.variant?.slice(0, 2).toUpperCase() ?? "AD"}
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-[#18311D]">
+              <h3 className="text-sm font-semibold text-[#180b28]">
                 {config?.title ?? "College Admin"}
               </h3>
-              <p className="text-xs text-[#18311D]/60">Administrator</p>
+              <p className="text-xs text-[#180b28]/60">Administrator</p>
             </div>
           </div>
         </div>
@@ -97,3 +97,4 @@ const Navbar = memo(({ toggleSidebar }: Props) => {
 
 Navbar.displayName = "Navbar";
 export default Navbar;
+

@@ -66,9 +66,9 @@ const ImageSlider = () => {
               alt={slide.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-emerald-700/20" />
-            <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/40 via-emerald-600/15 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 text-emerald-50">
+            <div className="absolute inset-0 bg-[#5f67ac]/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#180b28]/70 via-[#5f67ac]/15 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
               <h3 className="text-xl font-bold mb-2">{slide.title}</h3>
               <p className="text-sm opacity-90">{slide.description}</p>
             </div>

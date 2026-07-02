@@ -43,7 +43,7 @@ const SearchReceipts = () => {
   };
 
   const getIconClass = (path: string) =>
-    pathname === path ? "text-[#5cad1a]" : "text-emerald-600/60";
+    pathname === path ? "text-white" : "text-[#c9cbed]/70";
 
   const displayResult = () => {
     if (searchResults.length === 0) {
@@ -58,7 +58,7 @@ const SearchReceipts = () => {
     }
 
     return (
-      <div className="space-y-3 rounded-3xl border border-slate-200 bg-slate-50 p-5 shadow-sm dark:border-emerald-900 dark:bg-[#122613]">
+      <div className="space-y-3 rounded-3xl border border-[#5f67ac]/15 bg-[#f8f7ff] p-5 shadow-sm dark:border-[#5f67ac]/25 dark:bg-[#241436]">
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-sm text-slate-500">Student</p>
@@ -68,22 +68,22 @@ const SearchReceipts = () => {
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded-2xl bg-white p-4 shadow-sm dark:bg-[#0c1b10]">
+          <div className="rounded-2xl bg-white p-4 shadow-sm dark:bg-[#180b28]">
             <p className="text-xs uppercase text-slate-400">Matric Number</p>
             <p className="mt-2 font-semibold text-slate-900 dark:text-white">{result.matricNumber}</p>
           </div>
-          <div className="rounded-2xl bg-white p-4 shadow-sm dark:bg-[#0c1b10]">
+          <div className="rounded-2xl bg-white p-4 shadow-sm dark:bg-[#180b28]">
             <p className="text-xs uppercase text-slate-400">Department</p>
             <p className="mt-2 font-semibold text-slate-900 dark:text-white">{result.department}</p>
           </div>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded-2xl bg-white p-4 shadow-sm dark:bg-[#0c1b10]">
+          <div className="rounded-2xl bg-white p-4 shadow-sm dark:bg-[#180b28]">
             <p className="text-xs uppercase text-slate-400">College</p>
             <p className="mt-2 font-semibold text-slate-900 dark:text-white">{result.collegeName}</p>
           </div>
-          <div className="rounded-2xl bg-white p-4 shadow-sm dark:bg-[#0c1b10]">
+          <div className="rounded-2xl bg-white p-4 shadow-sm dark:bg-[#180b28]">
             <p className="text-xs uppercase text-slate-400">Amount Paid</p>
             <p className="mt-2 font-semibold text-slate-900 dark:text-white">{result.amount || "N/A"}</p>
           </div>
@@ -103,13 +103,13 @@ const SearchReceipts = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0d1a0f] dark:bg-[#0d1a0f] text-black dark:text-white px-5 pb-28" style={{ fontFamily: "Sora, sans-serif" }}>
+    <div className="dark min-h-screen bg-[#180b28] text-white px-5 pb-28" style={{ fontFamily: "Sora, sans-serif" }}>
       <div className="max-w-4xl mx-auto py-6 space-y-8">
        
 
-        <Card className="rounded-[2rem] border border-slate-200 bg-[#0d1a0f] p-6 shadow-sm dark:border-emerald-900 dark:bg-[#102014]">
+        <Card className="rounded-[2rem] border border-[#5f67ac]/25 bg-[#180b28] p-6 shadow-sm shadow-black/20">
           <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-emerald-700 dark:text-emerald-300">
+            <CardTitle className="flex items-center gap-3 text-[#d8daf7]">
               <Search className="h-5 w-5" />
               Receipt Search
             </CardTitle>
@@ -129,7 +129,7 @@ const SearchReceipts = () => {
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 className="w-full bg-none"
               />
-              <Button onClick={handleSearch} className="w-full bg-emerald-600 text-white hover:bg-emerald-700">
+              <Button onClick={handleSearch} className="w-full bg-[#5f67ac] text-white hover:bg-[#4d559c]">
                 <Search className="h-4 w-4 mr-2" />
                 Search receipts
               </Button>
@@ -141,7 +141,7 @@ const SearchReceipts = () => {
                 id="select"
                 value={filter}
                 onChange={(e) => setFilter(e.target.value)}
-                className="rounded-2xl border border-slate-200 bg-white px-6 py-3 text-slate-900 shadow-sm outline-none focus:border-emerald-500 dark:border-emerald-800 dark:bg-[#0b1a10] dark:text-slate-100"
+                className="rounded-2xl border border-[#5f67ac]/25 bg-white px-6 py-3 text-slate-900 shadow-sm outline-none focus:border-[#5f67ac] dark:border-[#5f67ac]/30 dark:bg-[#241436] dark:text-slate-100"
               >
                 <option value="Department">Department</option>
                 <option value="College">College</option>
@@ -149,19 +149,19 @@ const SearchReceipts = () => {
             </div>
 
             {isSearched && (
-              <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 shadow-sm dark:border-emerald-900 dark:bg-[#122613]">
+              <div className="rounded-[1.5rem] border border-[#5f67ac]/20 bg-[#f8f7ff] p-5 shadow-sm dark:border-[#5f67ac]/30 dark:bg-[#241436]">
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="text-sm text-slate-500 dark:text-slate-400">Search results for</p>
                     <p className="text-lg font-semibold text-slate-950 dark:text-white">{matricNumber}</p>
                   </div>
-                  <div className="rounded-3xl bg-emerald-100 px-3 py-2 text-[11px] font-semibold text-emerald-700">{searchResults.length} found</div>
+                  <div className="rounded-3xl bg-[#5f67ac]/15 px-3 py-2 text-[11px] font-semibold text-[#d8daf7]">{searchResults.length} found</div>
                 </div>
                 <div className="relative mt-6">
                   {submitting && (
                     <div className="absolute inset-0 rounded-[1.5rem] bg-black/30 backdrop-blur-sm flex items-center justify-center z-20">
                       <div className="flex flex-col items-center gap-4 rounded-3xl bg-white p-6 text-slate-900 shadow-lg">
-                        <div className="h-12 w-12 rounded-full border-4 border-emerald-200 border-t-emerald-600 animate-spin" />
+                        <div className="h-12 w-12 rounded-full border-4 border-[#d8daf7] border-t-[#5f67ac] animate-spin" />
                         <p className="font-semibold">Fetching receipt...</p>
                       </div>
                     </div>
@@ -175,7 +175,7 @@ const SearchReceipts = () => {
       </div>
 
      <nav
-        className="fixed bottom-4 left-1/2 z-50 flex items-center gap-10 rounded-full bg-white/90 px-6 py-3 shadow-xl backdrop-blur-xl dark:bg-[#081207]/95"
+        className="fixed bottom-4 left-1/2 z-50 flex items-center gap-10 rounded-full bg-[#5f67ac]/25 px-6 py-3 shadow-xl backdrop-blur-xl"
         style={{
           transform: "translateX(-50%)",
           boxShadow: "0 4px 12px rgba(0,0,0,.15)",

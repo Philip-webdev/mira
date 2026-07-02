@@ -24,7 +24,7 @@ export default function PaymentRow({ payment, index }: Props) {
       whileHover={{
         backgroundColor: "rgba(183,243,107,.08)",
       }}
-      className="border-b border-[#18311D]/10 last:border-none transition-all"
+      className="border-b border-[#180b28]/10 last:border-none transition-all"
     >
       <td className="px-6 py-5 font-medium">{payment.matricNumber}</td>
 
@@ -50,3 +50,4 @@ export default function PaymentRow({ payment, index }: Props) {
     </motion.tr>
   );
 }
+

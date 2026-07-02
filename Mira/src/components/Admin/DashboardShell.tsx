@@ -18,8 +18,8 @@ export default function DashboardShell() {
       <MemoAnimatedBackground />
 
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute left-[-8rem] top-[-4rem] h-56 w-56 rounded-full bg-[#B7F36B]/30 blur-3xl" />
-        <div className="absolute bottom-[-3rem] right-[-2rem] h-60 w-60 rounded-full bg-[#18311D]/10 blur-3xl" />
+        <div className="absolute left-[-8rem] top-[-4rem] h-56 w-56 rounded-full bg-[#b8bcef]/30 blur-3xl" />
+        <div className="absolute bottom-[-3rem] right-[-2rem] h-60 w-60 rounded-full bg-[#180b28]/10 blur-3xl" />
       </div>
 
       <MemoSidebar 
@@ -45,3 +45,4 @@ export default function DashboardShell() {
     </div>
   );
 }
+

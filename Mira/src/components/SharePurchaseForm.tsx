@@ -222,7 +222,7 @@ Investment Amount: ₦${formData.amount.toLocaleString()}`;
             duration: 10,
             repeat: Infinity,
           }}
-          className="absolute top-[-150px] right-[-80px] w-[450px] h-[450px] rounded-full bg-green-400/20 blur-3xl"
+          className="absolute top-[-150px] right-[-80px] w-[450px] h-[450px] rounded-full bg-[#5f67ac]/20 blur-3xl"
         />
 
         {/* STACKED CARD */}
@@ -616,7 +616,7 @@ Investment Amount: ₦${formData.amount.toLocaleString()}`;
                         animate={{
                           scale: 1,
                         }}
-                        className="text-[34px] font-bold text-[#17301b]"
+                        className="text-[34px] font-bold text-[#180b28]"
                       >
                         ₦{formData.amount.toLocaleString()}
                       </motion.h2>
@@ -630,9 +630,9 @@ Investment Amount: ₦${formData.amount.toLocaleString()}`;
                         duration: 1.5,
                         repeat: Infinity,
                       }}
-                      className="w-16 h-16 rounded-2xl bg-[#B7F36B] flex items-center justify-center"
+                      className="w-16 h-16 rounded-2xl bg-[#b8bcef] flex items-center justify-center"
                     >
-                      <Check className="text-[#17301b]" />
+                      <Check className="text-[#180b28]" />
                     </motion.div>
                   </div>
 
@@ -743,7 +743,7 @@ function MagneticButton({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleLeave}
       onClick={onClick}
-      className="group mt-12 bg-[#B7F36B] hover:bg-[#a9eb54] transition-all duration-300 text-[#17301b] h-[58px] px-8 rounded-2xl font-semibold text-lg flex items-center gap-3 shadow-[0_10px_30px_rgba(123,192,67,0.35)]"
+      className="group mt-12 bg-[#b8bcef] hover:bg-[#d8daf7] transition-all duration-300 text-[#180b28] h-[58px] px-8 rounded-2xl font-semibold text-lg flex items-center gap-3 shadow-[0_10px_30px_rgba(95,103,172,0.35)]"
     >
       {children}
     </motion.button>

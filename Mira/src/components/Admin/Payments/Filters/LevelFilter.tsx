@@ -14,8 +14,8 @@ export default function LevelFilter({ value, onChange }: Props) {
       h-12
       rounded-2xl
       border
-      border-[#18311D]/10
-      text-[#18311D]
+      border-[#180b28]/10
+      text-[#180b28]
       bg-white/70
       px-4
       backdrop-blur-xl
@@ -29,3 +29,4 @@ export default function LevelFilter({ value, onChange }: Props) {
     </select>
   );
 }
+

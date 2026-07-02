@@ -14,7 +14,7 @@ export default function AnimatedBackground() {
             repeat: Infinity,
           }}
           className="absolute w-[500px] h-[500px]
-          bg-[#B7F36B]/20
+          bg-[#b8bcef]/20
           blur-[140px]
           rounded-full
           top-[-120px]
@@ -31,7 +31,7 @@ export default function AnimatedBackground() {
             repeat: Infinity,
           }}
           className="absolute w-[600px] h-[600px]
-          bg-[#18311D]/10
+          bg-[#180b28]/10
           blur-[170px]
           rounded-full
           bottom-[-200px]
@@ -41,3 +41,4 @@ export default function AnimatedBackground() {
     </>
   );
 }
+

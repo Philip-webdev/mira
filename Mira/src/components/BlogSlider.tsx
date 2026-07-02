@@ -48,7 +48,7 @@ const BlogSlider = () => {
   }, []);
   return (
     
-    <div className="relative w-full h-48 sm:h-80 md:h-[26rem] overflow-hidden bg-emerald-950">
+    <div className="relative w-full h-48 sm:h-80 md:h-[26rem] overflow-hidden bg-[#180b28]">
       {slides.map((slide, index) => (
         <div
           key={slide.id}
@@ -66,7 +66,7 @@ const BlogSlider = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7 text-white">
-            <span className="inline-flex items-center rounded-full bg-[#5cad1a]/90 px-3 py-0 text-11px] font-semibold uppercase ">
+            <span className="inline-flex items-center rounded-full bg-[#5f67ac]/90 px-3 py-0 text-11px] font-semibold uppercase ">
               {slide.category}
             </span>
             <h3 className="mt-3 text-sm sm:text-2xl md:text-3xl font-bold leading-tight tracking-tight max-w-[90%]">
@@ -102,7 +102,7 @@ const BlogSlider = () => {
             onClick={() => setCurrent(i)}
             aria-label={`Go to slide ${i + 1}`}
             className={`h-1.5 rounded-full transition-all duration-300 ${
-              i === current ? "w-8 bg-[#5cad1a]" : "w-2 bg-white/50 hover:bg-white/80"
+              i === current ? "w-8 bg-[#b8bcef]" : "w-2 bg-white/50 hover:bg-white/80"
             }`}
           />
         ))}
