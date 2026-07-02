@@ -550,7 +550,7 @@ const Index = () => {
       {/* this is the header section containing quick actions on KIT services */}
       <div className="" style={{background:'whitesmoke'}}>
        <div className="absolute  ml-0 text-[black] p-4 font-bolder" style={{fontWeight:'100px'}}>
-           <a href='/splash' style={{textDecoration: 'none'}}><b><div className="flex gap-0" ><img className='w-8 h-6' src="/mira-removebg-preview.png" /><div className="mt-1">ira</div></div></b></a> </div>
+           <a href='/splash' style={{textDecoration: 'none'}}><b><div className="flex gap-0" ><img className='w-8 h-6' src="/mira-removebg-preview.png" /><div className="mt-1">mira</div></div></b></a> </div>
       
       <div className="flex  text-black p-4 m-0 rounded-lg  w-full justify-end  text-auto">
        
