@@ -71,25 +71,25 @@ const TransactionCounter = () => {
       className="absolute scale-80 bottom-[85%] right-0 bg-none rounded-2xl shadow-xl px-3 py-2 flex flex-col items-start gap-1 z-10 min-w-[100px] border border-gray-100"
       style={{ backdropFilter: "blur(8px)" }}
     >
-      {/* Pulsing green dot */}
+      {/* Pulsing  dot */}
       <div className="flex items-center gap-2 mb-1">
         <span className="relative flex h-3 w-3">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+          <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
         </span>
         <span className="text-xs text-gray-500 font-medium">Total Transacted</span>
       </div>
 
       {/* Animated amount */}
       <span
-        className="text-2xl font-extrabold text-black tracking-tight tabular-nums"
+        className="text-2xl font-extrabold text-white tracking-tight tabular-nums"
         style={{ fontFamily: "monospace" }}
       >
         {formatNaira(count)}
       </span>
 
       {/* Subtitle */}
-      <span className="text-[11px] text-primary font-semibold flex items-center gap-1">
+      <span className="text-[11px] text-gray-500 font-semibold flex items-center gap-1">
         ▲ 1.4% this month
       </span>
     </div>
@@ -154,14 +154,14 @@ const HeroSection = () => {
     <>
       <section
         className="min-h-screen flex items-center"
-        style={{ backgroundColor: "" }}
+        style={{ backgroundColor: "rgb(24, 11, 40)" }}
       >
         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
           {/* LEFT — COPY */}
           <div className="space-y-6 text-center md:text-left">
 
-            <h1 className="text-4xl md:text-6xl font-bold text-black leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
               Accept Campus Payments <br className="hidden md:block" />
               Without Stress
             </h1>
@@ -173,7 +173,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Button
                 className="px-8 py-5 text-lg rounded-full hover:bg-black"
-                style={{ backgroundColor: "rgb(24, 11, 40)" }}
+                style={{ backgroundColor: "black" }}
               >
                 <a href="/splash" className="flex items-center gap-2">
                   Pay with Mira
@@ -195,7 +195,7 @@ const HeroSection = () => {
                 src='/d21983fc-5db5-424d-ba17-a2824b82aceb-removebg-preview.png'
                 alt="Mira for growth"
                 className="max-w-md w-full animate-float"
-                style={{ filter: "brightness(0) saturate(0%)" }}
+                style={{ filter: "brightness(100) saturate(0%)" }}
               />
 
               {/* Animated transaction counter */}

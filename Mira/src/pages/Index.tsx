@@ -548,13 +548,13 @@ const Index = () => {
       `}</style>
       
       {/* this is the header section containing quick actions on KIT services */}
-      <div>
-       <div className="absolute  ml-0 text-[rgb(24, 11, 40)] p-4 font-bolder" style={{fontWeight:'100px'}}>
+      <div className="" style={{background:'rgb(24, 11, 40)'}}>
+       <div className="absolute  ml-0 text-[white] p-4 font-bolder" style={{fontWeight:'100px'}}>
            <a href='/splash' style={{textDecoration: 'none'}}><b>Mira</b></a> </div>
       
-      <div className="flex  text-black p-4 m-0 rounded-lg  w-full justify-end  text-auto">
+      <div className="flex  text-white p-4 m-0 rounded-lg  w-full justify-end  text-auto">
        
-        <div className="mr-10 ml-auto"> <a href="/about">About</a></div> <div className="mr-10"><a href="/blogs">Blog</a></div><div className="bg-black text-white rounded-full px-4 "> 
+        <div className="mr-10 ml-auto"> <a href="/about">About</a></div> <div className="mr-10"><a href="/blogs">Blog</a></div><div className="bg-black text-white rounded-full px-4 py-0 "> 
          <a href='/splash' style={{textDecoration: ''}}> Pay</a>
                       </div> 
            </div>
