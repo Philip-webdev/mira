@@ -28,7 +28,7 @@ function SplashScreen() {
       <div className="relative mb-8">
         <div className="w-24 h-24  flex items-center justify-center">
           <img
-            src= '/MiraLogo.png'
+            src= '/ChatGPT_Image_Jul_2__2026__12_13_31_PM-removebg-preview.png'
             alt="Mira"
             className="w-14 h-14 object-contain"
           />

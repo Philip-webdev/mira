@@ -173,7 +173,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Button
                 className="px-8 py-5 text-lg rounded-full hover:bg-black"
-                style={{ backgroundColor: "black" }}
+                style={{ backgroundColor: "rgb(24,11,40)" }}
               >
                 <a href="/splash" className="flex items-center gap-2">
                   Pay with Mira
