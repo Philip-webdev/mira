@@ -96,7 +96,7 @@ const TransactionCounter = () => {
   );
 };
 
-
+ 
 const PartnerCarousel = () => {
   // Duplicate for seamless loop
   const logos = [...PARTNERS, ...PARTNERS];
@@ -148,7 +148,7 @@ const PartnerCarousel = () => {
   );
 };
 
-
+ 
 const HeroSection = () => {
   return (
     <>
