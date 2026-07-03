@@ -105,7 +105,7 @@ function MainApp() {
 
   const quickActions = [
     { label: "Send", icon: ArrowUpRight, color: "bg-[rgb(4,173,183)]/15 text-[rgb(4,173,183)] dark:bg-[rgb(4,173,183)]/20", onClick: () => {} },
-    { label: "Receive", icon: ArrowDownLeft, color: "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400", onClick: () => {} },
+    { label: "Get", icon: ArrowDownLeft, color: "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400", onClick: () => {} },
     { label: "Scan", icon: ScanLine, color: "bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400", onClick: () => {} },
     { label: "Top Up", icon: Plus, color: "bg-[rgb(4,173,183)]/15 text-[rgb(4,173,183)] dark:bg-[rgb(4,173,183)]/20", onClick: () => navigate("/manager") },
   ];
@@ -121,9 +121,7 @@ function MainApp() {
 
   const navItems = [
     { label: "Home", icon: Home, path: "/home" },
-    { label: "Activity", icon: Activity, path: "/Searchreceipts" },
-    { label: "Cards", icon: CreditCard, path: "/manager" },
-    { label: "Settings", icon: Settings, path: "/manager" },
+    { label: "Receipts", icon: Activity, path: "/Searchreceipts" },
     { label: "Profile", icon: User, path: "/manager" },
   ];
 
