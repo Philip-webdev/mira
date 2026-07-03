@@ -1,6 +1,7 @@
-import { ArrowLeft, BellRing, Camera, CheckCheck, ChevronDown, Library, Lock, PanelRight, ShieldCheck, User, UserCircle2 } from "lucide-react";
+import { ArrowLeft, BellRing, Camera, CheckCheck, ChevronDown, Library, Lock, Monitor, Moon, PanelRight, ShieldCheck, Sun, User, UserCircle2 } from "lucide-react";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useTheme } from "next-themes";
 import { CompletionModal } from "@/components/ui/WelcomeModal";
 const PROFILE_STORAGE_KEY = "Mira_profile_settings";
 const PREFERENCES_STORAGE_KEY = "Mira_profile_preferences";
@@ -328,6 +329,8 @@ function Manager() {
                         <span className={`absolute top-1 h-4 w-4 rounded-full bg-white transition ${preferences.privacyMode ? "left-6" : "left-1"}`} />
                       </button>
                     </div>
+
+                    <AppearanceSection />
                   </div>
                 ) : null}
               </div>
@@ -355,6 +358,45 @@ function Manager() {
         title="Profile updated"
         message="Your changes are saved and now reflected across Mira."
       />
+    </div>
+  );
+}
+
+function AppearanceSection() {
+  const { theme, setTheme } = useTheme();
+
+  const modes = [
+    { value: "system", label: "System", icon: Monitor },
+    { value: "light", label: "Light", icon: Sun },
+    { value: "dark", label: "Dark", icon: Moon },
+  ] as const;
+
+  return (
+    <div className="rounded-xl bg-slate-950/60 px-3 py-3">
+      <div className="flex items-center gap-3 mb-3">
+        <Monitor className="h-5 w-5 text-[#d8daf7]" />
+        <div>
+          <p className="text-sm font-semibold text-white">Appearance</p>
+          <p className="text-xs text-slate-500">Match your device or pick a mode.</p>
+        </div>
+      </div>
+      <div className="flex gap-2">
+        {modes.map(({ value, label, icon: Icon }) => (
+          <button
+            key={value}
+            type="button"
+            onClick={() => setTheme(value)}
+            className={`flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-xs font-medium transition ${
+              theme === value
+                ? "bg-[#5f67ac] text-white"
+                : "bg-slate-700/50 text-slate-300 hover:bg-slate-700"
+            }`}
+          >
+            <Icon className="h-3.5 w-3.5" />
+            {label}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import { CheckCheck, LucideFactory, NewspaperIcon } from "lucide-react";
-import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function Navigation ()  {
@@ -7,11 +6,6 @@ export default function Navigation ()  {
 
   // Helper to check if a path is active
   const isActive = (path) => pathname === path;
-const [darkMode, setDarkMode] = useState(true);
-
-  function toggleTheme() {
-    setDarkMode(prev => !prev);
-  }
   const getIconClass = (path) => 
     isActive(path) ? "text-white" : "text-[#c9cbed]/70";
 
@@ -22,7 +16,7 @@ const [darkMode, setDarkMode] = useState(true);
         borderRadius: '1rem',
         backdropFilter: 'blur(15px)',
         color:'white',
-        backgroundColor: darkMode ? "rgba(95,103,172,.28)" : "white", 
+        backgroundColor: "rgba(95,103,172,.28)", 
       
       }}
     >

@@ -46,18 +46,18 @@ const Index = () => {
   },
 ];
   return (
-    <div className="min-h-screen justify-evenly" style={{fontFamily: 'Geom', backgroundColor: 'rgb(95, 103, 172)'}}>
+    <div className="min-h-screen justify-evenly" style={{fontFamily: 'Geom', backgroundColor: 'rgb(4, 173, 183)'}}>
           <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-          --sage:   rgb(95, 103, 172);
-          --sage-d: rgb(178,182,214);
+          --sage:   rgb(4, 173, 183);
+          --sage-d: rgb(150, 220, 224);
           --ink:    rgb(24, 11, 40);
           --leaf:   rgb(24, 11, 40);
-          --lime:   rgb(95, 103, 172);
+          --lime:   rgb(4, 173, 183);
           --cream:  #f8f5ee;
           --warm:   #e8e0d0;
           --gold:   #d4a843;
@@ -104,7 +104,7 @@ const Index = () => {
         .hero::before {
           content: ''; position: absolute; top: -20%; right: -10%;
           width: 600px; height: 600px; border-radius: 50%;
-          background: radial-gradient(circle, rgba(95,103,172,.3) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(4,173,183,.3) 0%, transparent 70%);
           pointer-events: none;
         }
         .hero::after {
@@ -116,7 +116,7 @@ const Index = () => {
         .hero-eyebrow {
           display: inline-flex; align-items: center; gap: .5rem;
           padding: .35rem 1rem; border-radius: 99px;
-          background: rgba(95,103,172,.12); border: 1px solid rgba(95,103,172,.22);
+          background: rgba(4,173,183,.12); border: 1px solid rgba(4,173,183,.22);
           font-size: .8rem; font-weight: 600; color: var(--leaf); letter-spacing: .05em;
           text-transform: uppercase; margin-bottom: 1.5rem;
           animation: fadeUp .8s ease both;
@@ -152,7 +152,7 @@ const Index = () => {
         .btn-hero-primary:hover { color: var(--ink); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
         .btn-hero-demo {
           padding: .9rem 1.8rem; border-radius: 99px;
-          border: 2px solid rgba(95,103,172,.4); background: rgba(255,255,255,.5);
+          border: 2px solid rgba(4,173,183,.4); background: rgba(255,255,255,.5);
           backdrop-filter: blur(8px); color: var(--ink);
           font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1rem;
           cursor: pointer; display: flex; align-items: center; gap: .5rem; transition: all .25s;
@@ -170,7 +170,7 @@ const Index = () => {
         }
         .cc-dot-row { display: flex; align-items: center; gap: .5rem; margin-bottom: .4rem; }
         .cc-dot { width: 10px; height: 10px; border-radius: 50%; background: rgb(24, 11, 40); position: relative; }
-        .cc-dot::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: rgba(95,103,172,.25); animation: pulse 1.5s infinite; }
+        .cc-dot::after { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: rgba(4,173,183,.25); animation: pulse 1.5s infinite; }
         .cc-dot-label { font-size: .72rem; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: .05em; }
         .cc-amount { font-family: 'Sora', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--ink); letter-spacing: -1px; line-height: 1; }
         .cc-badge { margin-top: .35rem; font-size: .75rem; font-weight: 700; color: rgb(24, 11, 40); display: flex; align-items: center; gap: .25rem; }
@@ -189,15 +189,15 @@ const Index = () => {
 
         /* ── STORY SECTION ── */
         .story { padding: 8rem 8%; background: var(--cream); }
-        .section-eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgb(95, 103, 172); margin-bottom: 1rem; }
+        .section-eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: rgb(4, 173, 183); margin-bottom: 1rem; }
         .section-h2 {  font-weight: 800; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -1.5px; color: var(--ink); line-height: 1.1; margin-bottom: 1.5rem; }
-        .section-h2 em { color: rgb(95, 103, 172); font-style: normal; }
+        .section-h2 em { color: rgb(4, 173, 183); font-style: normal; }
         .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
         .story-text p { font-size: 1.05rem; color: #4a5a4c; line-height: 1.8; margin-bottom: 1.25rem; }
         .story-text strong { color: var(--ink); }
         .story-features { display: flex; flex-direction: column; gap: .85rem; margin-top: 2rem; }
         .story-feat { display: flex; align-items: flex-start; gap: .75rem; }
-        .story-feat-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(95,103,172,.1); display: flex; align-items: center; justify-content: center; color: var(--leaf); flex-shrink: 0; }
+        .story-feat-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(4,173,183,.1); display: flex; align-items: center; justify-content: center; color: var(--leaf); flex-shrink: 0; }
         .story-feat-text strong { display: block; font-weight: 600; font-size: .92rem; color: var(--ink); margin-bottom: .2rem; }
         .story-feat-text span { font-size: .85rem; color: #6b7280; }
 
@@ -212,7 +212,7 @@ const Index = () => {
         .dashboard-section { padding: 8rem 8%; background: rgb(24,11,40); position: relative; overflow: hidden; }
         .dashboard-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--lime), transparent); }
         .db-header { max-width: 620px; margin-bottom: 4rem; }
-        .db-header .section-eyebrow { color: rgb(95, 103, 172); }
+        .db-header .section-eyebrow { color: rgb(4, 173, 183); }
         .db-header .section-h2 { color: #fff; }
         .db-header p { font-size: 1.05rem; color: rgba(255,255,255,.6); line-height: 1.8; }
         .db-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: center; }
@@ -220,8 +220,8 @@ const Index = () => {
         .db-features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
         @media (max-width: 768px) { .db-features-grid { grid-template-columns: 1fr; } }
         .db-feature { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem; border-radius: 14px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); transition: all .25s; cursor: default; }
-        .db-feature:hover { background: rgba(95,103,172,.07); border-color: rgba(95,103,172,.2); }
-        .db-feat-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(95,103,172,.16); display: flex; align-items: center; justify-content: center; color: rgb(95, 103, 172); flex-shrink: 0; }
+        .db-feature:hover { background: rgba(4,173,183,.07); border-color: rgba(4,173,183,.2); }
+        .db-feat-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(4,173,183,.16); display: flex; align-items: center; justify-content: center; color: rgb(4, 173, 183); flex-shrink: 0; }
         .db-feat-text strong { display: block; font-weight: 700; font-size: .95rem; color: #fff; margin-bottom: .3rem; }
         .db-feat-text span { font-size: .85rem; color: rgba(255,255,255,.5); line-height: 1.6; }
 
@@ -243,7 +243,7 @@ const Index = () => {
         .db-body { display: grid; grid-template-columns: 90px 1fr; }
         .db-sidebar { background: #131d16; padding: .75rem .5rem; border-right: 1px solid rgba(255,255,255,.07); }
         .db-nav-item { padding: .5rem .6rem; border-radius: 8px; color: rgba(255,255,255,.4); font-weight: 500; margin-bottom: .2rem; cursor: default; transition: all .2s; font-size: .7rem; }
-        .db-nav-item.active { background: rgba(95,103,172,.15); color: var(--lime); }
+        .db-nav-item.active { background: rgba(4,173,183,.15); color: var(--lime); }
         .db-main { padding: .9rem; display: flex; flex-direction: column; gap: .75rem; }
         .db-cards-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
         .db-mini-card { background: rgba(255,255,255,.04); border-radius: 10px; padding: .6rem .7rem; border: 1px solid rgba(255,255,255,.06); }
@@ -256,7 +256,7 @@ const Index = () => {
         .db-chart-title { font-size: .65rem; font-weight: 700; color: rgba(255,255,255,.5); margin-bottom: .5rem; }
         .db-bars { display: flex; align-items: flex-end; gap: 3px; height: 60px; }
         .db-bar-wrap { flex: 1; height: 100%; display: flex; align-items: flex-end; }
-        .db-bar { width: 100%; background: linear-gradient(to top, var(--lime), rgba(95,103,172,.3)); border-radius: 3px 3px 0 0; animation: growBar .8s ease both; }
+        .db-bar { width: 100%; background: linear-gradient(to top, var(--lime), rgba(4,173,183,.3)); border-radius: 3px 3px 0 0; animation: growBar .8s ease both; }
         @keyframes growBar { from { height: 0 !important; } }
         .db-recent { }
         .db-recent-title { font-size: .65rem; font-weight: 700; color: rgba(255,255,255,.5); margin-bottom: .4rem; }
@@ -265,13 +265,13 @@ const Index = () => {
         .db-tx-name { flex: 1; color: rgba(255,255,255,.7); font-size: .65rem; }
         .db-tx-amt { font-family: 'Sora', sans-serif; font-weight: 700; font-size: .7rem; color: #fff; }
         .db-tx-status { font-size: .55rem; font-weight: 700; padding: .15rem .45rem; border-radius: 99px; margin-left: .3rem; }
-        .db-tx-status.paid { background: rgba(95,103,172,.15); color: rgb(24, 11, 40); }
+        .db-tx-status.paid { background: rgba(4,173,183,.15); color: rgb(24, 11, 40); }
         .db-tx-status.pending { background: rgba(245,158,11,.15); color: #f59e0b; }
 
         /* ── PRICING ── */
         .pricing-section { padding: 8rem 8%; background: var(--cream); }
         .pricing-header { text-align: center; max-width: 640px; margin: 0 auto 4rem; }
-        .free-badge { display: inline-block; padding: .4rem 1.2rem; border-radius: 99px; background: linear-gradient(135deg, var(--lime), var(--leaf)); color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .05em; margin-bottom: 1.25rem; box-shadow: 0 4px 16px rgba(95,103,172,.35); }
+        .free-badge { display: inline-block; padding: .4rem 1.2rem; border-radius: 99px; background: linear-gradient(135deg, var(--lime), var(--leaf)); color: #fff; font-size: .8rem; font-weight: 700; letter-spacing: .05em; margin-bottom: 1.25rem; box-shadow: 0 4px 16px rgba(4,173,183,.35); }
         .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .pricing-card {
           background: #fff; border-radius: 20px; padding: 2.5rem 2rem;
@@ -284,8 +284,8 @@ const Index = () => {
         .pricing-card.featured::before { background: linear-gradient(90deg, var(--lime), var(--leaf)); }
         .featured-tag { position: absolute; top: 1.2rem; right: 1.2rem; background: var(--lime); color: var(--ink); font-size: .65rem; font-weight: 800; padding: .25rem .7rem; border-radius: 99px; letter-spacing: .05em; text-transform: uppercase; }
         .tier-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
-        .pricing-card:not(.featured) .tier-icon { background: rgba(95,103,172,.1); color: var(--leaf); }
-        .pricing-card.featured .tier-icon { background: rgba(95,103,172,.15); color: var(--lime); }
+        .pricing-card:not(.featured) .tier-icon { background: rgba(4,173,183,.1); color: var(--leaf); }
+        .pricing-card.featured .tier-icon { background: rgba(4,173,183,.15); color: var(--lime); }
         .tier-name {  font-weight: 800; font-size: 1.15rem; color: var(--ink); margin-bottom: .5rem; }
         .pricing-card.featured .tier-name { color: #fff; }
         .tier-desc { font-size: .85rem; color: #6b7280; line-height: 1.6; margin-bottom: 1.75rem; }
@@ -311,7 +311,7 @@ const Index = () => {
         .btn-tier-default { background: var(--sage); color: var(--ink); }
         .btn-tier-default:hover { background: var(--sage-d); transform: translateY(-2px); }
         .btn-tier-featured { background: linear-gradient(135deg, var(--lime), rgb(60,66,120)); color: var(--ink); }
-        .btn-tier-featured:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(95,103,172,.4); }
+        .btn-tier-featured:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(4,173,183,.4); }
 
         /* free trial banner */
         .trial-banner {
@@ -323,7 +323,7 @@ const Index = () => {
         .trial-text strong { display: block; font-family: 'Sora', sans-serif; font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: .35rem; }
         .trial-text span { font-size: .95rem; color: rgba(255,255,255,.65); }
         .trial-actions { display: flex; gap: .75rem; flex-shrink: 0; }
-        .btn-trial-free { padding: .85rem 2rem; border-radius: 99px; background: rgb(95, 103, 172); color: var(--ink); font-family: 'Sora', sans-serif; font-weight: 800; font-size: .95rem; border: none; cursor: pointer; transition: all .2s; }
+        .btn-trial-free { padding: .85rem 2rem; border-radius: 99px; background: rgb(4, 173, 183); color: var(--ink); font-family: 'Sora', sans-serif; font-weight: 800; font-size: .95rem; border: none; cursor: pointer; transition: all .2s; }
         .btn-trial-free:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
         .btn-trial-demo { padding: .85rem 2rem; border-radius: 99px; background: rgba(255,255,255,.12); border: 1.5px solid rgba(255,255,255,.25); color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; font-size: .95rem; cursor: pointer; transition: all .2s; display: flex; align-items: center; gap: .5rem; }
         .btn-trial-demo:hover { background: rgba(255,255,255,.2); transform: translateY(-2px); }
@@ -333,8 +333,8 @@ const Index = () => {
         .how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
         .how-card { background: #fff; backdrop-filter: blur(8px); border-radius: 20px; padding: 2.5rem 2rem; border: 1px solid rgba(0,0,0,.06); box-shadow: 0 10px 30px rgba(0,0,0,.04); transition: all .3s; }
         .how-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,.1); background: #fcfcfc; }
-        .how-num { font-family: 'Sora', sans-serif; font-size: 3.5rem; font-weight: 800; color: rgba(95,103,172,.16); line-height: 1; margin-bottom: 1rem; }
-        .how-icon { width: 48px; height: 48px; border-radius: 14px; background: rgb(95, 103, 172); display: flex; align-items: center; justify-content: center; color: #fff; margin-bottom: 1.25rem; }
+        .how-num { font-family: 'Sora', sans-serif; font-size: 3.5rem; font-weight: 800; color: rgba(4,173,183,.16); line-height: 1; margin-bottom: 1rem; }
+        .how-icon { width: 48px; height: 48px; border-radius: 14px; background: rgb(4, 173, 183); display: flex; align-items: center; justify-content: center; color: #fff; margin-bottom: 1.25rem; }
         .how-card h3 { font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.1rem; color: rgb(24, 11, 40); margin-bottom: .6rem; }
         .how-card p { font-size: .9rem; color: #5f6368; line-height: 1.7; }
 
@@ -352,12 +352,12 @@ const Index = () => {
 
         /* ── CTA ── */
         .cta-section { padding: 8rem 8%; background: rgb(24, 11, 40); text-align: center; position: relative; overflow: hidden; }
-        .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(95,103,172,.12) 0%, transparent 70%); }
+        .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(4,173,183,.12) 0%, transparent 70%); }
         .cta-section .section-h2 { color: #fff; position: relative; }
         .cta-section p { font-size: 1.1rem; color: rgba(255,255,255,.6); max-width: 520px; margin: 1.25rem auto 2.5rem; position: relative; }
         .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
-        .btn-cta-main { padding: 1rem 2.5rem; border-radius: 99px; background: rgb(95, 103, 172); color: var(--ink); font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.05rem; border: none; cursor: pointer; display: flex; align-items: center; gap: .5rem; transition: all .25s; }
-        .btn-cta-main:hover { background: #fff; transform: translateY(-3px); box-shadow: 0 12px 32px rgba(95,103,172,.3); }
+        .btn-cta-main { padding: 1rem 2.5rem; border-radius: 99px; background: rgb(4, 173, 183); color: var(--ink); font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.05rem; border: none; cursor: pointer; display: flex; align-items: center; gap: .5rem; transition: all .25s; }
+        .btn-cta-main:hover { background: #fff; transform: translateY(-3px); box-shadow: 0 12px 32px rgba(4,173,183,.3); }
         .btn-cta-demo { padding: 1rem 2.5rem; border-radius: 99px; border: 1.5px solid rgba(255,255,255,.25); background: transparent; color: #fff; font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1.05rem; cursor: pointer; display: flex; align-items: center; gap: .5rem; transition: all .25s; }
         .btn-cta-demo:hover { background: rgba(255,255,255,.1); transform: translateY(-3px); }
 
@@ -367,7 +367,7 @@ const Index = () => {
         .footer-brand p { font-size: .88rem; color: #6b7280; line-height: 1.7; margin-top: .75rem; max-width: 240px; }
         .footer-col h4 { font-family: 'Sora', sans-serif; font-size: .85rem; font-weight: 700; color: rgb(24, 11, 40); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1rem; }
         .footer-col a { display: block; font-size: .88rem; color: #6b7280; text-decoration: none; margin-bottom: .6rem; transition: color .2s; }
-        .footer-col a:hover { color: rgb(95, 103, 172); }
+        .footer-col a:hover { color: rgb(4, 173, 183); }
         .footer-bottom { border-top: 1px solid rgba(0,0,0,.08); padding-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; }
         .footer-bottom p { font-size: .8rem; color: #6b7280; }
 
@@ -380,12 +380,12 @@ const Index = () => {
         /* ── PROBLEMS ── */
         .problems-section { padding: 7rem 8% 5rem; background: var(--cream); }
         .section-head-center { text-align: center; max-width: 680px; margin: 0 auto 3.5rem; }
-        .section-head-center p { font-size: 1.05rem; color: rgb(95, 103, 172); line-height: 1.7; margin-top: 1rem; }
+        .section-head-center p { font-size: 1.05rem; color: rgb(4, 173, 183); line-height: 1.7; margin-top: 1rem; }
         .problems-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
         .problem-card {
           position: relative; isolation: isolate;
           background: #ffffff;
-          border: 1px solid rgba(95,103,172,.18);
+          border: 1px solid rgba(4,173,183,.18);
           border-radius: 22px; padding: 1.6rem 1.5rem 1.5rem;
           display: flex; flex-direction: column; gap: .85rem;
           min-height: 190px; cursor: default; overflow: hidden;
@@ -395,26 +395,26 @@ const Index = () => {
         .problem-card-glow {
           position: absolute; inset: -40% -40% auto auto;
           width: 220px; height: 220px; border-radius: 50%;
-          background: radial-gradient(circle, rgba(95,103,172,.22) 0%, rgba(95,103,172,0) 70%);
+          background: radial-gradient(circle, rgba(4,173,183,.22) 0%, rgba(4,173,183,0) 70%);
           opacity: 0; transition: opacity .45s ease, transform .6s ease;
           z-index: 0; pointer-events: none;
         }
         .problem-card:hover {
           transform: translateY(-6px);
-          border-color: rgb(95,103,172);
-          box-shadow: 0 22px 48px rgba(95,103,172,.18);
-          background: rgb(220,222,240);
+          border-color: rgb(4,173,183);
+          box-shadow: 0 22px 48px rgba(4,173,183,.18);
+          background: rgb(200,240,242);
         }
         .problem-card:hover .problem-card-glow { opacity: 1; transform: scale(1.15); }
         .problem-icon-wrap {
           position: relative; z-index: 1;
           display: inline-flex; align-items: center; justify-content: center;
           width: 52px; height: 52px; border-radius: 14px;
-          background: rgb(220,222,240); color: rgb(95,103,172);
+          background: rgb(200,240,242); color: rgb(4,173,183);
           transition: background .35s ease, color .35s ease, transform .35s ease;
         }
         .problem-card:hover .problem-icon-wrap {
-          background: rgb(95,103,172); color: #fff; transform: rotate(-4deg);
+          background: rgb(4,173,183); color: #fff; transform: rotate(-4deg);
         }
         .problem-card h3 {
           position: relative; z-index: 1;
@@ -429,7 +429,7 @@ const Index = () => {
         }
         .problem-stat-dot {
           width: 7px; height: 7px; border-radius: 50%;
-          background: rgb(24,11,40); box-shadow: 0 0 0 4px rgba(95,103,172,.15);
+          background: rgb(24,11,40); box-shadow: 0 0 0 4px rgba(4,173,183,.15);
         }
         .problem-card-arrow {
           position: absolute; top: 1.4rem; right: 1.4rem; z-index: 1;
@@ -445,7 +445,7 @@ const Index = () => {
         .solution-section::before {
           content: ''; position: absolute; top: -200px; right: -200px;
           width: 500px; height: 500px; border-radius: 50%;
-          background: radial-gradient(circle, rgba(95, 103, 172, .22), transparent 70%);
+          background: radial-gradient(circle, rgba(4, 173, 183, .22), transparent 70%);
           pointer-events: none;
         }
         .solution-section .section-eyebrow { color: #fff; }
@@ -463,22 +463,22 @@ const Index = () => {
           background: linear-gradient(90deg, var(--lime), var(--leaf));
           transition: width .4s ease;
         }
-        .solution-card:hover { transform: translateY(-8px); background: rgba(95, 103, 172, .18); border-color: rgba(95, 103, 172, .35); box-shadow: 0 24px 60px rgba(0,0,0,.4); }
+        .solution-card:hover { transform: translateY(-8px); background: rgba(4, 173, 183, .18); border-color: rgba(4, 173, 183, .35); box-shadow: 0 24px 60px rgba(0,0,0,.4); }
         .solution-card:hover::after { width: 100%; }
         .solution-icon {
           width: 56px; height: 56px; border-radius: 16px;
-          background: rgba(95, 103, 172, .16); color: rgb(95, 103, 172);
+          background: rgba(4, 173, 183, .16); color: rgb(4, 173, 183);
           display: flex; align-items: center; justify-content: center;
           margin-bottom: 1.25rem; transition: transform .35s ease, background .35s ease;
         }
-        .solution-card:hover .solution-icon { transform: rotate(6deg) scale(1.08); background: rgb(95, 103, 172); color: #fff; }
+        .solution-card:hover .solution-icon { transform: rotate(6deg) scale(1.08); background: rgb(4, 173, 183); color: #fff; }
         .solution-card h3 { font-weight: 800; font-size: 1.15rem; color: #fff; margin-bottom: .6rem; letter-spacing: -.5px; }
         .solution-card p { font-size: .92rem; color: rgba(255,255,255,.6); line-height: 1.65; }
-        .solution-tag { display: inline-block; margin-top: 1.25rem; font-size: .72rem; font-weight: 700; color: rgb(95, 103, 172); letter-spacing: .05em; text-transform: uppercase; padding: .25rem .65rem; border-radius: 99px; background: rgba(95, 103, 172, .16); }
+        .solution-tag { display: inline-block; margin-top: 1.25rem; font-size: .72rem; font-weight: 700; color: rgb(4, 173, 183); letter-spacing: .05em; text-transform: uppercase; padding: .25rem .65rem; border-radius: 99px; background: rgba(4, 173, 183, .16); }
 
         /* ── SHOWCASE ── */
         .showcase-section { padding: 7rem 8%; background: white; }
-        .showcase-section .section-head-center p { color: rgb(95, 103, 172); }
+        .showcase-section .section-head-center p { color: rgb(4, 173, 183); }
 
 
         /* ── RESPONSIVE ── */
@@ -522,7 +522,7 @@ const Index = () => {
           .solution-card { padding: 1.75rem 1.4rem; border-radius: 16px; }
           .solution-card h3 { font-size: 1.05rem; }
           .solution-card p { font-size: .88rem; }
-          .solution-icon { width: 48px; color: rgb(95, 103, 172); height: 48px; border-radius: 13px; margin-bottom: 1rem; }
+          .solution-icon { width: 48px; color: rgb(4, 173, 183); height: 48px; border-radius: 13px; margin-bottom: 1rem; }
 
           .showcase-section { padding: 4.5rem 5%; }
           .section-head-center { margin-bottom: 2.25rem; }
@@ -548,13 +548,13 @@ const Index = () => {
       `}</style>
       
       {/* this is the header section containing quick actions on KIT services */}
-      <div className="" style={{background:'whitesmoke'}}>
+      <div className="" style={{background:'rgb(4, 173, 183)'}}>
        <div className="absolute  ml-0 text-[black] p-4 font-bolder" style={{fontWeight:'100px'}}>
            <a href='/splash' style={{textDecoration: 'none'}}><b><div className="flex gap-0" ><img className='w-8 h-6' src="/mira-removebg-preview.png" /><div className="mt-1">mira</div></div></b></a> </div>
       
       <div className="flex  text-black p-4 m-0 rounded-lg  w-full justify-end  text-auto">
        
-        <div className="mr-10 ml-auto"> <a href="/about">About</a></div> <div className="mr-10"><a href="/blogs">Blog</a></div><div style={{background:'rgb(24, 11, 40)'}} className="bg-[rgb(24, 11, 40)] text-white rounded-full px-4 py-0 "> 
+        <div className="mr-10 ml-auto"> <a href="/about">About</a></div> <div className="mr-10"><a href="/blogs">Blog</a></div><div style={{background:'black'}} className="bg-[black] text-white rounded-full px-4 py-0 "> 
          <a href='/splash' style={{textDecoration: ''}}> Pay</a>
                       </div> 
            </div>
@@ -737,7 +737,7 @@ const Index = () => {
 
          {/* ── CTA ── */}
       <section className="cta-section">
-        <div className="section-eyebrow" style={{ color: "rgb(95, 107, 172)", position: "relative" }}>Ready to transform your school?</div>
+        <div className="section-eyebrow" style={{ color: "rgb(4, 173, 183)", position: "relative" }}>Ready to transform your school?</div>
         <h2 className="section-h2">Join 10+ department & Institution <em>already collecting smarter.</em></h2>
         <p>Start your free 30-day trial today. No card. No contracts. Just clarity.</p>
         <div className="cta-actions">

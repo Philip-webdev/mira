@@ -154,7 +154,7 @@ const HeroSection = () => {
     <>
       <section
         className="min-h-screen flex items-center"
-        style={{ backgroundColor: "white" }}
+        style={{ backgroundColor: "rgb(4, 173, 183)" }}
       >
         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
@@ -173,7 +173,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Button
                 className="px-8 py-5 text-lg rounded-full hover:bg-black"
-                style={{ backgroundColor: "rgb(24,11,40)" }}
+                style={{ backgroundColor: "black" }}
               >
                 <a href="/splash" className="flex items-center gap-2">
                   Pay with Mira

@@ -595,7 +595,7 @@ function SuccessScreen({ form, onClose }: SuccessScreenProps) {
 
 /* ─────────────────────────── TRIGGER BUTTONS ─────────────────────────── */
 
-export function GetStartedButton({ children = "Get Started Free", className = "" }: TriggerButtonProps) {
+export function GetStartedButton({ children = "Get Started Free", className = "bg-[rgb(4, 173, 183)]" }: TriggerButtonProps) {
   const [open, setOpen] = useState<boolean>(false);
   return (
     <>
@@ -628,7 +628,7 @@ const CSS = `
 
   :root {
     --sage: rgb(216,218,247); --sage-d: rgb(184,188,239);
-    --ink: #180b28; --leaf: #5f67ac; --lime: #b8bcef;
+    --ink: #180b28; --leaf: rgb(4, 173, 183); --lime: #b8bcef;
     --cream: #fbfaff;
   }
 
@@ -818,7 +818,7 @@ const CSS = `
   }
 
   .btn-cta-main {
-    padding: 1rem 2.5rem; border-radius: 99px; background: rgb(95, 103, 172); color: #fff;
+    padding: 1rem 2.5rem; border-radius: 99px; background: rgb(4, 173, 183); color: #fff;
     font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.05rem; border: none;
     cursor: pointer; display: flex; align-items: center; gap: .5rem; transition: all .25s;
   }

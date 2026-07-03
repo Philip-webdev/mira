@@ -4,18 +4,12 @@ import { ChevronDown, ChevronUp, Wallet2Icon } from "lucide-react";
 
 const HowToCard = () => {
   const [isOpen, setIsOpen] = useState(false);
-const [darkMode, setDarkMode] = useState(false);
-
-  function toggleTheme() {
-    setDarkMode(prev => !prev);
-  }
   return (
-    <Card className="bg-white dark: bg-[rgb(24, 11,40)] backdrop-blur-sm border-gray-200">
+    <Card className="bg-white dark:bg-[rgb(24,11,40)] backdrop-blur-sm border-gray-200">
       <CardHeader 
         className="cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className={darkMode ? "dark" : ""}>
         <CardTitle className="flex items-center justify-center dark:text-white" >
           
           <div style={{display: 'flex', alignItems: 'center', fontSize:'smaller' }}>
@@ -27,7 +21,6 @@ const [darkMode, setDarkMode] = useState(false);
             <ChevronDown className="ml-10 w-5 h-5 dark:text-white" />
           )}
         </CardTitle>
-        </div>
       </CardHeader>
       
       <div className={`transition-all duration-500 ease-in-out overflow-hidden ${
