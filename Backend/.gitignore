@@ -1,0 +1,16 @@
+.env
+node_modules
+logs/
+*.log
+
+# Snyk Security Extension - AI Rules (auto-generated)
+.github\instructions\snyk_rules.instructions.md
+
+# Snyk Security Extension - AI Rules (auto-generated)
+.github/instructions/snyk_rules.instructions.md
+
+IMPLEMENTATION_PLAN.md
+QR_CODE_FEATURE.md
+LOGGING.MD
+API.MD
+scratch
