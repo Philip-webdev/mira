@@ -7,6 +7,7 @@ import PaymentSkeleton from "./PaymentSkeleton";
 import PaymentsStats from "./PaymentsStats";
 import PaymentFilters from "./PaymentFilters";
 import PaymentsTable from "./PaymentTable/PaymentsTable";
+import { apiGet } from "@/lib/api";
 
 // import PaymentsHeader from "./PaymentsHeader";
 // import PaymentsStats from "./PaymentsStats";
@@ -32,21 +33,14 @@ export default function PaymentsPage() {
 
   const pageSize = 12;
 
-  const endpoint =
-    college === "aqua"
-      ? "https://Mira-backend-main.onrender.com/api/admin/dashboard/Fishery"
-      : `https://Mira-backend-main.onrender.com/api/admin/dashboard/${college?.toUpperCase()}`;
-
   useEffect(() => {
     async function load() {
       setLoading(true);
 
       try {
-        const response = await fetch(endpoint);
-
-        const data = await response.json();
-
-        setPayments(data.reverse());
+        const data = await apiGet('/api/admin/partner/payments');
+        const payments = Array.isArray(data) ? data : data.payments || [];
+        setPayments(payments.reverse());
       } finally {
         setLoading(false);
       }

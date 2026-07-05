@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { CreditCard, User,  LucideSchool, Mail } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Dispatch, SetStateAction } from "react";
+import { apiPost } from "@/lib/api";
 
 // declare global {
 //   interface Window {
@@ -65,25 +66,22 @@ const desc = formData.desc;
 const isDisabled = formData.matricNumber.startsWith("2025") 
 
 const requestFlutter = async () => {
-  notSubmitting(true); // 
+  notSubmitting(true);
   try {
-    const requestFlutter = await fetch('https://Mira-backend-main.onrender.com/api/make-department-payment', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, matricNumber, fullname, department, level, fresherLevel, mainLevel, collegeName: "None", amount})
-    })
+    const callbackUrl = `${window.location.origin}/receipts`;
+    const data = await apiPost('/api/payments/initiate', {
+      email,
+      payerName: fullname,
+      amount,
+      partnerIdentifier: department,
+      businessVertical: "education",
+      metadata: { matricNumber, department: "None", level, fresherLevel, mainLevel, collegeName: "None", desc },
+      callbackUrl,
+    });
 
-    const data = await requestFlutter.json();
-    if(!requestFlutter.ok){
-        notSubmitting(false);
-        throw new Error(data.message || 'Failed to initialize transaction');
-    }
     if (data.paymentLink) {
-     
       window.location.href = data.paymentLink;
-    }else{
+    } else {
       alert('Payment link not found');
       throw new Error('Payment link not found');
     }
@@ -91,7 +89,6 @@ const requestFlutter = async () => {
     console.error('Error:', error);
     notSubmitting(false);
   }
-  //console.log({ email, matricNumber, fullname, department, level, fresherLevel, mainLevel, amount, desc });
 }
 
   const departments = [

@@ -8,12 +8,14 @@ import {
   ShieldCheck,
   Sparkles,
   X,
+  Building2,
 } from "lucide-react";
 import { memo, useEffect } from "react";
 import NavItem from "./NavItem";
 import { useNavigate, useParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { adminConfig } from "@/data/adminConfig";
+import { clearToken } from "@/lib/api";
 
 interface SidebarProps {
   isOpen: boolean;
@@ -29,8 +31,7 @@ const Sidebar = memo(({ isOpen, closeSidebar }: SidebarProps) => {
   const config = adminConfig[(college as keyof typeof adminConfig) ?? "colerm"];
 
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("adminCollege");
+    clearToken();
     navigate("/admin");
   };
   useEffect(() => {
@@ -113,9 +114,9 @@ const Sidebar = memo(({ isOpen, closeSidebar }: SidebarProps) => {
           />
 
           <NavItem
-            title="Settings"
-            href={`${base}/settings`}
-            icon={Settings}
+            title="Bank Settings"
+            href={`${base}/bank-settings`}
+            icon={Building2}
             onClick={closeSidebar}
           />
         </div>

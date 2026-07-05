@@ -13,6 +13,7 @@ import Colphyssa from "@/assets/WhatsApp Image 2025-09-28 at 8.06.55 PM.jpeg"
 import Fossu from "@/assets/WhatsApp Image 2025-11-25 at 10.05.09 AM.jpeg"
 import html2pdf from 'html2pdf.js';
 import {QRCodeCanvas} from 'qrcode.react';
+import { apiGet } from "@/lib/api";
 
 
  function  Receipt () {
@@ -110,12 +111,7 @@ const getLedBy = (department: string | undefined, collegeName: string | undefine
     try {
       notOkay(true); // show loader before fetching
 
-      const fetchReceipt = await fetch(`https://Mira-backend-main.onrender.com/api/getPayment/${ref}`);
-      if (!fetchReceipt.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await fetchReceipt.json();
+      const data = await apiGet(`/api/payments/confirm/${ref}`);
       console.log("Receipt data:", data);
 
       setPayeData(data);

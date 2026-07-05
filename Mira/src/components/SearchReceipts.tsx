@@ -4,38 +4,35 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Search, Download, Home, Library, User, CheckCheck, PanelRight } from "lucide-react";
-import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { apiGet } from "@/lib/api";
 
 const SearchReceipts = () => {
-  const [matricNumber, setMatricNumber] = useState("");
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [receiptNumber, setReceiptNumber] = useState("");
+  const [searchResult, setSearchResult] = useState<any>(null);
   const [isSearched, setIsSearched] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [filter, setFilter] = useState("Department");
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
   useEffect(() => {
-    if (matricNumber.trim() === "") {
-      setSearchResults([]);
+    if (receiptNumber.trim() === "") {
+      setSearchResult(null);
       setIsSearched(false);
     }
-  }, [matricNumber]);
+  }, [receiptNumber]);
 
   const handleSearch = async () => {
-    if (!matricNumber.trim()) return;
+    if (!receiptNumber.trim()) return;
     setSubmitting(true);
 
     try {
-      const res = await axios.get(
-        `https://Mira-backend-main.onrender.com/api/find-receipt?matricNumber=${encodeURIComponent(matricNumber)}`
-      );
-      setSearchResults(res.data);
+      const data = await apiGet(`/api/payments/receipts/${encodeURIComponent(receiptNumber)}`);
+      setSearchResult(data?.data || data);
       setIsSearched(true);
     } catch (error) {
-      console.error("Error fetching receipts:", error);
-      setSearchResults([]);
+      console.error("Error fetching receipt:", error);
+      setSearchResult(null);
       setIsSearched(true);
     } finally {
       setSubmitting(false);
@@ -46,15 +43,8 @@ const SearchReceipts = () => {
     pathname === path ? "text-white" : "text-[#c9cbed]/70";
 
   const displayResult = () => {
-    if (searchResults.length === 0) {
-      return <p className="text-sm text-slate-500">No receipts found for this number.</p>;
-    }
-
-    const index = filter === "College" ? 1 : 0;
-    const result = searchResults[index];
-
-    if (!result) {
-      return <p className="text-sm text-red-500">No data available for the selected filter.</p>;
+    if (!searchResult) {
+      return <p className="text-sm text-slate-500">No receipt found for this number.</p>;
     }
 
     return (
@@ -62,40 +52,37 @@ const SearchReceipts = () => {
         <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-sm text-slate-500">Student</p>
-            <p className="text-lg font-semibold text-slate-950 dark:text-white">{result.fullname}</p>
+            <p className="text-lg font-semibold text-slate-950 dark:text-white">{searchResult.payerName || searchResult.fullname}</p>
           </div>
-          <Badge variant={result.status === "Paid" ? "default" : "secondary"}>{result.status}</Badge>
+          <Badge variant={searchResult.paymentStatus === "completed" ? "default" : "secondary"}>{searchResult.paymentStatus || "Paid"}</Badge>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="rounded-2xl bg-white p-4 shadow-sm dark:bg-[#180b28]">
-            <p className="text-xs uppercase text-slate-400">Matric Number</p>
-            <p className="mt-2 font-semibold text-slate-900 dark:text-white">{result.matricNumber}</p>
+            <p className="text-xs uppercase text-slate-400">Reference</p>
+            <p className="mt-2 font-semibold text-slate-900 dark:text-white">{searchResult.reference}</p>
           </div>
           <div className="rounded-2xl bg-white p-4 shadow-sm dark:bg-[#180b28]">
-            <p className="text-xs uppercase text-slate-400">Department</p>
-            <p className="mt-2 font-semibold text-slate-900 dark:text-white">{result.department}</p>
+            <p className="text-xs uppercase text-slate-400">Receipt No</p>
+            <p className="mt-2 font-semibold text-slate-900 dark:text-white">{searchResult.receiptNo}</p>
           </div>
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2">
           <div className="rounded-2xl bg-white p-4 shadow-sm dark:bg-[#180b28]">
-            <p className="text-xs uppercase text-slate-400">College</p>
-            <p className="mt-2 font-semibold text-slate-900 dark:text-white">{result.collegeName}</p>
+            <p className="text-xs uppercase text-slate-400">Partner</p>
+            <p className="mt-2 font-semibold text-slate-900 dark:text-white">{searchResult.partnerIdentifier}</p>
           </div>
           <div className="rounded-2xl bg-white p-4 shadow-sm dark:bg-[#180b28]">
             <p className="text-xs uppercase text-slate-400">Amount Paid</p>
-            <p className="mt-2 font-semibold text-slate-900 dark:text-white">{result.amount || "N/A"}</p>
+            <p className="mt-2 font-semibold text-slate-900 dark:text-white">{searchResult.amountPaid || searchResult.amount || "N/A"}</p>
           </div>
         </div>
 
         <div className="flex flex-wrap items-center gap-3 pt-2">
-          <Button size="sm" onClick={() => navigate("/receipt", { state: { searchResult: result } })}>
+          <Button size="sm" onClick={() => navigate("/receipt", { state: { searchResult } })}>
             <Download className="h-4 w-4 mr-2" />
             Download
-          </Button>
-          <Button size="sm" variant="secondary" onClick={() => setFilter(filter === "College" ? "Department" : "College")}>
-            Switch to {filter === "College" ? "Department" : "College"}
           </Button>
         </div>
       </div>
@@ -114,16 +101,16 @@ const SearchReceipts = () => {
               Receipt Search
             </CardTitle>
             <CardDescription className="text-white dark:text-white">
-              Enter your matriculation number to locate your latest payment receipts.
+              Enter your receipt number to retrieve your payment receipt.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-5">
             <div className="grid gap-3 md:grid-cols-[1.4fr,_0.6fr]">
               <Input
-                placeholder="e.g. 20201735"
-                value={matricNumber}
+                placeholder="Enter receipt number"
+                value={receiptNumber}
                 onChange={(e) => {
-                  setMatricNumber(e.target.value);
+                  setReceiptNumber(e.target.value);
                   setIsSearched(false);
                 }}
                 onKeyDown={(e) => e.key === "Enter" && handleSearch()}
@@ -131,31 +118,18 @@ const SearchReceipts = () => {
               />
               <Button onClick={handleSearch} className="w-full bg-[#5f67ac] text-white hover:bg-[#4d559c]">
                 <Search className="h-4 w-4 mr-2" />
-                Search receipts
+                Search
               </Button>
-            </div>
-
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-           
-              <select
-                id="select"
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}
-                className="rounded-2xl border border-[#5f67ac]/25 bg-white px-6 py-3 text-slate-900 shadow-sm outline-none focus:border-[#5f67ac] dark:border-[#5f67ac]/30 dark:bg-[#241436] dark:text-slate-100"
-              >
-                <option value="Department">Department</option>
-                <option value="College">College</option>
-              </select>
             </div>
 
             {isSearched && (
               <div className="rounded-[1.5rem] border border-[#5f67ac]/20 bg-[#f8f7ff] p-5 shadow-sm dark:border-[#5f67ac]/30 dark:bg-[#241436]">
                 <div className="flex items-center justify-between gap-3">
                   <div>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Search results for</p>
-                    <p className="text-lg font-semibold text-slate-950 dark:text-white">{matricNumber}</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">Search result for</p>
+                    <p className="text-lg font-semibold text-slate-950 dark:text-white">{receiptNumber}</p>
                   </div>
-                  <div className="rounded-3xl bg-[#5f67ac]/15 px-3 py-2 text-[11px] font-semibold text-[#d8daf7]">{searchResults.length} found</div>
+                  <div className="rounded-3xl bg-[#5f67ac]/15 px-3 py-2 text-[11px] font-semibold text-[#d8daf7]">{searchResult ? "1 found" : "0 found"}</div>
                 </div>
                 <div className="relative mt-6">
                   {submitting && (

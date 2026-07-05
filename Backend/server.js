@@ -4,6 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const initDatabase = require('./config/initDb');
 const webhookRouter = require('./routes/PaymentRoutes/webhookRouter');
+const disburseWebhookRouter = require('./routes/PaymentRoutes/disburseWebhookRouter');
 const paymentRouter = require('./routes/PaymentRoutes/paymentRouter');
 const adminRouter = require('./routes/PaymentRoutes/adminRouter'); 
 
@@ -40,6 +41,7 @@ app.get('/', (req, res) => {
 
 
 app.use('/api', webhookRouter);
+app.use('/api/v1', disburseWebhookRouter);
 app.use('/api/payments', paymentRouter);
 app.use('/api/admin', adminRouter); 
 

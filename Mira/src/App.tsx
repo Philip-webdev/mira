@@ -15,13 +15,8 @@ import Receipt from "./components/receipts";
 import Docus from "./components/Docs";
 import Manager from "./components/fundManagement";
 import AdminPanel from "./pages/AdminPanel";
+import AdminRegister from "./pages/AdminRegister";
 import PrivacyPolicy from "./components/policy";
-import ColermDashboard from "./components/adminColerm";
-import GeoDashboard from "./components/adminGeo";
-import SslmDashboard from "./components/adminSslm";
-import WmaDashboard from "./components/adminWma";
-import AquaDashboard from "./components/adminAqua";
-import EmtDashboard from "./components/adminEmt";
 import Hotline from "./components/hotlline";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import FoodPage from "./pages/food";
@@ -29,13 +24,7 @@ import TicketsPage from "./pages/ticket";
 import RestServicesPage from "./pages/rest";
 import SearchReceipts from "./components/SearchReceipts";
 import CtaReceipt from "./components/ctaReceipt";
-import PbstDashboard from "./components/adminPbst";
-import PpcpDashboard from "./components/adminPpcp";
-import ColphysDashboard from "./components/adminColphys";
-import NapsDashboard from "./components/adminNaps";
-import CptDashboard from "./components/adminCpt";
 import GenReceipt from "./components/GenReceipt";
-import FossuDashboard from "./components/adminFossu";
 import NewsComponent from "./pages/announce";
 import { AdmissionModal } from "./pages/Admissionmodal";
 import SharePurchaseForm from "./components/SharePurchaseForm";
@@ -44,6 +33,10 @@ import SplashScreen from "./pages/SplashScreen";
 import AboutUs from "./components/aboutus";
 import DashboardShell from "./components/Admin/DashboardShell";
 import PaymentsPage from "./components/Admin/Payments/PaymentPage";
+import BalancePage from "./components/Admin/BalancePage";
+import WithdrawPage from "./components/Admin/WithdrawPage";
+import WithdrawalsPage from "./components/Admin/WithdrawalsPage";
+import BankSettingsPage from "./components/Admin/BankSettingsPage";
 const queryClient = new QueryClient();
 
 
@@ -75,14 +68,17 @@ const App = () => (
            <Route path="/admission" element={<AdmissionRoute />} />
           <Route path="/manager" element={<Manager />} />
           <Route path="/admin" element={<AdminPanel />} />
-          {/* <Route path="/admin/:college" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}/>
-          <Route path="/admin/aqua" element={<ProtectedRoute>< AquaDashboard /></ProtectedRoute>}/> */}
-          <Route path="/about" element={<AboutUs/>} />
+          <Route path="/admin/register" element={<AdminRegister />} />
           <Route path="/admin/:college" element={<ProtectedRoute><DashboardShell /></ProtectedRoute>}>
             <Route index element={<AdminDashboard />} />
             <Route path="payments" element={<PaymentsPage />} />
+            <Route path="balance" element={<BalancePage />} />
+            <Route path="withdraw" element={<WithdrawPage />} />
+            <Route path="withdrawals" element={<WithdrawalsPage />} />
+            <Route path="bank-settings" element={<BankSettingsPage />} />
           </Route>
           {/* <Route path="/admin/aqua" element={<ProtectedRoute>< AquaDashboard /></ProtectedRoute>}/> */}
+          <Route path="/about" element={<AboutUs/>} />
           <Route path="/Miracare" element={<Hotline/>} />
           
           <Route path="/news" element={<NewsComponent/>} />

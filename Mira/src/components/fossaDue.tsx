@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CreditCard, User,  LucideSchool, Mail } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
+import { apiPost } from "@/lib/api";
 
 
 interface CollegePaymentFormProps {
@@ -58,25 +59,22 @@ if (collegeName && mainLevel) {
 const desc = formData.desc;
 
 const payWithNomba = async () => {
-  notSubmitting(true); // <-- Start showing the loading overlay
+  notSubmitting(true);
   try {
-    const requestNomba = await fetch('https://Mira-backend-main.onrender.com/api/make-college-payment', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, matricNumber, fullname, collegeName, department, level, fresherLevel, mainLevel, amount})
-    })
+    const callbackUrl = `${window.location.origin}/receipts`;
+    const data = await apiPost('/api/payments/initiate', {
+      email,
+      payerName: fullname,
+      amount,
+      partnerIdentifier: collegeName,
+      businessVertical: "education",
+      metadata: { matricNumber, department, level, fresherLevel, mainLevel, desc },
+      callbackUrl,
+    });
 
-    const data = await requestNomba.json();
-    if(!requestNomba.ok){
-        notSubmitting(false);
-        throw new Error(data.message || 'Failed to initialize transaction');
-    }
     if (data.paymentLink) {
-      
-     window.location.href = data.paymentLink;
-    }else{
+      window.location.href = data.paymentLink;
+    } else {
       alert('Payment link not found');
       throw new Error('Payment link not found');
     }
@@ -84,7 +82,6 @@ const payWithNomba = async () => {
     console.error('Error:', error);
     notSubmitting(false);
   }
-  console.log({ email, matricNumber, fullname, collegeName, department, level, fresherLevel, mainLevel});
 }
 
   const MainLevel = ["Fresher/ Direct Entry", "Staylite"];
