@@ -16,7 +16,7 @@ app.use(rateLimit);
 
 const corsOptions = {
     origin: [
-        'https://kwestpay.com', 'http://localhost:8080',   'https://www.kwestpay.com', 'https://paykwest.onrender.com', 'https://kwestpaymain.onrender.com'
+        'https://mira-fawn.vercel.app'
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'  ],
@@ -35,7 +35,7 @@ app.use(helmet({
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
-  res.send('Welcome to KwestPay')
+  res.send('Welcome to Mira')
 })
 
 

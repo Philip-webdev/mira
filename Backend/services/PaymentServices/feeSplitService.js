@@ -1,10 +1,10 @@
 const { pool } = require('../../config/postgres');
 
 /**
- * Calculates the split share for KwestPay and the partner.
+ * Calculates the split share for Mira and the partner.
  * @param {number} amountPaid - Total amount paid by customer in Naira (including any surcharges).
  * @param {string} partnerIdentifier - Unique partner identifier.
- * @returns {Promise<{partnerShare: number, kwestpayShare: number}>}
+ * @returns {Promise<{partnerShare: number, MiraShare: number}>}
  */
 async function calculateSplit(amountPaid, partnerIdentifier) {
   // 1. Fetch partner account to get their business vertical
@@ -40,47 +40,47 @@ async function calculateSplit(amountPaid, partnerIdentifier) {
   }
 
   const rule = rulesRes.rows[0];
-  let kwestpayShare = 0;
+  let MiraShare = 0;
 
   const threshold = rule.threshold ? parseFloat(rule.threshold) : null;
   const parsedAmountPaid = parseFloat(amountPaid);
 
   if (threshold !== null && parsedAmountPaid > threshold) {
     if (rule.above_threshold_fee_amount !== null) {
-      kwestpayShare = parseFloat(rule.above_threshold_fee_amount);
+      MiraShare = parseFloat(rule.above_threshold_fee_amount);
     } else if (rule.above_threshold_fee_percent !== null) {
-      kwestpayShare = parsedAmountPaid * (parseFloat(rule.above_threshold_fee_percent) / 100);
+      MiraShare = parsedAmountPaid * (parseFloat(rule.above_threshold_fee_percent) / 100);
       if (rule.above_threshold_fee_cap !== null) {
         const cap = parseFloat(rule.above_threshold_fee_cap);
-        if (kwestpayShare > cap) {
-          kwestpayShare = cap;
+        if (MiraShare > cap) {
+          MiraShare = cap;
         }
       }
     }
   } else {
     if (rule.fee_amount !== null) {
-      kwestpayShare = parseFloat(rule.fee_amount);
+      MiraShare = parseFloat(rule.fee_amount);
     } else if (rule.fee_percent !== null) {
-      kwestpayShare = parsedAmountPaid * (parseFloat(rule.fee_percent) / 100);
+      MiraShare = parsedAmountPaid * (parseFloat(rule.fee_percent) / 100);
       if (rule.fee_cap !== null) {
         const cap = parseFloat(rule.fee_cap);
-        if (kwestpayShare > cap) {
-          kwestpayShare = cap;
+        if (MiraShare > cap) {
+          MiraShare = cap;
         }
       }
     }
   }
 
-  // Ensure KwestPay share does not exceed the total amount paid
-  if (kwestpayShare > parsedAmountPaid) {
-    kwestpayShare = parsedAmountPaid;
+  // Ensure Mira share does not exceed the total amount paid
+  if (MiraShare > parsedAmountPaid) {
+    MiraShare = parsedAmountPaid;
   }
 
-  const partnerShare = parsedAmountPaid - kwestpayShare;
+  const partnerShare = parsedAmountPaid - MiraShare;
 
   return {
     partnerShare: Number(partnerShare.toFixed(2)),
-    kwestpayShare: Number(kwestpayShare.toFixed(2))
+    MiraShare: Number(MiraShare.toFixed(2))
   };
 }
 

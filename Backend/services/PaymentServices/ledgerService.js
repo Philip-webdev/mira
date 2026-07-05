@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require('uuid');
  * @param {string} reference - Unique transaction/withdrawal reference (e.g. KP-PAY-...)
  * @param {string} partnerIdentifier - Unique partner identifier
  * @param {number} amountPaid - Total amount paid by the customer in Naira
- * @param {number} fee - KwestPay fee share in Naira
+ * @param {number} fee - Mira fee share in Naira
  * @param {string} description - Optional transaction description
  * @returns {Promise<string>} - The generated ledger transaction_id
  */
@@ -27,11 +27,11 @@ async function recordPaymentLedger(client, reference, partnerIdentifier, amountP
     VALUES ($1, $2, $3, 'college_wallet', 'credit', $4, 'NGN', $5)
   `, [transactionId, reference, partnerIdentifier, partnerShare, `${description} - Partner Wallet Share`]);
 
-  // 3. Credit kwestpay_revenue
+  // 3. Credit Mira_revenue
   await client.query(`
     INSERT INTO ledger_entries (transaction_id, reference, partner_identifier, account_type, entry_type, amount, currency, description)
-    VALUES ($1, $2, $3, 'kwestpay_revenue', 'credit', $4, 'NGN', $5)
-  `, [transactionId, reference, partnerIdentifier, fee, `${description} - KwestPay Revenue Share`]);
+    VALUES ($1, $2, $3, 'Mira_revenue', 'credit', $4, 'NGN', $5)
+  `, [transactionId, reference, partnerIdentifier, fee, `${description} - Mira Revenue Share`]);
 
   return transactionId;
 }

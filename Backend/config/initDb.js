@@ -13,7 +13,7 @@ const initDatabase = async () => {
     await client.query(`
       DO $$ BEGIN
         IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'ledger_account_type') THEN
-          CREATE TYPE ledger_account_type AS ENUM ('gateway_clearing', 'college_wallet', 'kwestpay_revenue', 'external_bank');
+          CREATE TYPE ledger_account_type AS ENUM ('gateway_clearing', 'college_wallet', 'Mira_revenue', 'external_bank');
         END IF;
         IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'ledger_entry_type') THEN
           CREATE TYPE ledger_entry_type AS ENUM ('debit', 'credit');
@@ -173,7 +173,7 @@ const initDatabase = async () => {
       ALTER TABLE admin_users DROP CONSTRAINT IF EXISTS admin_users_role_check;
       UPDATE admin_users SET role = 'owner' WHERE role IN ('checker', 'president');
       UPDATE admin_users SET role = 'college_admin' WHERE role IN ('maker', 'treasurer');
-      ALTER TABLE admin_users ADD CONSTRAINT admin_users_role_check CHECK (role IN ('kwestpay_admin', 'college_admin', 'owner'));
+      ALTER TABLE admin_users ADD CONSTRAINT admin_users_role_check CHECK (role IN ('Mira_admin', 'college_admin', 'owner'));
     `);
 
     await client.query('COMMIT');
@@ -216,13 +216,13 @@ const initDatabase = async () => {
         // Seed super admin
         await client.query(`
           INSERT INTO admin_users (email, password_hash, role)
-          VALUES ('admin@kwestpay.com', $1, 'kwestpay_admin')
+          VALUES ('admin@Mira.com', $1, 'Mira_admin')
         `, [passwordHash]);
 
         // Seed college admin
         await client.query(`
           INSERT INTO admin_users (email, password_hash, role, partner_identifier)
-          VALUES ('colerm_admin@kwestpay.com', $1, 'college_admin', 'COLERM')
+          VALUES ('colerm_admin@Mira.com', $1, 'college_admin', 'COLERM')
         `, [passwordHash]);
 
         console.log('Admin users seeding complete.');

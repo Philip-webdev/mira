@@ -162,13 +162,13 @@ const SharePurchaseForm = () => {
     rotateY.set(0);
   };
 
-  // PAYSTACK
+
   const handlePay = async () => {
     // @ts-ignore
-    // const PaystackPop = window.PaystackPop;
+    // const NombaPop = window.NombaPop;
 
-    // const handler = PaystackPop.setup({
-    //   key: PAYSTACK_PUBLIC_KEY,
+    // const handler = NombaPop.setup({
+    //   key: Nomba_PUBLIC_KEY,
     //   email: formData.email,
     //   amount: formData.amount * 100,
     //   currency: "NGN",
@@ -198,7 +198,7 @@ Investment Amount: ₦${formData.amount.toLocaleString()}`;
 
   return (
     <>
-      {/* <script src="https://js.paystack.co/v1/inline.js"></script> */}
+      {/* <script src="https://js.Nomba.co/v1/inline.js"></script> */}
 
       <div
         className="min-h-screen overflow-hidden relative flex items-center justify-center px-4 py-10"

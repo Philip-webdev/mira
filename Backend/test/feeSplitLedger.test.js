@@ -55,31 +55,31 @@ async function runTests() {
     
     // Test Case A: Partner override (TEST_COLLEGE has negotiated flat 15 Naira fee)
     let res = await calculateSplit(5000, 'TEST_COLLEGE');
-    assert.strictEqual(res.kwestpayShare, 15.00);
+    assert.strictEqual(res.MiraShare, 15.00);
     assert.strictEqual(res.partnerShare, 4985.00);
     console.log('✔ Test Case A: Partner-specific override fee succeeded');
 
     // Test Case B: Vertical-specific rules (TEST_DEPT belongs to 'ticketing' vertical: 2% of 10000 = 200 Naira)
     res = await calculateSplit(10000, 'TEST_DEPT');
-    assert.strictEqual(res.kwestpayShare, 200.00);
+    assert.strictEqual(res.MiraShare, 200.00);
     assert.strictEqual(res.partnerShare, 9800.00);
     console.log('✔ Test Case B: Vertical-specific percentage fee succeeded');
 
     // Test Case C: Vertical-specific fee cap (TEST_DEPT belongs to 'ticketing' vertical: 2% of 40000 = 800, capped at 500)
     res = await calculateSplit(40000, 'TEST_DEPT');
-    assert.strictEqual(res.kwestpayShare, 500.00);
+    assert.strictEqual(res.MiraShare, 500.00);
     assert.strictEqual(res.partnerShare, 39500.00);
     console.log('✔ Test Case C: Vertical-specific fee cap succeeded');
 
     // Test Case D: Global fallback under threshold (A new partner without custom rules falls back to DEFAULT threshold)
     res = await calculateSplit(3000, 'NEW_UNKNOWN_PARTNER'); // should use default rule under threshold
-    assert.strictEqual(res.kwestpayShare, 110.00);
+    assert.strictEqual(res.MiraShare, 110.00);
     assert.strictEqual(res.partnerShare, 2890.00);
     console.log('✔ Test Case D: Global fallback under threshold succeeded');
 
     // Test Case E: Global fallback above threshold
     res = await calculateSplit(4000, 'NEW_UNKNOWN_PARTNER'); // should use default rule above threshold
-    assert.strictEqual(res.kwestpayShare, 160.00);
+    assert.strictEqual(res.MiraShare, 160.00);
     assert.strictEqual(res.partnerShare, 3840.00);
     console.log('✔ Test Case E: Global fallback above threshold succeeded');
 
@@ -108,8 +108,8 @@ async function runTests() {
       assert.strictEqual(partnerLeg.entry_type, 'credit');
       assert.strictEqual(parseFloat(partnerLeg.amount), 985.00);
 
-      // Check Credit leg for KwestPay revenue
-      const revenueLeg = checkRes.rows.find(r => r.account_type === 'kwestpay_revenue');
+      // Check Credit leg for Mira revenue
+      const revenueLeg = checkRes.rows.find(r => r.account_type === 'Mira_revenue');
       assert.ok(revenueLeg);
       assert.strictEqual(revenueLeg.entry_type, 'credit');
       assert.strictEqual(parseFloat(revenueLeg.amount), 15.00);

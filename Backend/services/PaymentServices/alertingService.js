@@ -3,9 +3,9 @@ const axios = require('axios');
 const logger = require('../../utils/logger');
 require('dotenv').config();
 
-const DEVELOPER_EMAIL = process.env.DEVELOPER_EMAIL || 'devs@kwestpay.com';
+const DEVELOPER_EMAIL = process.env.DEVELOPER_EMAIL || 'devs@Mira.com';
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL;
-const SYSTEM_EMAIL = process.env.SYSTEM_EMAIL || 'system@kwestpay.com';
+const SYSTEM_EMAIL = process.env.SYSTEM_EMAIL || 'system@Mira.com';
 
 const sendSlackAlert = async (text) => {
   if (!SLACK_WEBHOOK_URL) {
@@ -43,7 +43,7 @@ const sendCircuitBreakerTrippedAlert = async (gatewayName) => {
   logger.warn(msg);
   await sendSlackAlert(msg);
   await sendEmailAlert(
-    `[KwestPay Alert] Circuit Breaker Tripped - ${gatewayName.toUpperCase()}`,
+    `[Mira Alert] Circuit Breaker Tripped - ${gatewayName.toUpperCase()}`,
     `<p>The circuit breaker for <strong>${gatewayName.toUpperCase()}</strong> has been tripped due to excessive failures.</p>
      <p>Traffic is currently redirected to fallback gateways.</p>
      <p>Timestamp: ${new Date().toISOString()}</p>`
@@ -55,7 +55,7 @@ const sendTransactionRollbackAlert = async (errorDetail) => {
   logger.error(msg);
   await sendSlackAlert(msg);
   await sendEmailAlert(
-    `[KwestPay Critical] DB Transaction Rollback Alert`,
+    `[Mira Critical] DB Transaction Rollback Alert`,
     `<p>A critical database transaction failed and was rolled back.</p>
      <p><strong>Error details:</strong> ${errorDetail}</p>
      <p>Timestamp: ${new Date().toISOString()}</p>`
@@ -67,7 +67,7 @@ const sendReconciliationAlert = async (reportDetails) => {
   logger.warn(msg);
   await sendSlackAlert(msg);
   await sendEmailAlert(
-    `[KwestPay Audit] Reconciliation Mismatch Alert`,
+    `[Mira Audit] Reconciliation Mismatch Alert`,
     `<p>The reconciliation engine has completed run with discrepancies.</p>
      <p><strong>Status:</strong> ${reportDetails.status}</p>
      <p><strong>Total Partners Checked:</strong> ${reportDetails.totalPartnersChecked}</p>

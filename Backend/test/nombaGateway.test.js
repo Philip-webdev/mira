@@ -68,7 +68,7 @@ async function runTests() {
     amount: amount,
     email: email,
     orderReference: reference,
-    callbackUrl: 'https://www.kwestpay.com/receipts',
+    callbackUrl: 'https://www.Mira.com/receipts',
     splitRequest: {
       splitList: [
         {

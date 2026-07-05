@@ -52,7 +52,7 @@ class NombaGateway extends IPaymentGateway {
           amount: amount,
           email: customerEmail,
           orderReference: reference,
-          callbackUrl: 'https://www.kwestpay.com/receipts',
+          callbackUrl: 'https://www.Mira.com/receipts',
           splitRequest: {
             splitList: [
               {

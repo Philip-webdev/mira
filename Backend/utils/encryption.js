@@ -14,7 +14,7 @@ const getSecretKey = () => {
     }
     console.warn('BANK_ENCRYPTION_KEY is not set — using a development fallback (not safe for production)');
     // Development fallback key
-    const fallback = 'default_super_secret_encryption_key_for_kwestpay';
+    const fallback = 'default_super_secret_encryption_key_for_Mira';
     return crypto.createHash('sha256').update(fallback).digest();
   }
   // Use SHA-256 to ensure a consistent 32-byte key

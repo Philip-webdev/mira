@@ -1,8 +1,8 @@
 openapi: 3.0.3
 info:
-  title: KwestPay API
+  title: Mira API
   version: 1.0.0
-  description: "API documentation for KwestPay: payments, webhooks, and admin partner management. Generated from repository routes."
+  description: "API documentation for Mira: payments, webhooks, and admin partner management. Generated from repository routes."
 servers:
   - url: http://localhost:{port}
     description: Local development server
@@ -90,14 +90,14 @@ paths:
           description: Receipt not found
   /api/payments/webhook/{gateway}:
     post:
-      summary: Webhook receiver for payment gateways (paystack, nomba, aella)
+      summary: Webhook receiver for payment gateway ( nomba)
       parameters:
         - name: gateway
           in: path
           required: true
           schema:
             type: string
-            enum: [paystack, nomba, aella]
+            enum: [nomba]
       requestBody:
         required: true
         content:

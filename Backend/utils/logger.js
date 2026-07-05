@@ -8,7 +8,7 @@ const logger = pino({
 			return { level: label };
 		},
 		bindings(bindings) {
-			return { service: 'kwestpay-app', ...bindings };
+			return { service: 'Mira-app', ...bindings };
 		}
 	}
 });

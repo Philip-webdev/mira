@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PaystackPop from "@paystack/inline-js";
 import {
   Card,
   CardContent,
@@ -51,7 +50,7 @@ const SSLMPaymentForm = () => {
   const amountN = amount / 100;
 
   // Payment function
-  const payWithPaystack = async () => {
+  const payWithNomba = async () => {
     setLoading(true);
 
     try {
@@ -67,8 +66,8 @@ const SSLMPaymentForm = () => {
       const data = await response.json();
       const access_code = data.data.access_code;
 
-      const handler = (window as any).PaystackPop.setup({
-        key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
+      const handler = (window as any).NombaPop.setup({
+        key: import.meta.env.VITE_Nomba_PUBLIC_KEY,
         email: formData.email,
         amount,
         currency: "NGN",
@@ -133,7 +132,7 @@ const SSLMPaymentForm = () => {
 
      const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    payWithPaystack();
+    payWithNomba();
   };
 
   return (

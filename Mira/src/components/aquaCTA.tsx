@@ -57,11 +57,11 @@ const PayAqua = () => {
   const description = formData.description;
 
  
-  const payWithPaystack = async () => {
+  const payWithNomba = async () => {
     setIsSubmitting(true);
 
     try {
-      const requestPaystack = await fetch(
+      const requestNomba = await fetch(
         "https://Miramain.onrender.com/initialize-transaction",
         {
           method: "POST",
@@ -70,15 +70,15 @@ const PayAqua = () => {
         }
       );
 
-      if (!requestPaystack.ok) {
-        throw new Error("Failed to initialize Paystack transaction");
+      if (!requestNomba.ok) {
+        throw new Error("Failed to initialize Nomba transaction");
       }
 
-      const reply = await requestPaystack.json();
+      const reply = await requestNomba.json();
       const { access_code, reference } = reply.data;
 
-      const handler = (window as any).PaystackPop.setup({
-        key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
+      const handler = (window as any).NombaPop.setup({
+        key: import.meta.env.VITE_Nomba_PUBLIC_KEY,
         email,
         amount,
         currency: "NGN",
@@ -145,7 +145,7 @@ const PayAqua = () => {
    
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    payWithPaystack();
+    payWithNomba();
   }
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">

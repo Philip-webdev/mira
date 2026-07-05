@@ -92,7 +92,7 @@ router.post('/payments/webhook/:gateway', async (req, res) => {
         reference,
         payment.partner_identifier,
         amountPaid || payment.amount,
-        splitResult.kwestpayShare,
+        splitResult.MiraShare,
         `Webhook: ${gateway}`
       );
 

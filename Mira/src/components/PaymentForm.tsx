@@ -50,21 +50,21 @@ const PaymentForm = ({ department, college, fresherAmount, stayliteAmount, deptL
   const amount = checkLevel ? stayliteAmount * 100 : fresherAmount * 100; // in kobo
   const desc = formData.description;
 
-  const payWithPaystack = async () => {
+  const payWithNomba = async () => {
     setSubmitting(true);
 
     try {
-      const requestPaystack = await fetch("https://Miramain.onrender.com/initialize-transaction", {
+      const requestNomba = await fetch("https://Miramain.onrender.com/initialize-transaction", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, amount }),
       });
 
-      const reply = await requestPaystack.json();
+      const reply = await requestNomba.json();
       const access_code = reply.data.access_code;
 
-      const handler = (window as any).PaystackPop.setup({
-        key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
+      const handler = (window as any).NombaPop.setup({
+        key: import.meta.env.VITE_Nomba_PUBLIC_KEY,
         email,
         amount,
         currency: "NGN",
@@ -248,7 +248,7 @@ const PaymentForm = ({ department, college, fresherAmount, stayliteAmount, deptL
                       ₦{checkLevel ? stayliteAmount.toLocaleString() : fresherAmount.toLocaleString()}
                     </span>
                   </div>
-                  <Button onClick={payWithPaystack} className="w-full bg-gradient-primary text-white">
+                  <Button onClick={payWithNomba} className="w-full bg-gradient-primary text-white">
                     Proceed to Payment
                   </Button>
                 </div>

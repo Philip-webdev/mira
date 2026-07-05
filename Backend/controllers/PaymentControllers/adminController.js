@@ -69,8 +69,8 @@ exports.adminLogin = async (req, res) => {
 };
 
 exports.triggerReconciliation = async (req, res) => {
-  if (req.admin.role !== 'kwestpay_admin') {
-    return res.status(403).json({ message: 'Forbidden: only KwestPay admin can trigger reconciliation' });
+  if (req.admin.role !== 'Mira_admin') {
+    return res.status(403).json({ message: 'Forbidden: only Mira admin can trigger reconciliation' });
   }
 
   try {
