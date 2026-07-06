@@ -79,7 +79,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const login = async (email: string, password: string) => {
     setLoading(true);
     try {
-      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const API_BASE = import.meta.env.VITE_API_URL || 'https://mira-production-6a48.up.railway.app';
       const response = await fetch(`${API_BASE}/api/admin/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -118,7 +118,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const signup = async (data: SignupData) => {
     setLoading(true);
     try {
-      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const API_BASE = import.meta.env.VITE_API_URL || 'https://mira-production-6a48.up.railway.app';
       const response = await fetch(`${API_BASE}/api/admin/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -180,7 +180,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const updateProfile = async (data: Partial<AuthUser>) => {
     try {
       const token = localStorage.getItem('mira_token');
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/auth/profile`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://mira-production-6a48.up.railway.app'}/api/auth/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -204,7 +204,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       const token = localStorage.getItem('mira_token');
       if (!token) return;
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/auth/refresh`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://mira-production-6a48.up.railway.app'}/api/auth/refresh`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -224,7 +224,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const resendVerification = async (email: string) => {
-    const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/auth/resend-verification`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://mira-production-6a48.up.railway.app'}/api/auth/resend-verification`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
@@ -234,7 +234,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const verifyEmail = async (token: string) => {
-    const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/auth/verify-email`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://mira-production-6a48.up.railway.app'}/api/auth/verify-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ token }),
@@ -247,7 +247,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const requestPasswordReset = async (email: string) => {
-    const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/auth/request-password-reset`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://mira-production-6a48.up.railway.app'}/api/auth/request-password-reset`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),
@@ -257,7 +257,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   };
 
   const resetPassword = async (email: string, token: string, newPassword: string) => {
-    const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/auth/reset-password`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://mira-production-6a48.up.railway.app'}/api/auth/reset-password`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, token, newPassword }),
