@@ -175,7 +175,7 @@ const HeroSection = () => {
                 className="px-8 py-5 text-lg rounded-full hover:bg-black"
                 style={{ backgroundColor: "black" }}
               >
-                <a href="/panel" className="flex items-center gap-2">
+                <a href="/admin" className="flex items-center gap-2">
                   Pay with Mira
                   <ArrowRight className="w-5 h-5" />
                 </a>

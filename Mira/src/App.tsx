@@ -131,11 +131,7 @@ const AppRoutes = () => (
     />
     <Route
       path="/admin"
-      element={
-        <ProtectedRouteComponent requiredRoles={["admin"]}>
-          <AdminPanel />
-        </ProtectedRouteComponent>
-      }
+      element={<AdminPanel />}
     />
     <Route
       path="/admin/:college"
