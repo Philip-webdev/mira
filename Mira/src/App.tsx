@@ -198,13 +198,13 @@ const App = () => (
           enableSystem
           disableTransitionOnChange
         >
-          <Routes>
+          {/* <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/splash" element={<SplashScreen />} />
-            <Route path="/home" element={<MainApp />} />
-            {/* <Route path="/college-payment" element={<CollegePaymentForm />} />
+            <Route path="/home" element={<MainApp />} /> */}
+          {/* <Route path="/college-payment" element={<CollegePaymentForm />} />
           <Route path="/departmental-payment" element={<DepartmentalPaymentForm />} /> */}
-            <Route path="/sug-payment" element={<SugPaymentForm />} />
+          {/* <Route path="/sug-payment" element={<SugPaymentForm />} />
             <Route path="/receipts" element={<Receipt />} />
             <Route path="/receipt" element={<CtaReceipt />} />
             <Route path="/Searchreceipts" element={<SearchReceipts />} />
@@ -229,9 +229,9 @@ const App = () => (
               <Route path="withdraw" element={<WithdrawPage />} />
               <Route path="withdrawals" element={<WithdrawalsPage />} />
               <Route path="bank-settings" element={<BankSettingsPage />} />
-            </Route>
-            {/* <Route path="/admin/aqua" element={<ProtectedRoute>< AquaDashboard /></ProtectedRoute>}/> */}
-            <Route path="/about" element={<AboutUs />} />
+            </Route> */}
+          {/* <Route path="/admin/aqua" element={<ProtectedRoute>< AquaDashboard /></ProtectedRoute>}/> */}
+          {/* <Route path="/about" element={<AboutUs />} />
             <Route path="/Miracare" element={<Hotline />} />
 
             <Route path="/news" element={<NewsComponent />} />
@@ -240,7 +240,10 @@ const App = () => (
             <Route path="/rest" element={<RestServicesPage />} />
             <Route path="/invest" element={<SharePurchaseForm />} />
             <Route path="*" element={<NotFound />} />
-          </Routes>
+          </Routes> */}
+          <AuthProvider>
+            <AppRoutes />
+          </AuthProvider>
         </ThemeProvider>
       </BrowserRouter>
     </TooltipProvider>
