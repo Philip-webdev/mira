@@ -32,7 +32,11 @@ const Sidebar = memo(({ isOpen, closeSidebar }: SidebarProps) => {
 
   const handleLogout = () => {
     clearToken();
-    navigate("/admin");
+    localStorage.removeItem("mira_user");
+    localStorage.removeItem("mira_token");
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("adminCollege");
+    navigate("/login");
   };
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";

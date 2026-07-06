@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Eye, EyeOff } from "lucide-react";
 import { adminConfig } from "@/data/adminConfig";
 import { apiPost, setToken } from "@/lib/api";
+import { useAuth } from "@/context/AuthContext";
 
 interface LoginFormData {
   username: string;
@@ -57,6 +58,7 @@ function AdminPanel() {
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { login } = useAuth();
   
   const form = useForm<LoginFormData>({
     defaultValues: { 
@@ -86,15 +88,8 @@ function AdminPanel() {
     }
 
     try {
-      const result = await apiPost('/api/admin/auth/login', {
-        email: data.username,
-        password: data.wole,
-      });
+      await login(data.username, data.wole);
 
-      if (result.token) {
-        setToken(result.token);
-      }
-      localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("adminCollege", selectedCollege?.id ?? selectedConfig.variant);
       setLoginError(null);
       setIsDialogOpen(false);

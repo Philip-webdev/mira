@@ -202,11 +202,11 @@ export default function Signup() {
         description: "Your account has been created successfully.",
       });
 
-      navigate("/home", {
-        state: {
-          email: formData.email,
-        },
-      });
+      if (currentStep.userType === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/home");
+      }
     } catch (error: any) {
       toast({
         title: "Signup Failed",

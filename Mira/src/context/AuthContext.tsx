@@ -19,6 +19,7 @@ export interface AuthContextType {
   loading: boolean;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
+  loginAsStudent: (email: string) => void;
   signup: (data: SignupData) => Promise<void>;
   logout: () => void;
   updateProfile: (data: Partial<AuthUser>) => Promise<void>;
@@ -78,8 +79,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const login = async (email: string, password: string) => {
     setLoading(true);
     try {
-      // API call to backend
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/auth/login`, {
+      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const response = await fetch(`${API_BASE}/api/admin/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -91,9 +92,24 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       }
 
       const data = await response.json();
-      setUser(data.user);
+      const admin = data.admin;
+      const userRole: UserRole = admin.role === 'Mira_admin' || admin.role === 'college_admin' || admin.role === 'owner' ? 'admin' : 'student';
+
+      const authUser: AuthUser = {
+        id: String(admin.id),
+        email: admin.email,
+        name: admin.email,
+        role: userRole,
+      };
+
+      setUser(authUser);
       localStorage.setItem('mira_token', data.token);
-      localStorage.setItem('mira_user', JSON.stringify(data.user));
+      localStorage.setItem('mira_admin_token', data.token);
+      localStorage.setItem('mira_user', JSON.stringify(authUser));
+      localStorage.setItem('isLoggedIn', 'true');
+      if (admin.partnerIdentifier) {
+        localStorage.setItem('adminCollege', admin.partnerIdentifier.toLowerCase());
+      }
     } finally {
       setLoading(false);
     }
@@ -102,10 +118,20 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const signup = async (data: SignupData) => {
     setLoading(true);
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:3000'}/api/auth/signup`, {
+      const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+      const response = await fetch(`${API_BASE}/api/admin/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          partnerIdentifier: data.partnerID || data.name?.replace(/\s+/g, '').toUpperCase().slice(0, 10),
+          partnerName: data.businessName || data.name,
+          businessVertical: data.businessCategory || 'education',
+          bankCode: data.bankCode || '000',
+          accountNumber: data.accountNumber || '0000000000',
+          accountName: data.accountName || data.name,
+          ownerEmail: data.email,
+          ownerPassword: data.password,
+        }),
       });
 
       if (!response.ok) {
@@ -114,9 +140,17 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       }
 
       const result = await response.json();
-      setUser(result.user);
-      localStorage.setItem('mira_token', result.token);
-      localStorage.setItem('mira_user', JSON.stringify(result.user));
+      const userRole: UserRole = data.role === 'admin' ? 'admin' : 'student';
+
+      const authUser: AuthUser = {
+        id: String(result.admin?.id || result.id || Date.now()),
+        email: data.email,
+        name: data.name,
+        role: userRole,
+      };
+
+      setUser(authUser);
+      localStorage.setItem('mira_user', JSON.stringify(authUser));
     } finally {
       setLoading(false);
     }
@@ -125,7 +159,22 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const logout = () => {
     setUser(null);
     localStorage.removeItem('mira_token');
+    localStorage.removeItem('mira_admin_token');
     localStorage.removeItem('mira_user');
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('adminCollege');
+  };
+
+  const loginAsStudent = (email: string) => {
+    const authUser: AuthUser = {
+      id: `student_${Date.now()}`,
+      email,
+      name: email.split('@')[0],
+      role: 'student',
+    };
+    setUser(authUser);
+    localStorage.setItem('mira_user', JSON.stringify(authUser));
+    localStorage.setItem('isLoggedIn', 'true');
   };
 
   const updateProfile = async (data: Partial<AuthUser>) => {
@@ -224,6 +273,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         loading,
         isAuthenticated: !!user,
         login,
+        loginAsStudent,
         signup,
         logout,
         updateProfile,
