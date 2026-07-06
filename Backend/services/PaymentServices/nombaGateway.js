@@ -100,7 +100,7 @@ class NombaGateway extends IPaymentGateway {
         order: {
           amount: parseFloat(amount).toFixed(2),
           currency: 'NGN',
-          email: customerEmail,
+          customerEmail: customerEmail,
           orderReference: reference,
           callbackUrl: process.env.PAYMENT_CALLBACK_URL || 'https://mira-fawn.vercel.app/receipts',
           splitRequest: {
@@ -135,17 +135,21 @@ class NombaGateway extends IPaymentGateway {
 
   async verifyPayment(reference) {
     try {
-      const response = await this.client.post('/transactions/accounts', {
-        transactionRef: reference,
+      const response = await axios.get(`${NOMBA_BASE}/sandbox/checkout/transaction`, {
+        params: { idType: 'orderReference', id: reference },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this._accessToken}`,
+          accountId: this.parentAccountId,
+        },
       });
-      const results = response.data?.data?.results;
-      const data = results && results.length > 0 ? results[0] : response.data?.data;
+      const data = response.data?.data;
       return {
-        success: data.status === 'PAYMENT_SUCCESSFUL' || data.status === 'SUCCESSFUL',
-        amount: data.amount,
-        reference: data.orderReference || data.id,
-        gatewayTransactionId: data.id,
-        status: data.status,
+        success: data?.success || false,
+        amount: data?.order?.amount,
+        reference: data?.order?.orderReference,
+        gatewayTransactionId: data?.transactionDetails?.paymentReference,
+        status: data?.transactionDetails?.statusCode || 'UNKNOWN',
       };
     } catch (err) {
       console.error('[Nomba API] verifyPayment failed', err?.message);
