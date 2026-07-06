@@ -179,12 +179,11 @@ const initDatabase = async () => {
     await client.query('COMMIT');
     console.log('Database tables successfully initialized for microservice!');
 
-    // 9. Seeding initial partner accounts if empty (only in non-production)
-    if (process.env.NODE_ENV !== 'production') {
-      const { rows } = await client.query('SELECT COUNT(*) FROM partner_accounts');
-      if (parseInt(rows[0].count, 10) === 0) {
-        console.log('Seeding initial college/partner accounts...');
-        const seedColleges = [
+    // 9. Seeding initial partner accounts if empty
+    const { rows } = await client.query('SELECT COUNT(*) FROM partner_accounts');
+    if (parseInt(rows[0].count, 10) === 0) {
+      console.log('Seeding initial college/partner accounts...');
+      const seedColleges = [
         { abbrv: 'COLERM', name: 'College of Environmental Resources Management' },
         { abbrv: 'COLPHYS', name: 'College of Physical Sciences' },
         { abbrv: 'GEO', name: 'Department of Geophysics' },
@@ -204,51 +203,62 @@ const initDatabase = async () => {
             ($1, $2, 'college_dues', '058', '0123456789', $3)
         `, [col.abbrv, col.name, `${col.abbrv} Account`]);
       }
-        console.log('Partner accounts seeding complete.');
+      console.log('Partner accounts seeding complete.');
+    }
+
+    // 10. Seeding partner sub-accounts if empty
+    const { rows: subAccCheck } = await client.query('SELECT COUNT(*) FROM partner_sub_accounts');
+    if (parseInt(subAccCheck[0].count, 10) === 0) {
+      console.log('Seeding partner sub-accounts...');
+      const { rows: partners } = await client.query('SELECT id FROM partner_accounts');
+      for (const p of partners) {
+        await client.query(`
+          INSERT INTO partner_sub_accounts (partner_account_id, gateway, sub_account_id)
+          VALUES ($1, 'nomba', $2)
+        `, [p.id, process.env.NOMBA_SUB_ACCOUNT_ID || '0de5a182-5b67-4879-8771-45384e076c30']);
       }
+      console.log('Partner sub-accounts seeding complete.');
+    }
 
-      // 10. Seeding default admin users if empty
-      const { rows: adminCheck } = await client.query('SELECT COUNT(*) FROM admin_users');
-      if (parseInt(adminCheck[0].count, 10) === 0) {
-        console.log('Seeding default admin users...');
-        const passwordHash = await bcrypt.hash('password123', 10);
-        
-        // Seed super admin
-        await client.query(`
-          INSERT INTO admin_users (email, password_hash, role)
-          VALUES ('admin@Mira.com', $1, 'Mira_admin')
-        `, [passwordHash]);
+    // 11. Seeding default admin users if empty
+    const { rows: adminCheck } = await client.query('SELECT COUNT(*) FROM admin_users');
+    if (parseInt(adminCheck[0].count, 10) === 0) {
+      console.log('Seeding default admin users...');
+      const passwordHash = await bcrypt.hash('password123', 10);
+      
+      // Seed super admin
+      await client.query(`
+        INSERT INTO admin_users (email, password_hash, role)
+        VALUES ('admin@Mira.com', $1, 'Mira_admin')
+      `, [passwordHash]);
 
-        // Seed college admin
-        await client.query(`
-          INSERT INTO admin_users (email, password_hash, role, partner_identifier)
-          VALUES ('colerm_admin@Mira.com', $1, 'college_admin', 'COLERM')
-        `, [passwordHash]);
+      // Seed college admin
+      await client.query(`
+        INSERT INTO admin_users (email, password_hash, role, partner_identifier)
+        VALUES ('colerm_admin@Mira.com', $1, 'college_admin', 'COLERM')
+      `, [passwordHash]);
 
-        console.log('Admin users seeding complete.');
-      }
+      console.log('Admin users seeding complete.');
+    }
 
-      // 11. Seeding default split rules if empty
-      const { rows: splitRulesCheck } = await client.query('SELECT COUNT(*) FROM partner_split_rules');
-      if (parseInt(splitRulesCheck[0].count, 10) === 0) {
-        console.log('Seeding default split rules...');
-        
-        // Seed global default rule
-        await client.query(`
-          INSERT INTO partner_split_rules (scope, target_identifier, fee_amount, threshold, above_threshold_fee_amount)
-          VALUES ('global', 'DEFAULT', 110.00, 3160.00, 160.00)
-        `);
+    // 12. Seeding default split rules if empty
+    const { rows: splitRulesCheck } = await client.query('SELECT COUNT(*) FROM partner_split_rules');
+    if (parseInt(splitRulesCheck[0].count, 10) === 0) {
+      console.log('Seeding default split rules...');
+      
+      // Seed global default rule
+      await client.query(`
+        INSERT INTO partner_split_rules (scope, target_identifier, fee_amount, threshold, above_threshold_fee_amount)
+        VALUES ('global', 'DEFAULT', 110.00, 3160.00, 160.00)
+      `);
 
-        // Seed COLERM partner rule
-        await client.query(`
-          INSERT INTO partner_split_rules (scope, target_identifier, fee_amount)
-          VALUES ('partner', 'COLERM', 110.00)
-        `);
+      // Seed COLERM partner rule
+      await client.query(`
+        INSERT INTO partner_split_rules (scope, target_identifier, fee_amount)
+        VALUES ('partner', 'COLERM', 110.00)
+      `);
 
-        console.log('Split rules seeding complete.');
-      }
-    } else {
-      console.log('Production environment detected — skipping seeding of example data.');
+      console.log('Split rules seeding complete.');
     }
 
   } catch (err) {

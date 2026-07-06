@@ -1,4 +1,4 @@
-const API_BASE = "https://mira-j1yy.onrender.com";
+const API_BASE = "https://mira-production-6a48.up.railway.app";
 
 function getToken(): string | null {
   return localStorage.getItem("mira_admin_token");

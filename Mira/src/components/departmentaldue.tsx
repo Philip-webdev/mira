@@ -51,6 +51,7 @@ const email =  formData.email;
 const matricNumber = formData.matricNumber;
 const fullname = formData.fullname;
 const department = formData.department || "None";
+const partnerId = department.match(/\(([^)]+)\)/)?.[1] || department;
 const level = formData.level || "None";
 const fresherLevel = formData.fresherLevel || "None";
 const mainLevel = formData.MainLevel;
@@ -73,7 +74,7 @@ const requestFlutter = async () => {
       email,
       payerName: fullname,
       amount,
-      partnerIdentifier: department,
+      partnerIdentifier: partnerId,
       businessVertical: "education",
       metadata: { matricNumber, department: "None", level, fresherLevel, mainLevel, collegeName: "None", desc },
       callbackUrl,
