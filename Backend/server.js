@@ -39,6 +39,20 @@ app.get('/', (req, res) => {
   res.send('Welcome to Mira')
 })
 
+app.get('/api/debug/env', (req, res) => {
+  const id = process.env.NOMBA_CLIENT_ID || '';
+  const secret = process.env.NOMBA_CLIENT_SECRET || '';
+  const parentId = process.env.NOMBA_PARENT_ACCOUNT_ID || '';
+  const subId = process.env.NOMBA_SUB_ACCOUNT_ID || '';
+  res.json({
+    clientId: id ? id.substring(0, 8) + '...' : 'MISSING',
+    clientSecretLen: secret.length,
+    clientSecretFirst2: secret.substring(0, 2),
+    parentId: parentId ? parentId.substring(0, 8) + '...' : 'MISSING',
+    subId: subId ? subId.substring(0, 8) + '...' : 'MISSING',
+  });
+})
+
 
 app.use('/api', webhookRouter);
 app.use('/api/v1', disburseWebhookRouter);
