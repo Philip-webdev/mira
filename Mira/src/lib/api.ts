@@ -1,4 +1,4 @@
-const API_BASE = "https://mira-production-6a48.up.railway.app";
+const API_BASE = import.meta.env.VITE_API_URL || "https://mira-production-6a48.up.railway.app";
 
 function getToken(): string | null {
   return localStorage.getItem("mira_admin_token");
