@@ -114,7 +114,7 @@ class NombaGateway extends IPaymentGateway {
           },
         },
       };
-      const response = await axios.post(`${NOMBA_BASE}/sandbox/checkout/order`, payload, {
+      const response = await axios.post(`${NOMBA_BASE}/v1/checkout/order`, payload, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${this._accessToken}`,
@@ -135,7 +135,7 @@ class NombaGateway extends IPaymentGateway {
 
   async verifyPayment(reference) {
     try {
-      const response = await axios.get(`${NOMBA_BASE}/sandbox/checkout/transaction`, {
+      const response = await axios.get(`${NOMBA_BASE}/v1/checkout/transaction`, {
         params: { idType: 'orderReference', id: reference },
         headers: {
           'Content-Type': 'application/json',

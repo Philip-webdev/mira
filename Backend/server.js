@@ -39,25 +39,6 @@ app.get('/', (req, res) => {
   res.send('Welcome to Mira')
 })
 
-// TEMP DIAGNOSTIC - remove after debugging
-app.get('/api/debug/nomba', (req, res) => {
-  const id = process.env.NOMBA_CLIENT_ID || '';
-  const secret = process.env.NOMBA_CLIENT_SECRET || '';
-  const parentId = process.env.NOMBA_PARENT_ACCOUNT_ID || '';
-  const subId = process.env.NOMBA_SUB_ACCOUNT_ID || '';
-  res.json({
-    clientIdSet: !!id,
-    clientIdLen: id.length,
-    clientIdPrefix: id.substring(0, 8),
-    clientSecretSet: !!secret,
-    clientSecretLen: secret.length,
-    parentIdSet: !!parentId,
-    parentIdPrefix: parentId.substring(0, 8),
-    subIdSet: !!subId,
-    subIdPrefix: subId.substring(0, 8),
-  });
-})
-
 
 app.use('/api', webhookRouter);
 app.use('/api/v1', disburseWebhookRouter);
