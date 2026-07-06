@@ -42,6 +42,7 @@ const fullname = formData.fullname;
 // const collegemain = formData.colleges;
 // const mainCollege = collegemain.split(' ')[5]; // Extract "COLERM" from "College of Environmental Resources Management (COLERM)"
 const collegeName ="Federation of Oyo State Students Union (FOSSU)";
+const partnerId = collegeName.match(/\(([^)]+)\)/)?.[1] || collegeName;
 const department = formData.department || "None";
 const level = formData.level || "None";
 const fresherLevel = formData.fresherLevel || "None";
@@ -66,7 +67,7 @@ const payWithNomba = async () => {
       email,
       payerName: fullname,
       amount,
-      partnerIdentifier: collegeName,
+      partnerIdentifier: partnerId,
       businessVertical: "education",
       metadata: { matricNumber, department, level, fresherLevel, mainLevel, desc },
       callbackUrl,

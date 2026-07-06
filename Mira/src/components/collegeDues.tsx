@@ -41,6 +41,7 @@ const email =  formData.email;
 const matricNumber = formData.matricNumber;
 const fullname = formData.fullname;
 const collegeName = formData.colleges || "None";
+const partnerId = collegeName.match(/\(([^)]+)\)/)?.[1] || collegeName;
 const department = formData.department || "None";
 const level = formData.level || "None";
 const fresherLevel = formData.fresherLevel || "None";
@@ -65,7 +66,7 @@ const payWithNomba = async () => {
       email,
       payerName: fullname,
       amount,
-      partnerIdentifier: collegeName,
+      partnerIdentifier: partnerId,
       businessVertical: "education",
       metadata: { matricNumber, department, level, fresherLevel, mainLevel, desc },
       callbackUrl,

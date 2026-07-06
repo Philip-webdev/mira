@@ -45,6 +45,13 @@ app.use('/api/v1', disburseWebhookRouter);
 app.use('/api/payments', paymentRouter);
 app.use('/api/admin', adminRouter); 
 
+// Registered Nomba webhook: POST /nomba/webhook
+app.post('/nomba/webhook', (req, res, next) => {
+  req.url = '/payments/webhook/nomba';
+  req.originalUrl = '/payments/webhook/nomba';
+  webhookRouter(req, res, next);
+});
+
 app.listen(PORT, () => {
   initDatabase().catch(err => console.error('Failed to initialize PostgreSQL database:', err));
   

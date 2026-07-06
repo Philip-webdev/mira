@@ -58,8 +58,8 @@ class NombaGateway extends IPaymentGateway {
   async _issueToken() {
     const resp = await axios.post(`${NOMBA_BASE}/auth/token/issue`, {
       grant_type: 'client_credentials',
-      clientId: this.clientId,
-      clientSecret: this.clientSecret,
+      client_id: this.clientId,
+      client_secret: this.clientSecret,
     }, {
       headers: {
         'Content-Type': 'application/json',
@@ -78,6 +78,7 @@ class NombaGateway extends IPaymentGateway {
       }, {
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this._accessToken}`,
           accountId: this.parentAccountId,
         },
       });
@@ -94,25 +95,27 @@ class NombaGateway extends IPaymentGateway {
     try {
       const payload = {
         order: {
-          amount,
+          amount: parseFloat(amount).toFixed(2),
+          currency: 'NGN',
           email: customerEmail,
           orderReference: reference,
           callbackUrl: process.env.PAYMENT_CALLBACK_URL || 'https://mira-fawn.vercel.app/receipts',
           splitRequest: {
+            splitType: 'PERCENTAGE',
             splitList: [
               {
-                subAccountId: splitConfig.subAccountId,
-                percentage: splitConfig.collegeSharePercent || 95,
+                accountId: splitConfig.subAccountId,
+                value: String(splitConfig.collegeSharePercent || 95),
               },
             ],
           },
         },
       };
       const response = await this.client.post('/checkout/order', payload);
-      return response.data.checkoutUrl || response.data.url;
+      return response.data.checkoutUrl || response.data.checkoutLink || response.data.url;
     } catch (err) {
-      console.error('[Nomba API] createSplitPaymentLink failed', err?.message);
-      throw new Error(`Nomba createSplitPaymentLink failed: ${err?.message}`);
+      console.error('[Nomba API] createSplitPaymentLink failed', err?.response?.data || err?.message);
+      throw new Error(`Nomba createSplitPaymentLink failed: ${typeof err?.response?.data === 'string' ? err.response.data : JSON.stringify(err?.response?.data || err?.message)}`);
     }
   }
 
