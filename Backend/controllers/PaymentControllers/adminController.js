@@ -23,8 +23,8 @@ exports.adminLogin = async (req, res) => {
   const { email, password } = value;
   try {
     const { rows } = await pool.query(
-      'SELECT id, email, password_hash, role, partner_identifier FROM admin_users WHERE email = $1',
-      [email.toLowerCase()]
+      'SELECT id, email, password_hash, role, partner_identifier FROM admin_users WHERE LOWER(email) = LOWER($1)',
+      [email]
     );
 
     if (rows.length === 0) {

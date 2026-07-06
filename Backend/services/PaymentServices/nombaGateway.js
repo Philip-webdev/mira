@@ -2,7 +2,7 @@ const axios = require('axios');
 const IPaymentGateway = require('./gatewayAdapter');
 require('dotenv').config();
 
-const NOMBA_BASE = 'https://sandbox.api.nomba.com/v1';
+const NOMBA_BASE = 'https://sandbox.nomba.com';
 
 class NombaGateway extends IPaymentGateway {
   constructor() {
@@ -17,7 +17,7 @@ class NombaGateway extends IPaymentGateway {
     this._tokenExpiresAt = 0;
 
     this.client = axios.create({
-      baseURL: NOMBA_BASE,
+      baseURL: `${NOMBA_BASE}/v1`,
       headers: { 'Content-Type': 'application/json' },
     });
 
@@ -56,7 +56,7 @@ class NombaGateway extends IPaymentGateway {
   }
 
   async _issueToken() {
-    const resp = await axios.post(`${NOMBA_BASE}/auth/token/issue`, {
+    const resp = await axios.post(`${NOMBA_BASE}/v1/auth/token/issue`, {
       grant_type: 'client_credentials',
       client_id: this.clientId,
       client_secret: this.clientSecret,
@@ -72,7 +72,7 @@ class NombaGateway extends IPaymentGateway {
 
   async _refreshAccessToken() {
     try {
-      const resp = await axios.post(`${NOMBA_BASE}/auth/token/refresh`, {
+      const resp = await axios.post(`${NOMBA_BASE}/v1/auth/token/refresh`, {
         grant_type: 'refresh_token',
         refresh_token: this._refreshToken,
       }, {
@@ -93,6 +93,9 @@ class NombaGateway extends IPaymentGateway {
 
   async createSplitPaymentLink(amount, splitConfig, customerEmail, reference) {
     try {
+      if (!this._accessToken || Date.now() >= this._tokenExpiresAt) {
+        await this._issueToken();
+      }
       const payload = {
         order: {
           amount: parseFloat(amount).toFixed(2),
@@ -111,8 +114,19 @@ class NombaGateway extends IPaymentGateway {
           },
         },
       };
-      const response = await this.client.post('/checkout/order', payload);
-      return response.data.checkoutUrl || response.data.checkoutLink || response.data.url;
+      const response = await axios.post(`${NOMBA_BASE}/sandbox/checkout/order`, payload, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${this._accessToken}`,
+          accountId: this.parentAccountId,
+        },
+      });
+      const respBody = response.data;
+      const data = respBody.data || respBody;
+      return {
+        checkoutUrl: data.checkoutUrl || data.checkoutLink || data.url,
+        orderReference: data.orderReference,
+      };
     } catch (err) {
       console.error('[Nomba API] createSplitPaymentLink failed', err?.response?.data || err?.message);
       throw new Error(`Nomba createSplitPaymentLink failed: ${typeof err?.response?.data === 'string' ? err.response.data : JSON.stringify(err?.response?.data || err?.message)}`);
@@ -121,13 +135,16 @@ class NombaGateway extends IPaymentGateway {
 
   async verifyPayment(reference) {
     try {
-      const response = await this.client.get(`/transactions/reference/${reference}`);
-      const data = response.data.data;
+      const response = await this.client.post('/transactions/accounts', {
+        transactionRef: reference,
+      });
+      const results = response.data?.data?.results;
+      const data = results && results.length > 0 ? results[0] : response.data?.data;
       return {
-        success: data.status === 'SUCCESSFUL',
+        success: data.status === 'PAYMENT_SUCCESSFUL' || data.status === 'SUCCESSFUL',
         amount: data.amount,
-        reference: data.orderReference,
-        gatewayTransactionId: data.transactionId,
+        reference: data.orderReference || data.id,
+        gatewayTransactionId: data.id,
         status: data.status,
       };
     } catch (err) {
@@ -162,7 +179,7 @@ class NombaGateway extends IPaymentGateway {
       const transferSubId = subAccountId || this.subAccountId;
 
       const response = await axios.post(
-        `${NOMBA_BASE.replace('/v1', '/v2')}/transfers/bank/${transferSubId}`,
+        `${NOMBA_BASE}/v2/transfers/bank/${transferSubId}`,
         {
           amount: parseFloat(amount),
           accountNumber: String(destinationAccount),

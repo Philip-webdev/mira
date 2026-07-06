@@ -96,12 +96,16 @@ exports.initiatePayment = async (req, res) => {
       collegeSharePercent: 95
     };
 
-    const paymentLink = await gatewayInstance.createSplitPaymentLink(
+    const paymentLinkResult = await gatewayInstance.createSplitPaymentLink(
       finalAmount,
       splitConfig,
       email,
       reference
     );
+
+    const paymentLink = typeof paymentLinkResult === 'string'
+      ? paymentLinkResult
+      : paymentLinkResult.checkoutUrl || paymentLinkResult.checkoutLink || paymentLinkResult.url;
 
     // Save payment record in PostgreSQL
     await pool.query(
