@@ -1,0 +1,374 @@
+openapi: 3.0.3
+info:
+  title: Mira API
+  version: 1.0.0
+  description: "API documentation for Mira: payments, webhooks, and admin partner management. Generated from repository routes."
+servers:
+  - url: http://localhost:{port}
+    description: Local development server
+    variables:
+      port:
+        default: '3000'
+paths:
+  /:
+    get:
+      summary: Root health endpoint
+      responses:
+        '200':
+          description: Welcome message
+          content:
+            text/plain:
+              schema:
+                type: string
+  /api/payments/initiate:
+    post:
+      summary: Initiate a payment and return a gateway checkout link
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentInitiateRequest'
+      responses:
+        '201':
+          description: Payment initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  paymentLink:
+                    type: string
+                  reference:
+                    type: string
+                  receiptNo:
+                    type: string
+        '400':
+          description: Validation or provisioning error
+  /api/payments/confirm/{reference}:
+    get:
+      summary: Get payment confirmation and details by reference
+      parameters:
+        - name: reference
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Payment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '404':
+          description: Payment not found
+  /api/payments/receipts/{receiptNumber}:
+    get:
+      summary: Retrieve a completed payment receipt by receipt number
+      parameters:
+        - name: receiptNumber
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Receipt information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+        '404':
+          description: Receipt not found
+  /api/payments/webhook/{gateway}:
+    post:
+      summary: Webhook receiver for payment gateway ( nomba)
+      parameters:
+        - name: gateway
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [nomba]
+      requestBody:
+        required: true
+        content:
+          application/json: {}
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Invalid signature
+  /api/admin/auth/register:
+    post:
+      summary: Register a partner and owner admin account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PartnerRegistration'
+        required: true
+      responses:
+        '201':
+          description: Partner registered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  partner:
+                    type: object
+  /api/admin/auth/login:
+    post:
+      summary: Admin login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthLoginRequest'
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  admin:
+                    type: object
+  /api/admin/partner/bank-lookup:
+    post:
+      summary: Lookup bank account name for a given account number and bank code
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountNumber:
+                  type: string
+                bankCode:
+                  type: string
+      responses:
+        '200':
+          description: Resolved account name
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accountName:
+                    type: string
+  /api/admin/partner/bank-account:
+    post:
+      summary: Update partner's bank account (encrypts and stores account)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                accountNumber:
+                  type: string
+                bankCode:
+                  type: string
+      responses:
+        '200':
+          description: Bank account updated
+  /api/admin/partner/update-owner-email:
+    post:
+      summary: Update owner email for partner account
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ownerEmail:
+                  type: string
+      responses:
+        '200':
+          description: Owner email updated
+  /api/admin/partner/balance:
+    get:
+      summary: Get partner ledger and gateway balances
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Balances
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ledgerBalance:
+                    type: number
+                  gatewayBalance:
+                    type: number
+                  gateway:
+                    type: string
+                  subAccountId:
+                    type: string
+  /api/admin/partner/payments:
+    get:
+      summary: Get paginated payments list for partner
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Payments list
+  /api/admin/partner/withdraw:
+    post:
+      summary: Initiate a withdrawal request (owner-only)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                amount:
+                  type: number
+      responses:
+        '200':
+          description: Withdrawal initiated
+  /api/admin/partner/withdrawals:
+    get:
+      summary: Get withdrawal history for partner
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Withdrawals list
+  /api/admin/reconcile:
+    post:
+      summary: Trigger reconciliation (admin)
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Reconciliation triggered
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    PaymentInitiateRequest:
+      type: object
+      required: [email, payerName, amount, partnerIdentifier]
+      properties:
+        email:
+          type: string
+          format: email
+        payerName:
+          type: string
+        amount:
+          type: number
+        partnerIdentifier:
+          type: string
+        businessVertical:
+          type: string
+        metadata:
+          type: object
+        callbackUrl:
+          type: string
+        chargeType:
+          type: string
+    PartnerRegistration:
+      type: object
+      required: [partnerIdentifier, partnerName, bankCode, accountNumber, accountName, ownerEmail, ownerPassword]
+      properties:
+        partnerIdentifier:
+          type: string
+        partnerName:
+          type: string
+        businessVertical:
+          type: string
+        bankCode:
+          type: string
+        accountNumber:
+          type: string
+        accountName:
+          type: string
+        ownerEmail:
+          type: string
+        ownerPassword:
+          type: string
+    AuthLoginRequest:
+      type: object
+      required: [email, password]
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+    Payment:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        payerName:
+          type: string
+        partnerIdentifier:
+          type: string
+        businessVertical:
+          type: string
+        paymentStatus:
+          type: string
+        reference:
+          type: string
+        txRef:
+          type: string
+        amount:
+          type: number
+        amountPaid:
+          type: number
+        receiptNo:
+          type: string
+        metadata:
+          type: object
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time

@@ -3,8 +3,8 @@ import { ArrowRight, Shield } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const PARTNERS = [
-  {name: 'JekacodeAfrica', logo:'/jekacodeLogo.png'},
-  { name: "Paystack",       logo: "/paystack.png" },
+
+  { name: "Nomba",       logo: "/nomba.webp" },
     { name: "NAPS",       logo: "/assets/ALPHA TEAM 20230603_181509.jpg" },
   { name: "GEO",  logo: "/WhatsApp Image 2025-09-18 at 15.47.19_2301f853.jpg" },
   { name: "FOSSU",  logo: "/assets/WhatsApp Image 2025-11-25 at 10.05.09 AM.jpeg" },
@@ -124,12 +124,12 @@ const PartnerCarousel = () => {
             <div
               key={index}
               className="flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
-              style={{ minWidth: "100px" }}
+              style={{ minWidth: "200px" }}
             >
               <img
                 src={partner.logo}
                 alt={partner.name}
-                className="h-8 object-contain"
+                className="h-12 object-contain"
                 onError={(e) => {
                   // Fallback to text if logo fails
                   const target = e.target as HTMLImageElement;

@@ -11,17 +11,12 @@ import { useState } from "react";
 import CollegePaymentForm from "./components/collegeDues";
 import DepartmentalPaymentForm from "./components/departmentaldue";
 import SugPaymentForm from "./components/sugDue";
-import Receipt from "./components/receipts";    
+import Receipt from "./components/receipts";
 import Docus from "./components/Docs";
 import Manager from "./components/fundManagement";
 import AdminPanel from "./pages/AdminPanel";
+import AdminRegister from "./pages/AdminRegister";
 import PrivacyPolicy from "./components/policy";
-import ColermDashboard from "./components/adminColerm";
-import GeoDashboard from "./components/adminGeo";
-import SslmDashboard from "./components/adminSslm";
-import WmaDashboard from "./components/adminWma";
-import AquaDashboard from "./components/adminAqua";
-import EmtDashboard from "./components/adminEmt";
 import Hotline from "./components/hotlline";
 import ProtectedRouteComponent from "./components/ProtectedRoute";
 import FoodPage from "./pages/food";
@@ -29,13 +24,7 @@ import TicketsPage from "./pages/ticket";
 import RestServicesPage from "./pages/rest";
 import SearchReceipts from "./components/SearchReceipts";
 import CtaReceipt from "./components/ctaReceipt";
-import PbstDashboard from "./components/adminPbst";
-import PpcpDashboard from "./components/adminPpcp";
-import ColphysDashboard from "./components/adminColphys";
-import NapsDashboard from "./components/adminNaps";
-import CptDashboard from "./components/adminCpt";
 import GenReceipt from "./components/GenReceipt";
-import FossuDashboard from "./components/adminFossu";
 import NewsComponent from "./pages/announce";
 import { AdmissionModal } from "./pages/Admissionmodal";
 import SharePurchaseForm from "./components/SharePurchaseForm";
@@ -44,6 +33,10 @@ import SplashScreen from "./pages/SplashScreen";
 import AboutUs from "./components/aboutus";
 import DashboardShell from "./components/Admin/DashboardShell";
 import PaymentsPage from "./components/Admin/Payments/PaymentPage";
+import BalancePage from "./components/Admin/BalancePage";
+import WithdrawPage from "./components/Admin/WithdrawPage";
+import WithdrawalsPage from "./components/Admin/WithdrawalsPage";
+import BankSettingsPage from "./components/Admin/BankSettingsPage";
 import { AuthProvider } from "./context/AuthContext";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -55,7 +48,7 @@ const queryClient = new QueryClient();
 
 const AdmissionRoute = () => {
   const navigate = useNavigate();
-  return <AdmissionModal open={true} onClose={() => navigate('/')} />;
+  return <AdmissionModal open={true} onClose={() => navigate("/")} />;
 };
 
 const AppRoutes = () => (
@@ -63,9 +56,9 @@ const AppRoutes = () => (
     {/* Auth Routes - Public */}
     <Route path="/login" element={<Login />} />
     <Route path="/signup" element={<Signup />} />
-    <Route path="/forgot-password" element={<ForgotPassword />} />
+    {/* <Route path="/forgot-password" element={<ForgotPassword />} />
     <Route path="/verify-email" element={<VerifyEmail />} />
-    <Route path="/reset-password" element={<ResetPassword />} />
+    <Route path="/reset-password" element={<ResetPassword />} /> */}
     <Route path="/unauthorized" element={<Unauthorized />} />
 
     {/* Public Routes */}
@@ -131,7 +124,7 @@ const AppRoutes = () => (
     <Route
       path="/manager"
       element={
-        <ProtectedRouteComponent requiredRoles={['admin']}>
+        <ProtectedRouteComponent requiredRoles={["admin"]}>
           <Manager />
         </ProtectedRouteComponent>
       }
@@ -139,7 +132,7 @@ const AppRoutes = () => (
     <Route
       path="/admin"
       element={
-        <ProtectedRouteComponent requiredRoles={['admin']}>
+        <ProtectedRouteComponent requiredRoles={["admin"]}>
           <AdminPanel />
         </ProtectedRouteComponent>
       }
@@ -147,7 +140,7 @@ const AppRoutes = () => (
     <Route
       path="/admin/:college"
       element={
-        <ProtectedRouteComponent requiredRoles={['admin']}>
+        <ProtectedRouteComponent requiredRoles={["admin"]}>
           <DashboardShell />
         </ProtectedRouteComponent>
       }
@@ -194,19 +187,64 @@ const AppRoutes = () => (
 );
 
 const App = () => (
-  <AuthProvider>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <AppRoutes />
-          </ThemeProvider>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  </AuthProvider>
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/splash" element={<SplashScreen />} />
+            <Route path="/home" element={<MainApp />} />
+            {/* <Route path="/college-payment" element={<CollegePaymentForm />} />
+          <Route path="/departmental-payment" element={<DepartmentalPaymentForm />} /> */}
+            <Route path="/sug-payment" element={<SugPaymentForm />} />
+            <Route path="/receipts" element={<Receipt />} />
+            <Route path="/receipt" element={<CtaReceipt />} />
+            <Route path="/Searchreceipts" element={<SearchReceipts />} />
+            <Route path="/generate-receipt" element={<GenReceipt />} />
+            <Route path="/blogs" element={<Docus />} />
+            <Route path="/privacy" element={<PrivacyPolicy />} />
+            <Route path="/admission" element={<AdmissionRoute />} />
+            <Route path="/manager" element={<Manager />} />
+            <Route path="/admin" element={<AdminPanel />} />
+            <Route path="/admin/register" element={<AdminRegister />} />
+            <Route
+              path="/admin/:college"
+              element={
+                <ProtectedRouteComponent requiredRoles={["admin"]}>
+                  <DashboardShell />
+                </ProtectedRouteComponent>
+              }
+            >
+              <Route index element={<AdminDashboard />} />
+              <Route path="payments" element={<PaymentsPage />} />
+              <Route path="balance" element={<BalancePage />} />
+              <Route path="withdraw" element={<WithdrawPage />} />
+              <Route path="withdrawals" element={<WithdrawalsPage />} />
+              <Route path="bank-settings" element={<BankSettingsPage />} />
+            </Route>
+            {/* <Route path="/admin/aqua" element={<ProtectedRoute>< AquaDashboard /></ProtectedRoute>}/> */}
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/Miracare" element={<Hotline />} />
+
+            <Route path="/news" element={<NewsComponent />} />
+            <Route path="/food" element={<FoodPage />} />
+            <Route path="/tickets" element={<TicketsPage />} />
+            <Route path="/rest" element={<RestServicesPage />} />
+            <Route path="/invest" element={<SharePurchaseForm />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </ThemeProvider>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
 );
 
 export default App;

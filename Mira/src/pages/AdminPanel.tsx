@@ -5,10 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Eye, EyeOff } from "lucide-react";
 import { adminConfig } from "@/data/adminConfig";
+import { apiPost, setToken } from "@/lib/api";
 
 interface LoginFormData {
   username: string;
@@ -78,26 +79,30 @@ function AdminPanel() {
     setIsDialogOpen(true);
   };
 
-  const handleLogin = (data: LoginFormData) => {
+  const handleLogin = async (data: LoginFormData) => {
     if (!selectedConfig) {
       setLoginError("Please select a college before logging in.");
       return;
     }
 
-    const isValid = data.username === selectedConfig.username && data.wole === selectedConfig.password;
+    try {
+      const result = await apiPost('/api/admin/auth/login', {
+        email: data.username,
+        password: data.wole,
+      });
 
-    if (!isValid) {
-      setLoginError("Invalid username or password for this administration.");
-      return;
+      if (result.token) {
+        setToken(result.token);
+      }
+      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("adminCollege", selectedCollege?.id ?? selectedConfig.variant);
+      setLoginError(null);
+      setIsDialogOpen(false);
+      navigate(selectedCollege?.route || "/admin");
+      form.reset();
+    } catch (err: any) {
+      setLoginError(err.message || "Invalid username or password for this administration.");
     }
-
-    localStorage.setItem("isLoggedIn", "true");
-    // remember which college is logged in so ProtectedRoute can enforce access
-    localStorage.setItem("adminCollege", selectedCollege?.id ?? selectedConfig.variant);
-    setLoginError(null);
-    setIsDialogOpen(false);
-    navigate(selectedCollege?.route || "/admin");
-    form.reset();
   };
 
   return (
@@ -250,6 +255,11 @@ function AdminPanel() {
                           Login
                         </Button>
                       </div>
+                      <p className="text-center text-sm text-muted-foreground pt-2">
+                        <Link to="/admin/register" className="text-primary hover:underline" onClick={() => setIsDialogOpen(false)}>
+                          Register a new partner account
+                        </Link>
+                      </p>
                     </form>
                   </Form>
                 </motion.div>

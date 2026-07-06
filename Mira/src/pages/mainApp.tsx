@@ -28,6 +28,7 @@ import DepartmentalPaymentForm from "@/components/departmentaldue";
 import FossuPaymentForm from "@/components/fossaDue";
 import { useLocation, useNavigate } from "react-router-dom";
 import { WelcomeModal } from "@/components/ui/WelcomeModal";
+import { apiGet } from "@/lib/api";
 
 const PROFILE_STORAGE_KEY = "Mira_profile_settings";
 const DEFAULT_AVATAR_URL = "/profile-avatar_18931206.png";
@@ -69,6 +70,7 @@ function MainApp() {
   const [avatarUrl, setAvatarUrl] = useState<string>(DEFAULT_AVATAR_URL);
   const [fullName, setFullName] = useState<string>("there");
   const [showWelcome, setShowWelcome] = useState(false);
+  const [ledgerBalance, setLedgerBalance] = useState<number | null>(null);
 
   useEffect(() => {
     const loadProfile = () => {
@@ -92,6 +94,11 @@ function MainApp() {
     if (!localStorage.getItem(WELCOME_SEEN_KEY)) {
       setShowWelcome(true);
     }
+
+    apiGet("/api/admin/partner/balance")
+      .then((data) => setLedgerBalance(data.ledgerBalance))
+      .catch(() => {});
+
     return () => {
       window.removeEventListener("storage", onStorage);
       window.removeEventListener("focus", loadProfile);
@@ -196,7 +203,7 @@ function MainApp() {
 
             <div className="flex items-end gap-3 mb-5">
               <h1 className="text-[40px] font-bold leading-none tracking-tight text-white">
-                {balanceVisible ? "₦0.00" : "•••••"}
+                {balanceVisible ? `₦${ledgerBalance !== null ? ledgerBalance.toLocaleString() : "0.00"}` : "•••••"}
               </h1>
               <span className="mb-1.5 flex items-center gap-1 rounded-full bg-[rgb(4,173,183)]/25 px-2 py-0.5 text-[11px] font-semibold text-[rgb(4,173,183)]">
                 +3.50%

@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CreditCard, User,  LucideSchool, Mail } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
+import { apiPost } from "@/lib/api";
 
 
 interface CollegePaymentFormProps {
@@ -39,8 +40,6 @@ const CollegePaymentForm: React.FC<CollegePaymentFormProps> = ({ IsVisible, setI
 const email =  formData.email;
 const matricNumber = formData.matricNumber;
 const fullname = formData.fullname;
-// const collegemain = formData.colleges;
-// const mainCollege = collegemain.split(' ')[5]; // Extract "COLERM" from "College of Environmental Resources Management (COLERM)"
 const collegeName = formData.colleges || "None";
 const department = formData.department || "None";
 const level = formData.level || "None";
@@ -58,26 +57,23 @@ if (collegeName && mainLevel) {
 // const amountN = amount / 100;
 const desc = formData.desc;
 
-const payWithPaystack = async () => {
-  notSubmitting(true); // <-- Start showing the loading overlay
+const payWithNomba = async () => {
+  notSubmitting(true);
   try {
-    const requestPaystack = await fetch('https://Mira-backend-main.onrender.com/api/make-college-payment', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, matricNumber, fullname, collegeName, department, level, fresherLevel, mainLevel, amount})
-    })
+    const callbackUrl = `${window.location.origin}/receipts`;
+    const data = await apiPost('/api/payments/initiate', {
+      email,
+      payerName: fullname,
+      amount,
+      partnerIdentifier: collegeName,
+      businessVertical: "education",
+      metadata: { matricNumber, department, level, fresherLevel, mainLevel, desc },
+      callbackUrl,
+    });
 
-    const data = await requestPaystack.json();
-    if(!requestPaystack.ok){
-        notSubmitting(false);
-        throw new Error(data.message || 'Failed to initialize transaction');
-    }
     if (data.paymentLink) {
-      
-     window.location.href = data.paymentLink;
-    }else{
+      window.location.href = data.paymentLink;
+    } else {
       alert('Payment link not found');
       throw new Error('Payment link not found');
     }
@@ -85,93 +81,7 @@ const payWithPaystack = async () => {
     console.error('Error:', error);
     notSubmitting(false);
   }
-  console.log({ email, matricNumber, fullname, collegeName, department, level, fresherLevel, mainLevel});
 }
-
-// const payWithPaystack = async () => {
-//   notSubmitting(true); // <-- Start showing the loading overlay
-
-//   try {
-//     const requestPaystack = await fetch('https://Miramain.onrender.com/initialize-transaction', {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ email, amount })
-//     });
-// if(requestPaystack.ok){
-//     notSubmitting(false);
-// }
-//     const reply = await requestPaystack.json();
-//     const access_code = reply.data.access_code;
-
-//     // const popup = new PaystackPop();
-//     // popup.resumeTransaction(access_code);
-
-//     const handler = (window as any).PaystackPop.setup({
-//       key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
-//       email,
-//       amount,
-//       currency: "NGN",
-//       reference: reply.data.reference,
-//       access_code,
-//       callback: (response: any) => {
-//         const verifyTransaction = async () => {
-//           const verification = await fetch(`https://Miramain.onrender.com/verify-transaction/${response.reference}`);
-//           const verify = await verification.json();
-
-//            if (verify.data?.status === "success") {
-//              const savePayment = await fetch('https://Miramain.onrender.com/api/save-paymentCollege', {
-//               method: "POST",
-//               headers: {
-//                 "Content-Type": "application/json"
-//               },
-//               body: JSON.stringify({
-//                 email,
-//                 amount,
-//                 matricNumber,
-//                 fullname,
-//                 college,
-//                 department,
-//                 mainLevel: formData.MainLevel,
-//                 level,
-//                 fresherLevel,
-//                 reference: response.reference,
-//                 desc
-//               }),
-//             });
-//             if (savePayment.ok) {
-//               notSubmitting(false);
-//               console.log("Payment successful and saved to database");
-//             }else {
-//               notSubmitting(false);
-//               console.error("Failed to save payment to database");
-//             }
-//             navigate(`/receipts/${response.reference}`, {state: {desc}});
-//           }
-//         };
-//         verifyTransaction();
-//       },
-//       onclose: () => {
-//          navigate('/home');
-//       },
-//     });
-
-//     handler.openIframe();
-
-//             const sendRef = fetch('https://payMira.onrender.com/refReceipt', {
-//   method: 'POST',
-//   headers: {
-//         "Content-Type": "application/json",
-//       },
-//   body: JSON.stringify(handler.reference)  }
-// );
-
-//   } catch (err) {
-//     notSubmitting(false); // <-- Hide loading on error
-//     console.error(err);
-//   }
-// };
 
   const colleges = [
     "College of Environmental Resources Management (COLERM)",
@@ -404,7 +314,7 @@ const payWithPaystack = async () => {
                 )}
             
                 <Button 
-                  type="submit" onClick={payWithPaystack}
+                  type="submit" onClick={payWithNomba}
                   className="w-full bg-gradient-primary hover:opacity-90 text-primary-foreground font-semibold py-3"
                 >
                   Proceed to Payment

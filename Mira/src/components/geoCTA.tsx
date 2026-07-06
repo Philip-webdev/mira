@@ -47,7 +47,7 @@ const PayGeo = () => {
   const amount = checkLevel ? 350000 : 500000; // in kobo
   const desc = formData.description;
 
-  const payWithPaystack = async () => {
+  const payWithNomba = async () => {
     setSubmitting(true);
 
     try {
@@ -66,8 +66,8 @@ const PayGeo = () => {
 
       const { access_code, reference } = reply.data;
 
-      const handler = (window as any).PaystackPop.setup({
-        key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
+      const handler = (window as any).NombaPop.setup({
+        key: import.meta.env.VITE_Nomba_PUBLIC_KEY,
         email,
         amount,
         currency: "NGN",
@@ -137,7 +137,7 @@ const PayGeo = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    payWithPaystack();
+    payWithNomba();
   };
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">

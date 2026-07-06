@@ -6,7 +6,6 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CreditCard, User, GraduationCap, Mail } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import PaystackPop from "@paystack/inline-js";
 
 const PayWMA = () => {
   const navigate = useNavigate();
@@ -49,72 +48,72 @@ const PayWMA = () => {
   const fresherLevels = ["100", "200"];
 
  
-  const payWithPaystack = async () => {
-    setSubmitting(true);
+  // const payWithNomba = async () => {
+  //   setSubmitting(true);
 
-    try {
+  //   try {
      
-      const response = await fetch("https://Miramain.onrender.com/initialize-transaction", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: formData.email, amount: formData.amount * 100 }), // kobo
-      });
+  //     const response = await fetch("https://Miramain.onrender.com/initialize-transaction", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ email: formData.email, amount: formData.amount * 100 }), // kobo
+  //     });
 
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.message || "Failed to initialize transaction");
+  //     const data = await response.json();
+  //     if (!response.ok) throw new Error(data.message || "Failed to initialize transaction");
 
-      const { reference, access_code } = data.data;
+  //     const { reference, access_code } = data.data;
 
        
-      const handler = PaystackPop.setup({
-        key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
-        email: formData.email,
-        amount: formData.amount * 100,
-        currency: "NGN",
-        reference,
-        access_code,
-        callback: async (res: any) => {
-          try {
+  //     // const handler = NombaPop.setup({
+  //     //   key: import.meta.env.VITE_Nomba_PUBLIC_KEY,
+  //     //   email: formData.email,
+  //     //   amount: formData.amount * 100,
+  //     //   currency: "NGN",
+  //     //   reference,
+  //     //   access_code,
+  //     //   callback: async (res: any) => {
+  //     //     try {
          
-            const verification = await fetch(`https://Miramain.onrender.com/verify-transaction/${res.reference}`);
-            const verify = await verification.json();
+  //     //       const verification = await fetch(`https://Miramain.onrender.com/verify-transaction/${res.reference}`);
+  //     //       const verify = await verification.json();
 
-            if (verify.data?.status === "success") {
+  //     //       if (verify.data?.status === "success") {
               
-              const savePayment = await fetch("https://Miramain.onrender.com/wma/save-payment", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ ...formData, reference: res.reference }),
-              });
+  //     //         const savePayment = await fetch("https://Miramain.onrender.com/wma/save-payment", {
+  //     //           method: "POST",
+  //     //           headers: { "Content-Type": "application/json" },
+  //     //           body: JSON.stringify({ ...formData, reference: res.reference }),
+  //     //         });
 
-              if (!savePayment.ok) throw new Error("Failed to save payment to DB");
+  //     //         if (!savePayment.ok) throw new Error("Failed to save payment to DB");
 
                 
  
              
-              navigate(`/receipt`, { state: { formData, reference: res.reference } });
-            }
-          } catch (err) {
-            console.error("Error verifying/saving payment:", err);
-          } finally {
-            setSubmitting(false);
-          }
-        },
-        onClose: () => {
-          setSubmitting(false);
-          navigate("/home");
-        },
-      });
+  //     //         navigate(`/receipt`, { state: { formData, reference: res.reference } });
+  //     //       }
+  //     //     } catch (err) {
+  //     //       console.error("Error verifying/saving payment:", err);
+  //     //     } finally {
+  //     //       setSubmitting(false);
+  //     //     }
+  //     //   },
+  //     //   onClose: () => {
+  //     //     setSubmitting(false);
+  //     //     navigate("/home");
+  //     //   },
+  //     // });
 
-      handler.openIframe();
-    } catch (err) {
-      console.error("Payment error:", err);
-      setSubmitting(false);
-    }
-  };
+  //     handler.openIframe();
+  //   } catch (err) {
+  //     console.error("Payment error:", err);
+  //     setSubmitting(false);
+  //   }
+  // };
  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    payWithPaystack();
+    // payWithNomba();
   }
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">

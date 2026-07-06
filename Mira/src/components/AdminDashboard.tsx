@@ -14,6 +14,7 @@ import DashboardSkeleton from "./Admin/Dashboard/DashboardSkeleton";
 import RevenueChart from "./Admin/Dashboard/RevenueChart";
 import RecentTransactions from "./Admin/Dashboard/RecentTransactions";
 import ActivityTimeline from "./Admin/Dashboard/ActivityTimeline";
+import { apiGet } from "@/lib/api";
 
 const AdminDashboard = () => {
   const { college } = useParams();
@@ -21,13 +22,6 @@ const AdminDashboard = () => {
   if (!config) {
     return <div>Dashboard not found</div>;
   }
-  const getEndpoint = (college: string) => {
-    if (college === "aqua") {
-      return "https://Mira-backend-main.onrender.com/api/admin/dashboard/Fishery";
-    } else {
-      return `https://Mira-backend-main.onrender.com/api/admin/dashboard/${college?.toUpperCase()}`;
-    }
-  };
   const [result, setResult] = useState<any[]>([]);
   const [submitted, setSubmitted] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -104,16 +98,10 @@ const AdminDashboard = () => {
       setSubmitted(true);
 
       try {
-        const response = await fetch(getEndpoint(college ?? "colerm"), {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const data = await response.json();
-
-        setResult(data.slice(-5).reverse());
-        setAllTransactions(data.reverse());
+        const data = await apiGet('/api/admin/partner/payments');
+        const payments = Array.isArray(data) ? data : data.payments || [];
+        setResult(payments.slice(-5).reverse());
+        setAllTransactions(payments.reverse());
       } catch (error) {
         console.error("Failed to load dashboard data:", error);
       } finally {
