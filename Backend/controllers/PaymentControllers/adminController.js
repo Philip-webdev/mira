@@ -68,6 +68,42 @@ exports.adminLogin = async (req, res) => {
   }
 };
 
+exports.refreshToken = async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ message: 'No token provided' });
+    }
+
+    const token = authHeader.split(' ')[1];
+    if (!process.env.JWT_SECRET) {
+      return res.status(500).json({ message: 'Server misconfiguration: JWT_SECRET must be set' });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET, { ignoreExpiration: true });
+
+    const { rows } = await pool.query(
+      'SELECT id, email, role, partner_identifier FROM admin_users WHERE id = $1',
+      [decoded.id]
+    );
+
+    if (rows.length === 0) {
+      return res.status(401).json({ message: 'User not found' });
+    }
+
+    const admin = rows[0];
+    const newToken = jwt.sign(
+      { id: admin.id, email: admin.email, role: admin.role, partnerIdentifier: admin.partner_identifier },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES_IN || '1h' }
+    );
+
+    return res.status(200).json({ token: newToken });
+  } catch (err) {
+    return res.status(401).json({ message: 'Invalid token' });
+  }
+};
+
 exports.triggerReconciliation = async (req, res) => {
   if (req.admin.role !== 'Mira_admin') {
     return res.status(403).json({ message: 'Forbidden: only Mira admin can trigger reconciliation' });

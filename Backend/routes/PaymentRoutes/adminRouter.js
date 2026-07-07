@@ -10,6 +10,7 @@ const { authenticateAdmin, authorizeOwner } = require('../../middlewares/adminAu
 // Public endpoints
 router.post('/auth/register', onboardingController.registerPartner);
 router.post('/auth/login', adminController.adminLogin);
+router.post('/auth/refresh', adminController.refreshToken);
 
 // Bank Lookup & Account config
 router.post('/partner/bank-lookup', authenticateAdmin, authorizeOwner, bankLookupController.lookupBankAccount);

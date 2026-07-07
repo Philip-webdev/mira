@@ -204,7 +204,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       const token = localStorage.getItem('mira_token');
       if (!token) return;
 
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://mira-production-6a48.up.railway.app'}/api/auth/refresh`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://mira-production-6a48.up.railway.app'}/api/admin/auth/refresh`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -213,11 +213,12 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
       if (!response.ok) {
         logout();
-        throw new Error('Token refresh failed');
+        return;
       }
 
       const data = await response.json();
       localStorage.setItem('mira_token', data.token);
+      localStorage.setItem('mira_admin_token', data.token);
     } catch (error) {
       logout();
     }
