@@ -15,10 +15,14 @@ const PORT = process.env.PORT || 3000;
 const rateLimit = require('./middlewares/rateLimit');
 app.use(rateLimit);
 
+const allowedOrigins = ['https://mira-fawn.vercel.app'];
+
+if (process.env.NODE_ENV !== 'production') {
+  allowedOrigins.push('http://localhost:8080', 'http://127.0.0.1:8080');
+}
+
 const corsOptions = {
-    origin: [
-        'https://mira-fawn.vercel.app'
-    ],
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'  ],
 };
@@ -38,21 +42,6 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
   res.send('Welcome to Mira')
 })
-
-app.get('/api/debug/env', (req, res) => {
-  const id = process.env.NOMBA_CLIENT_ID || '';
-  const secret = process.env.NOMBA_CLIENT_SECRET || '';
-  const parentId = process.env.NOMBA_PARENT_ACCOUNT_ID || '';
-  const subId = process.env.NOMBA_SUB_ACCOUNT_ID || '';
-  res.json({
-    clientId: id ? id.substring(0, 8) + '...' : 'MISSING',
-    clientSecretLen: secret.length,
-    clientSecretFirst2: secret.substring(0, 2),
-    parentId: parentId ? parentId.substring(0, 8) + '...' : 'MISSING',
-    subId: subId ? subId.substring(0, 8) + '...' : 'MISSING',
-  });
-})
-
 
 app.use('/api', webhookRouter);
 app.use('/api/v1', disburseWebhookRouter);
@@ -78,4 +67,3 @@ app.listen(PORT, () => {
   
   console.log(`Server is running on ${PORT}`); 
 })
-

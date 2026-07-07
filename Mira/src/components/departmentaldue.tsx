@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -111,17 +111,8 @@ const requestFlutter = async () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
-
+    requestFlutter();
   };
-
-  useEffect(() => {
-   const leveler = MainLevel.filter(lev => lev === "Fresher/ Direct Entry")
-   console.log(leveler);
-   
-  }, [])
-  
 
   return (
     <div className="space-y-4" style={{padding:'20px'}}>
@@ -334,11 +325,12 @@ const requestFlutter = async () => {
                     </div>
                   </div>
                 )}
-                <Button onClick={requestFlutter}
-                  type="submit" 
+                <Button
+                  type="submit"
+                  disabled={submitting}
                   className="w-full bg-gradient-primary hover:opacity-90 text-primary-foreground font-semibold py-3"
                 >
-                  Proceed to Payment
+                  {submitting ? "Processing..." : "Proceed to Payment"}
                 </Button>
               </div>
             </form>

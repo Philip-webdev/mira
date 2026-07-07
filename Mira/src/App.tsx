@@ -143,6 +143,10 @@ const AppRoutes = () => (
     >
       <Route index element={<AdminDashboard />} />
       <Route path="payments" element={<PaymentsPage />} />
+      <Route path="balance" element={<BalancePage />} />
+      <Route path="withdraw" element={<WithdrawPage />} />
+      <Route path="withdrawals" element={<WithdrawalsPage />} />
+      <Route path="bank-settings" element={<BankSettingsPage />} />
     </Route>
     <Route
       path="/food"

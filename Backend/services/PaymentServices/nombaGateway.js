@@ -56,9 +56,6 @@ class NombaGateway extends IPaymentGateway {
   }
 
   async _issueToken() {
-    console.log('[Nomba] _issueToken called, clientId:', this.clientId ? this.clientId.substring(0, 8) + '...' : 'MISSING');
-    console.log('[Nomba] clientSecret length:', this.clientSecret ? this.clientSecret.length : 0);
-    console.log('[Nomba] parentAccountId:', this.parentAccountId ? this.parentAccountId.substring(0, 8) + '...' : 'MISSING');
     const resp = await axios.post(`${NOMBA_BASE}/v1/auth/token/issue`, {
       grant_type: 'client_credentials',
       client_id: this.clientId,

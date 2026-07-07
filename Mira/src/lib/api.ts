@@ -25,7 +25,7 @@ export async function apiGet<T = any>(path: string): Promise<T> {
   });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
-    throw new Error(body.message || `Request failed (${res.status})`);
+    throw new Error(body.error || body.message || `Request failed (${res.status})`);
   }
   return res.json();
 }
@@ -42,7 +42,7 @@ export async function apiPost<T = any>(path: string, body?: any): Promise<T> {
   });
   if (!res.ok) {
     const data = await res.json().catch(() => ({}));
-    throw new Error(data.message || `Request failed (${res.status})`);
+    throw new Error(data.error || data.message || `Request failed (${res.status})`);
   }
   return res.json();
 }

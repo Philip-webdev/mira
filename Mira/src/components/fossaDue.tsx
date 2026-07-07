@@ -91,8 +91,7 @@ const payWithNomba = async () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-   // console.log("Form submitted:", formData);
+    payWithNomba();
   };
 
   return (
@@ -291,10 +290,11 @@ const payWithNomba = async () => {
                 )}
             
                 <Button 
-                  type="submit" onClick={payWithNomba}
+                  type="submit"
+                  disabled={submitting}
                   className="w-full bg-gradient-primary hover:opacity-90 text-primary-foreground font-semibold py-3"
                 >
-                  Proceed to Payment
+                  {submitting ? "Processing..." : "Proceed to Payment"}
                 </Button>
               </div>
             </form>
