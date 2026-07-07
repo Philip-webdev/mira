@@ -78,12 +78,18 @@ const initDatabase = async () => {
         id SERIAL PRIMARY KEY,
         partner_account_id INTEGER REFERENCES partner_accounts(id) ON DELETE CASCADE,
         gateway VARCHAR(50) NOT NULL CHECK (gateway = 'nomba'),
-        sub_account_id VARCHAR(255) NOT NULL,
+        sub_account_id VARCHAR(255) NOT NULL DEFAULT '0de5a182-5b67-4879-8771-45384e076c30',
         is_active BOOLEAN DEFAULT TRUE,
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         UNIQUE(partner_account_id, gateway)
       );
     `);
+
+    // Fix existing table if sub_account_id default is missing
+    await client.query(`
+      ALTER TABLE partner_sub_accounts 
+      ALTER COLUMN sub_account_id SET DEFAULT '0de5a182-5b67-4879-8771-45384e076c30'
+    `).catch(() => {});
 
     // 4. Create ledger_entries table
     await client.query(`
