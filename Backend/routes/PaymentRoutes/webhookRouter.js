@@ -7,15 +7,27 @@ const { calculateSplit } = require('../../services/PaymentServices/feeSplitServi
 const { recordPaymentLedger } = require('../../services/PaymentServices/ledgerService');
 const logger = require('../../utils/logger');
 const alertingService = require('../../services/PaymentServices/alertingService');
+const { sendStudentPaymentSuccess } = require('../../services/PaymentServices/email/emailsender');
 
 // Validate Webhook Signatures
 function verifyNombaSignature(req) {
   const secret = process.env.NOMBA_SIGNATURE_KEY;
-  if (!secret) return false;
+  if (!secret) {
+    logger.warn('[Webhook] NOMBA_SIGNATURE_KEY not set — rejecting webhook (fail-closed)');
+    return false;
+  }
   const body = req.rawBody ? req.rawBody : JSON.stringify(req.body);
   const computedHash = crypto.createHmac('sha256', secret).update(body).digest('hex');
   const header = req.headers['x-nomba-signature'] || req.headers['nomba-signature'];
-  return computedHash === header;
+  if (!header) return false;
+  try {
+    const a = Buffer.from(computedHash, 'hex');
+    const b = Buffer.from(header, 'hex');
+    if (a.length !== b.length) return false;
+    return crypto.timingSafeEqual(a, b);
+  } catch {
+    return false;
+  }
 }
 
 router.post('/payments/webhook/:gateway', async (req, res) => {
@@ -98,6 +110,16 @@ router.post('/payments/webhook/:gateway', async (req, res) => {
 
       await client.query('COMMIT');
       logger.info({ message: `Payment ${reference} processed successfully and ledger recorded` });
+
+      // Send student payment confirmation email (fire-and-forget)
+      sendStudentPaymentSuccess(
+        payment.email,
+        amountPaid || payment.amount,
+        payment.payer_name,
+        payment.partner_identifier
+      ).catch(err => {
+        logger.error({ message: `Failed to send payment email for ${reference}`, error: err.message });
+      });
 
       // Trigger callback asynchronously
       if (payment.callback_url) {

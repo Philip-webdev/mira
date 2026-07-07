@@ -12,13 +12,21 @@ const alertingService = require('../../services/PaymentServices/alertingService'
 function verifyNombaSignature(req) {
   const secret = process.env.NOMBA_SIGNATURE_KEY;
   if (!secret) {
-    logger.warn('[DisburseWebhook] NOMBA_SIGNATURE_KEY not set — skipping signature verification');
-    return true;
+    logger.warn('[DisburseWebhook] NOMBA_SIGNATURE_KEY not set — rejecting webhook (fail-closed)');
+    return false;
   }
   const body = req.rawBody ? req.rawBody : JSON.stringify(req.body);
   const computedHash = crypto.createHmac('sha256', secret).update(body).digest('hex');
   const header = req.headers['x-nomba-signature'] || req.headers['nomba-signature'];
-  return computedHash === header;
+  if (!header) return false;
+  try {
+    const a = Buffer.from(computedHash, 'hex');
+    const b = Buffer.from(header, 'hex');
+    if (a.length !== b.length) return false;
+    return crypto.timingSafeEqual(a, b);
+  } catch {
+    return false;
+  }
 }
 
 /**

@@ -8,9 +8,15 @@ class NombaGateway extends IPaymentGateway {
   constructor() {
     super();
     this.clientId = process.env.NOMBA_CLIENT_ID;
-    this.clientSecret = process.env.NOMBA_CLIENT_SECRET;
     this.parentAccountId = process.env.NOMBA_PARENT_ACCOUNT_ID;
     this.subAccountId = process.env.NOMBA_SUB_ACCOUNT_ID;
+
+    // Support base64-encoded secret to avoid Railway env var mangling + characters
+    if (process.env.NOMBA_CLIENT_SECRET_B64) {
+      this.clientSecret = Buffer.from(process.env.NOMBA_CLIENT_SECRET_B64, 'base64').toString('utf-8');
+    } else {
+      this.clientSecret = process.env.NOMBA_CLIENT_SECRET;
+    }
 
     this._accessToken = null;
     this._refreshToken = null;
