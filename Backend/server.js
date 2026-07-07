@@ -55,8 +55,9 @@ app.post('/nomba/webhook', (req, res, next) => {
   webhookRouter(req, res, next);
 });
 
-// DEV ONLY: Mock payment confirmation to test full flow without Nomba sandbox
-if (process.env.NODE_ENV !== 'production') {
+// Mock payment confirmation for testing full flow without Nomba sandbox
+// POST /api/dev/mock-confirm/:reference
+{
   const { pool } = require('./config/postgres');
   const { calculateSplit } = require('./services/PaymentServices/feeSplitService');
   const { recordPaymentLedger } = require('./services/PaymentServices/ledgerService');
@@ -117,7 +118,6 @@ if (process.env.NODE_ENV !== 'production') {
       client.release();
     }
   });
-}
 
 app.listen(PORT, () => {
   initDatabase().catch(err => console.error('Failed to initialize PostgreSQL database:', err));
