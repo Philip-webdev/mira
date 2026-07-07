@@ -52,8 +52,12 @@ export default function LoginForm() {
         toast({ title: "Welcome Back", description: "Logged in successfully." });
         const storedUser = JSON.parse(localStorage.getItem("mira_user") || "{}");
         if (storedUser.role === "admin") {
-          const college = localStorage.getItem("adminCollege") || "colerm";
-          navigate(`/admin/${college}`);
+          const college = localStorage.getItem("adminCollege");
+          if (college) {
+            navigate(`/admin/${college}`);
+          } else {
+            navigate("/admin");
+          }
         } else {
           navigate("/home");
         }

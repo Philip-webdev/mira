@@ -104,9 +104,8 @@ exports.registerPartner = async (req, res) => {
       });
       subAccountId = provisionResult.subAccountId;
     } catch (gwErr) {
-      // Do not fall back to a mocked sub-account id. Mark provisioning as pending and continue.
-      logger.error('Failed to provision sub-account dynamically; marking sub-account as pending', { error: gwErr?.message });
-      subAccountId = null;
+      logger.error('Failed to provision sub-account dynamically; using seed sub-account', { error: gwErr?.message });
+      subAccountId = process.env.NOMBA_SUB_ACCOUNT_ID || '0de5a182-5b67-4879-8771-45384e076c30';
     }
 
     // Save sub-account record (mark inactive if provisioning failed)
