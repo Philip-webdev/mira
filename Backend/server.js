@@ -55,6 +55,70 @@ app.post('/nomba/webhook', (req, res, next) => {
   webhookRouter(req, res, next);
 });
 
+// DEV ONLY: Mock payment confirmation to test full flow without Nomba sandbox
+if (process.env.NODE_ENV !== 'production') {
+  const { pool } = require('./config/postgres');
+  const { calculateSplit } = require('./services/PaymentServices/feeSplitService');
+  const { recordPaymentLedger } = require('./services/PaymentServices/ledgerService');
+
+  app.post('/api/dev/mock-confirm/:reference', async (req, res) => {
+    const { reference } = req.params;
+    const client = await pool.connect();
+    try {
+      await client.query('BEGIN');
+
+      const paymentRes = await client.query(
+        'SELECT * FROM payments WHERE reference = $1 FOR UPDATE',
+        [reference]
+      );
+
+      if (paymentRes.rows.length === 0) {
+        await client.query('ROLLBACK');
+        return res.status(404).json({ message: 'Payment not found' });
+      }
+
+      const payment = paymentRes.rows[0];
+      if (payment.payment_status === 'completed') {
+        await client.query('COMMIT');
+        return res.status(200).json({ message: 'Already completed', reference });
+      }
+
+      const amountPaid = payment.amount;
+
+      await client.query(
+        'UPDATE payments SET payment_status = $1, amount_paid = $2, updated_at = CURRENT_TIMESTAMP WHERE id = $3',
+        ['completed', amountPaid, payment.id]
+      );
+
+      const splitResult = await calculateSplit(amountPaid, payment.partner_identifier);
+
+      await recordPaymentLedger(
+        client,
+        reference,
+        payment.partner_identifier,
+        amountPaid,
+        splitResult.MiraShare,
+        'Mock confirmation (dev only)'
+      );
+
+      await client.query('COMMIT');
+
+      return res.status(200).json({
+        message: 'Payment confirmed (mock)',
+        reference,
+        amountPaid,
+        partnerShare: splitResult.partnerShare,
+        miraShare: splitResult.MiraShare,
+      });
+    } catch (error) {
+      await client.query('ROLLBACK');
+      return res.status(500).json({ message: 'Error', error: error.message });
+    } finally {
+      client.release();
+    }
+  });
+}
+
 app.listen(PORT, () => {
   initDatabase().catch(err => console.error('Failed to initialize PostgreSQL database:', err));
   
