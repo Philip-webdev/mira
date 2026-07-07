@@ -17,9 +17,7 @@ app.use(rateLimit);
 
 const corsOptions = {
     origin: [
-        'https://mira-fawn.vercel.app',
-        'http://localhost:8080',
-        'http://localhost:5173'
+        'https://mira-fawn.vercel.app'
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'  ],
