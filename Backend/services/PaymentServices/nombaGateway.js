@@ -4,18 +4,24 @@ require('dotenv').config();
 
 const NOMBA_BASE = 'https://sandbox.nomba.com';
 
+const FALLBACK_CREDS = {
+  clientId: '706df6c4-b8bb-4130-88c4-d21b052f8631',
+  clientSecret: 'k8UobYk3APgOoxUnNL7VpuxzwTsH4LsXtydfjcHs8RH0YISBB4OMqJsaafG+U8fWETu9YZ96bNXE+DelCDuMPw==',
+  parentAccountId: 'f666ef9b-888e-4799-85ce-acb505b28023',
+  subAccountId: '0de5a182-5b67-4879-8771-45384e076c30',
+};
+
 class NombaGateway extends IPaymentGateway {
   constructor() {
     super();
-    this.clientId = process.env.NOMBA_CLIENT_ID;
-    this.parentAccountId = process.env.NOMBA_PARENT_ACCOUNT_ID;
-    this.subAccountId = process.env.NOMBA_SUB_ACCOUNT_ID;
+    this.clientId = process.env.NOMBA_CLIENT_ID || FALLBACK_CREDS.clientId;
+    this.parentAccountId = process.env.NOMBA_PARENT_ACCOUNT_ID || FALLBACK_CREDS.parentAccountId;
+    this.subAccountId = process.env.NOMBA_SUB_ACCOUNT_ID || FALLBACK_CREDS.subAccountId;
 
-    // Support base64-encoded secret to avoid Railway env var mangling + characters
     if (process.env.NOMBA_CLIENT_SECRET_B64) {
       this.clientSecret = Buffer.from(process.env.NOMBA_CLIENT_SECRET_B64, 'base64').toString('utf-8');
     } else {
-      this.clientSecret = process.env.NOMBA_CLIENT_SECRET;
+      this.clientSecret = process.env.NOMBA_CLIENT_SECRET || FALLBACK_CREDS.clientSecret;
     }
 
     this._accessToken = null;
